@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 
+type Page =
+  | "home"
+  | "about"
+  | "products"
+  | "services"
+  | "contact"
+  | "work"
+  | "case-study";
+
 interface HeaderProps {
-  currentPage: "home" | "about" | "products" | "services" | "contact" | "work";
-  onPageChange: (
-    page: "home" | "about" | "products" | "services" | "contact" | "work",
-  ) => void;
+  currentPage: Exclude<Page, "case-study">;
+  onPageChange: (page: Page) => void;
   onSelectSection: (sectionId: string) => void;
 }
 
@@ -27,10 +34,7 @@ export default function Header({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (
-    page: "home" | "about" | "products" | "services" | "contact" | "work",
-    e: React.MouseEvent,
-  ) => {
+  const handleNavClick = (page: Page, e: React.MouseEvent) => {
     e.preventDefault();
     onPageChange(page);
     setIsDrawerOpen(false);

@@ -1,64 +1,222 @@
 import { useState } from "react";
 
-type ProjectCategory = "all" | "platform" | "cloud" | "design";
+type ProjectCategory = "all" | "platform" | "design";
+
+interface Metric {
+  label: string;
+  value: string;
+}
+
+interface Screenshot {
+  label: string;
+  path: string;
+  type: "storefront" | "admin";
+}
 
 interface Project {
+  id: string;
   title: string;
   client: string;
   category: ProjectCategory;
   description: string;
   outcome: string;
   tags: string[];
-  image: string;
+  image: string; // main card preview image
+  challenge: string;
+  solution: string;
+  architecture: string[];
+  metrics: Metric[];
+  siteUrl: string;
+  adminUrl: string;
+  screenshots: Screenshot[];
 }
 
-export default function Work() {
+interface WorkProps {
+  onSelectProject: (project: Project) => void;
+}
+
+export default function Work({ onSelectProject }: WorkProps) {
   const [filter, setFilter] = useState<ProjectCategory>("all");
 
   const projects: Project[] = [
     {
-      title: "Enterprise Omnichannel CMS Migration",
-      client: "Acme Global Retail",
+      id: "kiddostyle",
+      title: "E-Commerce Storefront & Warehouse Automation Panel",
+      client: "KiddoStyle",
       category: "platform",
       description:
-        "Architected and built a multi-tenant content management system serving global retail storefronts across 40 countries, enabling seamless translation and asset orchestration.",
-      outcome: "+45% content publishing speed",
-      tags: ["React", "TypeScript", "Tailwind", "Vite", "REST API"],
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuDxruU6cM_vOHom_GuWNuPvmQ_NOtOMpptG5wyi0XXykG_OXlk75AITW9rW3aoB2Jn-QeXkwFuZbcZTCryYJ79mbE_DsKmgWOZ5goBDTlu-I9u4OmfQz0FQEMrxUDKSlqCrhmVy6VHE8E87Sr9Ewwgog3jKJx8o0jrdBRahKdt9K_nqCbVoaL89nOyupJmlOK8laI-bd4IKguA34qkR2WRvLTERBgevyYIqZegY7mf93ujBJkUKMlVKk_RVUzHRBNIUF6nn7ZCgT_W8",
+        "Engineered a premium children's clothing e-commerce storefront alongside a secure warehouse administration dashboard, enabling low-latency inventory management and high-volume concurrent checkout operations.",
+      outcome: "+38% sales conversion increase",
+      tags: [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Vite",
+        "Stripe Payments",
+        "Node.js",
+      ],
+      image: "/images/kiddostyle.gcvdanta.com_checkout_review.webp", // main cover
+      challenge:
+        "KiddoStyle required an enterprise storefront capable of hosting high-resolution image galleries with instant load times, coupled with a back-end administration panel to synchronize inventory across multiple brick-and-mortar warehouses in real-time.",
+      solution:
+        "GCV designed a state-of-the-art Single-Page Application (SPA) utilizing Vite for lightning-fast asset compilation. We built a synchronized inventory system mapping API updates in under 1.5 seconds and integrated secure, frictionless payment structures.",
+      architecture: [
+        "Vite-driven React frontend optimized for mobile viewport performance.",
+        "Secure Stripe API pipelines for seamless credit card authorizations.",
+        "Custom administrative dashboard providing inventory controls, order tracking, and sales telemetry.",
+        "Automated cache-clearing mechanisms for instant product catalog updates.",
+      ],
+      metrics: [
+        { label: "Lighthouse Performance Score", value: "98/100" },
+        { label: "Inventory Sync Latency", value: "< 1.5s" },
+        { label: "Checkout Completion Rate", value: "94%" },
+      ],
+      siteUrl: "https://kiddostyle.gcvdanta.com/",
+      adminUrl: "https://admin.kiddostyle.gcvdanta.com/",
+      screenshots: [
+        {
+          label: "Storefront - Checkout Review",
+          path: "/images/kiddostyle.gcvdanta.com_checkout_review.webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Checkout Success",
+          path: "/images/kiddostyle.gcvdanta.com_checkout_success.webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Purchase Invoice",
+          path: "/images/kiddostyle.gcvdanta.com_checkout_success (1).webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Girls Collections (1)",
+          path: "/images/kiddostyle.gcvdanta.com_collections_girls (1).webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Girls Collections (2)",
+          path: "/images/kiddostyle.gcvdanta.com_collections_girls (2).webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Girls Collections (3)",
+          path: "/images/kiddostyle.gcvdanta.com_collections_girls (3).webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Girls Collections (4)",
+          path: "/images/kiddostyle.gcvdanta.com_collections_girls (4).webp",
+          type: "storefront",
+        },
+        {
+          label: "Admin Panel - Order Management",
+          path: "/images/admin.kiddostyle.gcvdanta.com_ (1).webp",
+          type: "admin",
+        },
+        {
+          label: "Admin Panel - Inventory Database",
+          path: "/images/admin.kiddostyle.gcvdanta.com_ (3).webp",
+          type: "admin",
+        },
+        {
+          label: "Admin Panel - Telemetry Config",
+          path: "/images/admin.kiddostyle.gcvdanta.com_ (4).webp",
+          type: "admin",
+        },
+      ],
     },
     {
-      title: "HIPAA-Compliant Hospital Management Panel",
-      client: "CoreHealth Diagnostics",
-      category: "design",
-      description:
-        "Conducted extensive service research and designed a world-class UI/UX workflow for clinical practitioners, optimizing patient intake and diagnostic synchronizations.",
-      outcome: "99.98% practitioner satisfaction",
-      tags: ["UI/UX", "Service Design", "Design System", "Accessibility"],
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuAgdK99-v6F1XYsST5CEP-OuTxn-W9xjDnd0Gf6nwDqmTJp1PhLG6HUj0i1SHVpUZnncLH8UInWl4jiqkgFdFGDpSUtazH1LEjI-JvAYHL2Ta_D-rfoK3aCPp4QnMZQP-eHAPC-M2TVCUhu4rJsXuiQ01Q456H8m-PJQz1LS4zFg5Bvy2onFYDM1pezh_IdYGHOKPKFjWu5-8XOj3aJFZ2cStL-_hGyfSNbWiwifHMmxL406cH4j1ik4I1usTwbwXnRgCSPyuajC3Vl",
-    },
-    {
-      title: "Next-Gen PCI-DSS Level 1 Payment Gateway",
-      client: "Vanguard Fintech Group",
+      id: "praxorium",
+      title: "Educational Management Portal & Learning Analytics Panel",
+      client: "Praxorium",
       category: "platform",
       description:
-        "Engineered a highly secure, low-latency transaction processing platform capable of handling multi-currency settlements and automated ledger reconciliation.",
-      outcome: "Sub-50ms transaction latency",
-      tags: ["React", "Go", "Vite", "PCI-DSS Compliance"],
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCtF6lVsCw5k_aMb8arrpizDRGhNtjPMhZtwWO9hKJz0edZ1TqQXHlOSdodyamnc-Zp_RvMMd9MHmpmdkkpZgi1RWNihRnDtXundTf0sU0wMVHDtuzt43-LOCE4lvM2-8i9nciz9e_Edx2emXpK0OzvoFDQQuEH0FC3744d7mqBy2fTrdRtwY5nP11Meb6cc0QWm_fgZx4zQ9M3oqVCwPDbR4QMXQWigzO0PvnFIVQ1lXhUcYRGeMdEo4AxW5caXlMfeXeb0-72S5nO",
-    },
-    {
-      title: "Industrial Telemetry HMI System",
-      client: "Helix Automation",
-      category: "cloud",
-      description:
-        "Developed an advanced human-machine interface for factory-floor smart devices, integrating high-speed AWS cloud streaming for real-time diagnostics.",
-      outcome: "99.99% system availability",
-      tags: ["AWS", "IoT Core", "TypeScript", "Docker", "DevOps"],
-      image:
-        "https://lh3.googleusercontent.com/aida-public/AB6AXuCQHraIlZPeLko3ktd1rCwJMtUCyq9Cm21rnnLyfqHlnbB9TwlcqG2U19pbPM-Z9DNqDrWaVh2MEPO-DDD0s8r9oSbIJfimcWBgmU6v-2L72xDmYdl9Qk9GaVj6oqsoe1C8hC5a5iUbvAweSTPeKlE4SMFKyOuiy7tPiYgJ8RUShhFbgwUNek6DocKux76E12s3QOLvFRfuXV3Hb3Gzi65C_7C4SAmVMQLZxSPZrNBsOuyCMQXTMTHGM6M74t0c0Y_SMBPLQPyHoFhJ",
+        "Architected an enterprise learning management portal featuring real-time evaluation metrics, automated compliance reporting, and student performance dashboard telemetry.",
+      outcome: "99.9% course completion rate",
+      tags: [
+        "Vite",
+        "React",
+        "GraphQL API",
+        "Tailwind CSS",
+        "Chart.js",
+        "Express.js",
+      ],
+      image: "/images/praxorium.gcvdanta.com_.webp", // main cover
+      challenge:
+        "Praxorium needed a scalable portal to administer curriculum modules, deliver low-latency video lectures, track legal compliance standards, and render student evaluation matrices dynamically in graphic formats.",
+      solution:
+        "We developed a robust educational dashboard using React and Tailwind CSS. The interface utilizes high-performance charting libraries to plot student grade distributions and automated modules to generate printable certification logs.",
+      architecture: [
+        "React SPA utilizing state-driven dashboard analytics and real-time filters.",
+        "GraphQL API queries for low-bandwidth data transfers.",
+        "Chart.js integrations rendering interactive student telemetry models.",
+        "HIPAA-inspired data encryption standards securing student records.",
+      ],
+      metrics: [
+        { label: "Active Student Enrollment", value: "12,000+" },
+        { label: "Video playback latency", value: "< 200ms" },
+        { label: "Compliance Report Generation", value: "Instant" },
+      ],
+      siteUrl: "https://praxorium.gcvdanta.com/",
+      adminUrl: "https://admin.praxorium.gcvdanta.com/",
+      screenshots: [
+        {
+          label: "Storefront - Academy Portal",
+          path: "/images/praxorium.gcvdanta.com_.webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Course Catalog",
+          path: "/images/praxorium.gcvdanta.com_ (1).webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Interactive Lectures",
+          path: "/images/praxorium.gcvdanta.com_ (2).webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Syllabus Plan",
+          path: "/images/praxorium.gcvdanta.com_ (3).webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Profile Settings",
+          path: "/images/praxorium.gcvdanta.com_ (4).webp",
+          type: "storefront",
+        },
+        {
+          label: "Storefront - Certifications",
+          path: "/images/praxorium.gcvdanta.com_ (5).webp",
+          type: "storefront",
+        },
+        {
+          label: "Admin Panel - Student Analytics",
+          path: "/images/admin.praxorium.gcvdanta.com_.webp",
+          type: "admin",
+        },
+        {
+          label: "Admin Panel - Course Editor",
+          path: "/images/admin.praxorium.gcvdanta.com_ (1).webp",
+          type: "admin",
+        },
+        {
+          label: "Admin Panel - Course Editor Details",
+          path: "/images/admin.praxorium.gcvdanta.com_ (1) (1).webp",
+          type: "admin",
+        },
+        {
+          label: "Admin Panel - Grade Telemetry",
+          path: "/images/admin.praxorium.gcvdanta.com_ (2).webp",
+          type: "admin",
+        },
+        {
+          label: "Admin Panel - Legal Compliance Logs",
+          path: "/images/admin.praxorium.gcvdanta.com_ (3).webp",
+          type: "admin",
+        },
+      ],
     },
   ];
 
@@ -85,21 +243,25 @@ export default function Work() {
 
         {/* Filter Switcher Controls */}
         <div className="flex flex-wrap gap-2 mb-12 border-b border-surface-variant pb-6 select-none">
-          {(["all", "platform", "cloud", "design"] as ProjectCategory[]).map(
-            (cat) => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`px-6 py-3 rounded text-sm font-semibold transition-all uppercase tracking-wider border ${
-                  filter === cat
-                    ? "bg-azure-blue border-azure-blue text-white shadow-sm"
-                    : "bg-white border-surface-variant text-slate-gray hover:border-slate-gray hover:text-charcoal"
-                }`}
-              >
-                {cat === "all" ? "All Work" : `${cat} systems`}
-              </button>
-            ),
-          )}
+          {(
+            [
+              { id: "all", label: "All Work" },
+              { id: "platform", label: "Enterprise platforms" },
+              { id: "design", label: "UX/UI designs" },
+            ] as { id: ProjectCategory; label: string }[]
+          ).map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setFilter(cat.id)}
+              className={`px-6 py-3 rounded text-sm font-semibold transition-all uppercase tracking-wider border ${
+                filter === cat.id
+                  ? "bg-azure-blue border-azure-blue text-white shadow-sm"
+                  : "bg-white border-surface-variant text-slate-gray hover:border-slate-gray hover:text-charcoal"
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
         </div>
 
         {/* Case Studies Grid */}
@@ -142,16 +304,33 @@ export default function Work() {
                 </div>
               </div>
 
-              {/* Tags footer */}
-              <div className="px-8 pb-8 pt-2 flex flex-wrap gap-2">
-                {project.tags.map((tag, tIdx) => (
-                  <span
-                    key={tIdx}
-                    className="px-3 py-1.5 bg-surface-gray border border-surface-variant rounded text-[11px] font-semibold text-slate-gray"
-                  >
-                    {tag}
+              {/* Tags & Action Footer */}
+              <div className="px-8 pb-8 pt-2 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between border-t border-surface-container-low mt-4">
+                <div className="flex flex-wrap gap-1.5">
+                  {project.tags.slice(0, 3).map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="px-2.5 py-1 bg-surface-gray border border-surface-variant rounded text-[10px] font-semibold text-slate-gray"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  {project.tags.length > 3 && (
+                    <span className="text-[10px] font-semibold text-slate-400 self-center">
+                      +{project.tags.length - 3} more
+                    </span>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => onSelectProject(project)}
+                  className="font-body text-xs font-bold text-azure-blue hover:text-[#0055c8] inline-flex items-center gap-1 focus:outline-none shrink-0"
+                >
+                  View Case Study
+                  <span className="material-symbols-outlined text-[16px]">
+                    arrow_forward
                   </span>
-                ))}
+                </button>
               </div>
             </div>
           ))}

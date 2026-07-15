@@ -1,9 +1,30 @@
 import { FormEvent } from "react";
 
-export default function Footer() {
+type Page =
+  | "home"
+  | "about"
+  | "products"
+  | "services"
+  | "contact"
+  | "work"
+  | "case-study"
+  | "privacy"
+  | "terms";
+
+interface FooterProps {
+  onPageChange: (page: Page) => void;
+}
+
+export default function Footer({ onPageChange }: FooterProps) {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     alert("Thank you for subscribing to GCV insights!");
+  };
+
+  const handleNavClick = (page: Page, e: React.MouseEvent) => {
+    e.preventDefault();
+    onPageChange(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -12,7 +33,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
           {/* Left branding information */}
           <div className="col-span-full lg:col-span-4">
-            <div className="font-headline text-2xl font-bold mb-6">GCV</div>
+            <a
+              href="#"
+              onClick={(e) => handleNavClick("home", e)}
+              className="font-headline text-2xl font-bold mb-6 block hover:text-[#e2f0fd] transition-colors"
+            >
+              GCV
+            </a>
             <p className="text-slate-gray font-body text-sm leading-relaxed mb-8 pr-4">
               Building the digital foundations for tomorrow's market leaders
               through design-led engineering.
@@ -50,6 +77,7 @@ export default function Footer() {
                   <a
                     className="text-slate-gray hover:text-white hover:translate-x-1 transition-all inline-block font-body text-sm"
                     href="#"
+                    onClick={(e) => handleNavClick("services", e)}
                   >
                     Strategy
                   </a>
@@ -58,6 +86,7 @@ export default function Footer() {
                   <a
                     className="text-slate-gray hover:text-white hover:translate-x-1 transition-all inline-block font-body text-sm"
                     href="#"
+                    onClick={(e) => handleNavClick("services", e)}
                   >
                     Experience
                   </a>
@@ -66,6 +95,7 @@ export default function Footer() {
                   <a
                     className="text-slate-gray hover:text-white hover:translate-x-1 transition-all inline-block font-body text-sm"
                     href="#"
+                    onClick={(e) => handleNavClick("services", e)}
                   >
                     Engineering
                   </a>
@@ -81,6 +111,7 @@ export default function Footer() {
                   <a
                     className="text-slate-gray hover:text-white hover:translate-x-1 transition-all inline-block font-body text-sm"
                     href="#"
+                    onClick={(e) => handleNavClick("about", e)}
                   >
                     Story
                   </a>
@@ -89,14 +120,16 @@ export default function Footer() {
                   <a
                     className="text-slate-gray hover:text-white hover:translate-x-1 transition-all inline-block font-body text-sm"
                     href="#"
+                    onClick={(e) => handleNavClick("work", e)}
                   >
-                    Careers
+                    Work Showcase
                   </a>
                 </li>
                 <li>
                   <a
                     className="text-slate-gray hover:text-white hover:translate-x-1 transition-all inline-block font-body text-sm"
                     href="#"
+                    onClick={(e) => handleNavClick("contact", e)}
                   >
                     Contact Us
                   </a>
@@ -139,12 +172,14 @@ export default function Footer() {
             <a
               className="text-slate-gray hover:text-white font-body text-xs"
               href="#"
+              onClick={(e) => handleNavClick("privacy", e)}
             >
               Privacy Policy
             </a>
             <a
               className="text-slate-gray hover:text-white font-body text-xs"
               href="#"
+              onClick={(e) => handleNavClick("terms", e)}
             >
               Terms of Service
             </a>
@@ -154,8 +189,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-
-
-
-

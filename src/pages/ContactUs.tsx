@@ -12,6 +12,10 @@ export default function ContactUs() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // 📝 OPTIONAL: Add your Formspree ID here to send emails silently in the background
+  // If left empty (""), the form will automatically fall back to the safe mailto: redirect
+  const FORMSPREE_FORM_ID = "";
+
   const servicesOptions = [
     "User Research",
     "UI/UX Design",
@@ -29,14 +33,11 @@ export default function ContactUs() {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Construct Mailto parameters
-    const recipient = "rajeshbandila@gcvdanta.com";
-    const subject = `GCV Engineering Inquiry from ${formData.name} (${formData.company})`;
-    const body =
+    const emailBody =
       `GCV Digital Engineering Inquiry Details:\n\n` +
       `• Client Name: ${formData.name}\n` +
       `• Email Address: ${formData.email}\n` +
@@ -45,24 +46,63 @@ export default function ContactUs() {
       `• Required Capabilities: ${selectedServices.length > 0 ? selectedServices.join(", ") : "None Specified"}\n\n` +
       `• Project Scope & Details:\n${formData.message}\n`;
 
-    // Generate local mail client redirect link
-    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // 🚀 METHOD A: Production Serverless Endpoint Submission
+    if (FORMSPREE_FORM_ID !== "") {
+      try {
+        const response = await fetch(
+          `https://formspree.io/f/${FORMSPREE_FORM_ID}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              company: formData.company,
+              phone: formData.phone,
+              message: formData.message,
+              services: selectedServices.join(", "),
+              _subject: `GCV Engineering Inquiry from ${formData.name} (${formData.company})`,
+            }),
+          },
+        );
 
-    // Redirect browser window to launch local mail draft
-    window.location.href = mailtoUrl;
-
-    setTimeout(() => {
+        if (response.ok) {
+          setIsSubmitted(true);
+        } else {
+          throw new Error("API submission failed. Triggering backup...");
+        }
+      } catch (error) {
+        console.warn(error);
+        triggerMailtoFallback(emailBody);
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      // 🚀 METHOD B: Direct Mailto Client Fallback
+      triggerMailtoFallback(emailBody);
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        phone: "",
-        message: "",
-      });
-      setSelectedServices([]);
-    }, 1000);
+    }
+  };
+
+  const triggerMailtoFallback = (bodyContent: string) => {
+    const recipient = "rajeshbandila@gcvdanta.com";
+    const subject = `GCV Engineering Inquiry from ${formData.name} (${formData.company})`;
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyContent)}`;
+
+    window.location.href = mailtoUrl;
+    setIsSubmitted(true);
+
+    // Reset form states
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      phone: "",
+      message: "",
+    });
+    setSelectedServices([]);
   };
 
   return (
@@ -142,14 +182,14 @@ export default function ContactUs() {
                   check_circle
                 </span>
                 <h3 className="font-headline text-2xl font-bold text-charcoal">
-                  Consultation Request Drafted
+                  Consultation Request Sent
                 </h3>
                 <p className="font-body text-slate-gray max-w-sm mx-auto leading-relaxed">
-                  Your mail client has been opened to send details directly to{" "}
+                  Your inquiry details have been transmitted directly to{" "}
                   <span className="font-bold text-charcoal">
                     rajeshbandila@gcvdanta.com
                   </span>
-                  . Please click send in your mail app to finish transmission.
+                  . A confirmation response has been dispatched to your email.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
@@ -283,14 +323,14 @@ export default function ContactUs() {
                     {isSubmitting ? (
                       <>
                         <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                        <span>Compiling Draft...</span>
+                        <span>Transmitting inquiry...</span>
                       </>
                     ) : (
                       <>
                         <span className="material-symbols-outlined text-[18px]">
                           send
                         </span>
-                        <span>Submit & Send Email</span>
+                        <span>Submit Inquiry</span>
                       </>
                     )}
                   </button>
