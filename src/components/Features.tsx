@@ -38,18 +38,23 @@ export default function Features() {
             Precision Engineering Meets Strategic Design.
           </h2>
         </div>
-        {/* Card elements grid */}
+
+        {/* Card elements grid (Polished to match the Services card design) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, idx) => (
-            <div key={idx} className="service-card group">
-              <div className="w-12 h-12 bg-surface-container-low flex items-center justify-center rounded mb-6 group-hover:bg-azure-blue group-hover:text-white transition-colors duration-300">
-                <span className="material-symbols-outlined text-[24px]">
-                  {feature.icon}
-                </span>
-              </div>
-              <h3 className="font-headline text-[20px] font-semibold text-charcoal mb-4">
+            <div
+              key={idx}
+              className="bg-white p-8 border border-surface-variant rounded-lg transition-all duration-500 hover:border-azure-blue hover:shadow-lg hover:-translate-y-0.5"
+            >
+              {/* Clean Azure-Blue Material Symbol */}
+              <span className="material-symbols-outlined text-azure-blue text-[32px] mb-6 block select-none">
+                {feature.icon}
+              </span>
+
+              <h3 className="font-headline text-lg font-semibold mb-3 text-charcoal">
                 {feature.title}
               </h3>
+
               <p className="font-body text-sm text-slate-gray leading-relaxed">
                 {feature.description}
               </p>

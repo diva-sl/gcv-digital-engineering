@@ -119,8 +119,10 @@ function App() {
       />
       <main className="pt-20 overflow-x-hidden flex-1">
         {currentPage === "home" && <Home onPageChange={handlePageChange} />}
-        {currentPage === "about" && <AboutUs />}
-        {currentPage === "products" && <Products />}
+        {currentPage === "about" && <AboutUs onPageChange={handlePageChange} />}
+        {currentPage === "products" && (
+          <Products onPageChange={handlePageChange} />
+        )}
         {currentPage === "services" && (
           <Services
             activeSection={activeSection}

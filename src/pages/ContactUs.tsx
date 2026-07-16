@@ -1,4 +1,5 @@
 import { useState, FormEvent } from "react";
+import { useSubmitContact } from "../hooks/useSubmitContact";
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -9,12 +10,8 @@ export default function ContactUs() {
     message: "",
   });
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // 📝 OPTIONAL: Add your Formspree ID here to send emails silently in the background
-  // If left empty (""), the form will automatically fall back to the safe mailto: redirect
-  const FORMSPREE_FORM_ID = "";
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
 
   const servicesOptions = [
     "User Research",
@@ -33,84 +30,42 @@ export default function ContactUs() {
     }
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  // 🚀 Initialize Axios + TanStack Query Mutation Hook
+  const contactMutation = useSubmitContact(
+    // On Success Callback
+    () => {
+      setIsSubmitted(true);
+      setSubmissionError(null);
+      setFormData({ name: "", email: "", company: "", phone: "", message: "" });
+      setSelectedServices([]);
+    },
+    // On Error Callback
+    (errorMessage: string) => {
+      setSubmissionError(errorMessage);
+    },
+  );
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setSubmissionError(null);
 
-    const emailBody =
-      `GCV Digital Engineering Inquiry Details:\n\n` +
-      `• Client Name: ${formData.name}\n` +
-      `• Email Address: ${formData.email}\n` +
-      `• Company Name: ${formData.company}\n` +
-      `• Mobile Number: ${formData.phone}\n` +
-      `• Required Capabilities: ${selectedServices.length > 0 ? selectedServices.join(", ") : "None Specified"}\n\n` +
-      `• Project Scope & Details:\n${formData.message}\n`;
-
-    // 🚀 METHOD A: Production Serverless Endpoint Submission
-    if (FORMSPREE_FORM_ID !== "") {
-      try {
-        const response = await fetch(
-          `https://formspree.io/f/${FORMSPREE_FORM_ID}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: formData.name,
-              email: formData.email,
-              company: formData.company,
-              phone: formData.phone,
-              message: formData.message,
-              services: selectedServices.join(", "),
-              _subject: `GCV Engineering Inquiry from ${formData.name} (${formData.company})`,
-            }),
-          },
-        );
-
-        if (response.ok) {
-          setIsSubmitted(true);
-        } else {
-          throw new Error("API submission failed. Triggering backup...");
-        }
-      } catch (error) {
-        console.warn(error);
-        triggerMailtoFallback(emailBody);
-      } finally {
-        setIsSubmitting(false);
-      }
-    } else {
-      // 🚀 METHOD B: Direct Mailto Client Fallback
-      triggerMailtoFallback(emailBody);
-      setIsSubmitting(false);
-    }
-  };
-
-  const triggerMailtoFallback = (bodyContent: string) => {
-    const recipient = "rajeshbandila@gcvdanta.com";
-    const subject = `GCV Engineering Inquiry from ${formData.name} (${formData.company})`;
-    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyContent)}`;
-
-    window.location.href = mailtoUrl;
-    setIsSubmitted(true);
-
-    // Reset form states
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      phone: "",
-      message: "",
+    // 🚀 Trigger the secure backend POST query request
+    contactMutation.mutate({
+      name: formData.name,
+      email: formData.email,
+      company: formData.company,
+      phone: formData.phone,
+      services: selectedServices,
+      message: formData.message,
     });
-    setSelectedServices([]);
   };
 
   return (
-    <div className="bg-[#f7f9fb] min-h-screen text-charcoal py-16 md:py-24 animate-fade-in">
+    <div className="bg-gradient-to-b from-[#f8fafc] to-[#e2e8f0] min-h-screen text-charcoal py-16 md:py-24 animate-fade-in font-body">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
-          {/* Left Column: Office Coordinates */}
-          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-40">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Coordinates details */}
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-36">
             <div className="space-y-4">
               <span className="text-azure-blue font-body text-xs font-bold tracking-widest uppercase block">
                 Get In Touch
@@ -118,7 +73,7 @@ export default function ContactUs() {
               <h1 className="font-headline text-[36px] md:text-5xl font-bold leading-tight text-charcoal tracking-tighter">
                 Let's engineer something remarkable.
               </h1>
-              <p className="font-body text-base text-slate-gray leading-relaxed">
+              <p className="font-body text-sm md:text-base text-slate-gray leading-relaxed">
                 Whether you have an enterprise migration challenge, a custom HMI
                 requirement, or a brand-new SaaS product to launch, our
                 engineering teams are ready to collaborate.
@@ -127,17 +82,18 @@ export default function ContactUs() {
 
             {/* Office Status Active Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#e2f0fd] text-[#176df4] border border-[#b1c6ff] rounded-full text-xs font-semibold select-none">
-              <span className="w-2 h-2 bg-azure-blue rounded-full animate-ping"></span>
+              <span className="w-2 h-2 bg-azure-blue rounded-full animate-pulse"></span>
               <span>Office Status: Active & Taking Inquiries</span>
             </div>
 
-            {/* Bengaluru Office Address Block (Clickable Map Link) */}
-            <div className="space-y-6 pt-4 border-t border-surface-variant font-body text-sm">
+            {/* Address & Email Link Cards */}
+            <div className="space-y-4 pt-4 border-t border-surface-variant font-body text-sm">
+              {/* Bengaluru Address (First line removed) */}
               <a
                 href="https://maps.google.com/maps/search/Homebakkens/@13.05823432,77.62875141,17z?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-4 p-4 border border-transparent rounded hover:border-surface-variant hover:bg-white transition-all group"
+                className="flex items-start gap-4 p-5 bg-white border border-surface-variant rounded-xl shadow-sm hover:shadow-md hover:border-azure-blue transition-all group block"
               >
                 <span className="material-symbols-outlined text-azure-blue mt-0.5 group-hover:scale-105 transition-transform">
                   location_on
@@ -149,30 +105,38 @@ export default function ContactUs() {
                       open_in_new
                     </span>
                   </h4>
-                  <p className="text-slate-gray leading-relaxed">
-                    D Block Ultima Smart Homes, <br />
+                  <p className="text-slate-gray leading-relaxed text-xs">
                     Rachenahalli Main Rd, Thanisandra, <br />
                     Bengaluru, Karnataka, India - 560045
                   </p>
                 </div>
               </a>
 
-              <div className="flex items-start gap-4 px-4">
-                <span className="material-symbols-outlined text-azure-blue mt-0.5">
+              {/* Clickable Email Card */}
+              <a
+                href="mailto:connect@gcvdanta.com"
+                className="flex items-start gap-4 p-5 bg-white border border-surface-variant rounded-xl shadow-sm hover:shadow-md hover:border-azure-blue transition-all group block"
+              >
+                <span className="material-symbols-outlined text-azure-blue mt-0.5 group-hover:scale-105 transition-transform">
                   mail
                 </span>
                 <div>
-                  <h4 className="font-semibold text-charcoal mb-1">
+                  <h4 className="font-semibold text-charcoal mb-1 group-hover:text-azure-blue transition-colors flex items-center gap-1">
                     Email Inquiries
+                    <span className="material-symbols-outlined text-xs">
+                      open_in_new
+                    </span>
                   </h4>
-                  <p className="text-slate-gray">rajeshbandila@gcvdanta.com</p>
+                  <p className="text-slate-gray text-xs">
+                    connect@gcvdanta.com
+                  </p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
 
-          {/* Right Column: Inquiry Form */}
-          <div className="lg:col-span-7 bg-white p-8 md:p-12 border border-surface-variant rounded-lg shadow-sm">
+          {/* Right Column: Premium Form Card */}
+          <div className="lg:col-span-7 bg-white p-6 md:p-10 border border-surface-variant rounded-2xl shadow-md relative overflow-hidden">
             {isSubmitted ? (
               <div className="text-center py-12 space-y-6 animate-fade-in">
                 <span
@@ -184,27 +148,36 @@ export default function ContactUs() {
                 <h3 className="font-headline text-2xl font-bold text-charcoal">
                   Consultation Request Sent
                 </h3>
-                <p className="font-body text-slate-gray max-w-sm mx-auto leading-relaxed">
+                <p className="font-body text-slate-gray max-w-sm mx-auto leading-relaxed text-sm">
                   Your inquiry details have been transmitted directly to{" "}
                   <span className="font-bold text-charcoal">
-                    rajeshbandila@gcvdanta.com
+                    connect@gcvdanta.com
                   </span>
                   . A confirmation response has been dispatched to your email.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="px-6 py-3 bg-charcoal text-white font-body text-sm font-semibold rounded hover:bg-opacity-90 active:scale-95 transition-all mt-6"
+                  className="px-6 py-3 bg-charcoal text-white font-body text-sm font-semibold rounded-lg hover:bg-opacity-90 active:scale-95 transition-all mt-6 cursor-pointer"
                 >
                   Send another inquiry
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                
+                {/* Submission Error Banner */}
+                {submissionError && (
+                  <div className="bg-red-50 text-red-600 text-xs font-semibold px-4 py-3 rounded border border-red-200">
+                    {submissionError}
+                  </div>
+                )}
+
                 {/* Row 1: Name and Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-2">
-                    <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider">
+                    <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider flex items-center">
                       Full Name
+                      <span className="text-red-500 font-bold ml-1">*</span>
                     </label>
                     <input
                       type="text"
@@ -214,13 +187,14 @@ export default function ContactUs() {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className="form-input-minimal w-full"
+                      className="w-full bg-[#f8fafc] border border-surface-variant rounded-lg px-4 py-3 text-sm text-charcoal placeholder-slate-400 focus:bg-white focus:border-azure-blue focus:ring-1 focus:ring-azure-blue/10 outline-none transition-all duration-200"
                     />
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider">
+                    <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider flex items-center">
                       Email Address
+                      <span className="text-red-500 font-bold ml-1">*</span>
                     </label>
                     <input
                       type="email"
@@ -230,32 +204,32 @@ export default function ContactUs() {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className="form-input-minimal w-full"
+                      className="w-full bg-[#f8fafc] border border-surface-variant rounded-lg px-4 py-3 text-sm text-charcoal placeholder-slate-400 focus:bg-white focus:border-azure-blue focus:ring-1 focus:ring-azure-blue/10 outline-none transition-all duration-200"
                     />
                   </div>
                 </div>
 
-                {/* Row 2: Company and Mobile Number */}
+                {/* Row 2: Company and Mobile */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-2">
-                    <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider">
+                    <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider flex items-center">
                       Company / Organization
                     </label>
                     <input
                       type="text"
-                      required
                       placeholder="Enter organization name"
                       value={formData.company}
                       onChange={(e) =>
                         setFormData({ ...formData, company: e.target.value })
                       }
-                      className="form-input-minimal w-full"
+                      className="w-full bg-[#f8fafc] border border-surface-variant rounded-lg px-4 py-3 text-sm text-charcoal placeholder-slate-400 focus:bg-white focus:border-azure-blue focus:ring-1 focus:ring-azure-blue/10 outline-none transition-all duration-200"
                     />
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider">
+                    <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider flex items-center">
                       Mobile Number
+                      <span className="text-red-500 font-bold ml-1">*</span>
                     </label>
                     <input
                       type="tel"
@@ -265,12 +239,12 @@ export default function ContactUs() {
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
                       }
-                      className="form-input-minimal w-full"
+                      className="w-full bg-[#f8fafc] border border-surface-variant rounded-lg px-4 py-3 text-sm text-charcoal placeholder-slate-400 focus:bg-white focus:border-azure-blue focus:ring-1 focus:ring-azure-blue/10 outline-none transition-all duration-200"
                     />
                   </div>
                 </div>
 
-                {/* Capabilities Needed Selection Tags */}
+                {/* Capabilities Tags */}
                 <div className="flex flex-col gap-2">
                   <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider">
                     Capabilities Needed
@@ -283,10 +257,10 @@ export default function ContactUs() {
                           key={idx}
                           type="button"
                           onClick={() => handleServiceToggle(service)}
-                          className={`px-4 py-2 rounded text-xs font-semibold border transition-all select-none ${
+                          className={`px-4 py-2.5 rounded-full text-xs font-semibold border transition-all select-none cursor-pointer ${
                             isSelected
-                              ? "bg-azure-blue text-white border-azure-blue"
-                              : "bg-white text-slate-gray border-surface-variant hover:border-slate-gray"
+                              ? "bg-charcoal text-white border-charcoal"
+                              : "bg-[#f8fafc] text-slate-gray border-surface-variant hover:border-slate-gray hover:bg-white"
                           }`}
                         >
                           {service}
@@ -296,10 +270,11 @@ export default function ContactUs() {
                   </div>
                 </div>
 
-                {/* Message field */}
+                {/* Message details */}
                 <div className="flex flex-col gap-2">
-                  <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider">
+                  <label className="font-body text-xs font-bold text-charcoal uppercase tracking-wider flex items-center">
                     Project Scope & Details
+                    <span className="text-red-500 font-bold ml-1">*</span>
                   </label>
                   <textarea
                     rows={6}
@@ -309,18 +284,18 @@ export default function ContactUs() {
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
                     }
-                    className="form-input-minimal w-full resize-y min-h-[120px]"
+                    className="w-full bg-[#f8fafc] border border-surface-variant rounded-lg px-4 py-3 text-sm text-charcoal placeholder-slate-400 focus:bg-white focus:border-azure-blue focus:ring-1 focus:ring-azure-blue/10 outline-none transition-all duration-200 resize-y min-h-[120px]"
                   />
                 </div>
 
-                {/* Submit button */}
+                {/* Submit */}
                 <div className="pt-4">
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-4 bg-charcoal text-white font-body text-sm font-semibold rounded shadow-lg hover:bg-opacity-95 transition-all active:scale-98 flex items-center justify-center gap-2 select-none"
+                    disabled={contactMutation.isPending}
+                    className="w-full py-4 bg-charcoal text-white font-body text-sm font-semibold rounded-lg shadow-md hover:bg-opacity-95 hover:shadow-lg active:scale-98 transition-all duration-200 flex items-center justify-center gap-2 select-none cursor-pointer"
                   >
-                    {isSubmitting ? (
+                    {contactMutation.isPending ? (
                       <>
                         <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         <span>Transmitting inquiry...</span>

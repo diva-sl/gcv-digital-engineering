@@ -132,25 +132,40 @@ export default function Services({
 
   return (
     <div className="bg-[#f7f9fb] min-h-screen text-charcoal">
-      {/* Hero Section */}
-      <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-20 md:mb-[120px] pt-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-7">
-            <span className="text-azure-blue font-body text-xs font-bold tracking-wider uppercase mb-4 block">
-              Our Expertise
-            </span>
-            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-charcoal mb-6 tracking-tighter">
+      {/* 🚀 Aligned Hero Section (Matches Home Hero Spacing Frame & Layout) */}
+      <section className="relative min-h-[600px] md:min-h-[700px] flex items-center px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
+        <div className="max-w-container-max mx-auto grid grid-cols-12 gap-6 w-full relative z-10">
+          <div className="col-span-full lg:col-span-8 py-16 md:py-24 space-y-6">
+            {/* Status Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-full select-none">
+              <span className="w-2 h-2 bg-azure-blue rounded-full animate-pulse"></span>
+              <span className="font-body text-xs font-semibold uppercase tracking-widest text-slate-gray">
+                Our Expertise
+              </span>
+            </div>
+
+            {/* Main Headline (Original Content Kept) */}
+            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-charcoal tracking-tighter">
               Engineering the future of digital experiences.
             </h1>
+
+            {/* Description (Original Content Kept) */}
             <p className="font-body text-lg text-slate-gray max-w-2xl leading-relaxed">
               We combine high-level strategic consultancy with rigorous
               technical implementation to deliver enterprise-grade digital
               solutions that scale.
             </p>
           </div>
-          <div className="md:col-span-5 relative h-72 md:h-96 overflow-hidden rounded-xl border border-surface-variant bg-gradient-to-tr from-white/10 to-transparent shadow-md">
-            <div className="absolute inset-0 bg-gradient-to-br from-azure-blue/5 to-charcoal/5"></div>
-          </div>
+        </div>
+
+        {/* Premium Architectural Studio Workspace Image */}
+        <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[45%] h-3/4 opacity-90 pointer-events-none hidden lg:block rounded-xl overflow-hidden border border-surface-variant shadow-md">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUIC9NuyzwqB-nUPR5zaxR3JZIUEhNHDn55KSfbVnqoYVpC3H2EjuPDgrDQsme708Sku14Hi4L6WygOTiX8gbINVv0MNlfRNYP1OlKOFMTkY5x_MZWPeROzUt8Mz3t8x-TG-QzjDRHYao8n2nEbPTa_1HxYtdn73Z6fMHzEFBzGLv-EkxR2Ez_bZk-q7JpBksxlZynrwT-qRIZM2TTI9WTslbMuBDLV6BP8sO5QurXafYKt6ueF6-0tclp9KhMDx4Xl9g7M871x0lT"
+            alt="GCV Studio Architectural Workspace"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent"></div>
         </div>
       </section>
 
@@ -269,9 +284,9 @@ export default function Services({
               We don't just build software; we engineer resilient platforms
               capable of handling high-stakes enterprise demands.
             </p>
-            <button className="border border-azure-blue text-azure-blue font-body text-sm font-semibold px-6 py-3 rounded-lg hover:bg-azure-blue hover:text-white transition-all">
+            {/* <button className="border border-azure-blue text-azure-blue font-body text-sm font-semibold px-6 py-3 rounded-lg hover:bg-azure-blue hover:text-white transition-all cursor-pointer">
               View Technology Stack
-            </button>
+            </button> */}
           </div>
 
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -344,7 +359,7 @@ export default function Services({
                 <p className="font-body text-sm text-slate-gray leading-relaxed mb-6">
                   {service.description}
                 </p>
-                <a
+                {/* <a
                   className="inline-flex items-center gap-2 text-azure-blue font-body text-sm font-semibold hover:underline"
                   href="#"
                 >
@@ -352,7 +367,7 @@ export default function Services({
                   <span className="material-symbols-outlined text-[16px]">
                     arrow_forward
                   </span>
-                </a>
+                </a> */}
               </div>
             ))}
           </div>

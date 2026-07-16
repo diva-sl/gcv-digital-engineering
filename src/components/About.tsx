@@ -33,7 +33,7 @@ export default function About() {
             <div className="grid grid-cols-2 gap-8 border-t border-surface-container-low pt-8">
               <div>
                 <h4 className="font-headline text-[40px] font-bold text-charcoal leading-none mb-2">
-                  150+
+                  15+
                 </h4>
                 <p className="font-body text-sm font-semibold text-slate-gray">
                   Products Launched
@@ -41,7 +41,7 @@ export default function About() {
               </div>
               <div>
                 <h4 className="font-headline text-[40px] font-bold text-charcoal leading-none mb-2">
-                  12+
+                  10+
                 </h4>
                 <p className="font-body text-sm font-semibold text-slate-gray">
                   Years of Excellence

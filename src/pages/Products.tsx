@@ -1,4 +1,19 @@
-export default function Products() {
+type Page =
+  | "home"
+  | "about"
+  | "products"
+  | "services"
+  | "contact"
+  | "work"
+  | "case-study"
+  | "privacy"
+  | "terms";
+
+interface ProductsProps {
+  onPageChange: (page: Page) => void;
+}
+
+export default function Products({ onPageChange }: ProductsProps) {
   const productShowcase = [
     {
       title: "CMS",
@@ -49,30 +64,40 @@ export default function Products() {
 
   return (
     <div className="bg-[#f7f9fb] min-h-screen text-charcoal">
-      {/* Hero Section */}
-      <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7 space-y-6">
-            <span className="text-azure-blue font-body text-xs font-bold tracking-widest uppercase block">
-              Proprietary Assets
-            </span>
-            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-charcoal max-w-xl tracking-tighter">
+      {/* 🚀 Aligned Hero Section (Matches Home Hero Spacing Frame & Layout) */}
+      <section className="relative min-h-[600px] md:min-h-[700px] flex items-center px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
+        <div className="max-w-container-max mx-auto grid grid-cols-12 gap-6 w-full relative z-10">
+          <div className="col-span-full lg:col-span-8 py-16 md:py-24 space-y-6">
+            {/* Status Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-full select-none">
+              <span className="w-2 h-2 bg-azure-blue rounded-full animate-pulse"></span>
+              <span className="font-body text-xs font-semibold uppercase tracking-widest text-slate-gray">
+                Proprietary Assets
+              </span>
+            </div>
+
+            {/* Main Headline (Original Content Kept) */}
+            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-charcoal tracking-tighter">
               Engineering Tomorrow's Platforms.
             </h1>
+
+            {/* Description (Original Content Kept) */}
             <p className="font-body text-lg text-slate-gray max-w-lg leading-relaxed">
               GCV's suite of specialized software solutions is designed to
               handle enterprise complexity with editorial-grade precision. From
               clinical workflows to secure global payments.
             </p>
           </div>
-          <div className="lg:col-span-5 relative h-[300px] md:h-[400px] rounded-xl overflow-hidden shadow-xl border border-surface-variant">
-            <div className="absolute inset-0 bg-gradient-to-br from-azure-blue/10 to-charcoal/5 z-10"></div>
-            <img
-              className="w-full h-full object-cover"
-              alt="Clean architectural software development workspace"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxruU6cM_vOHom_GuWNuPvmQ_NOtOMpptG5wyi0XXykG_OXlk75AITW9rW3aoB2Jn-QeXkwFuZbcZTCryYJ79mbE_DsKmgWOZ5goBDTlu-I9u4OmfQz0FQEMrxUDKSlqCrhmVy6VHE8E87Sr9Ewwgog3jKJx8o0jrdBRahKdt9K_nqCbVoaL89nOyupJmlOK8laI-bd4IKguA34qkR2WRvLTERBgevyYIqZegY7mf93ujBJkUKMlVKk_RVUzHRBNIUF6nn7ZCgT_W8"
-            />
-          </div>
+        </div>
+
+        {/* Clean software development workspace Absolute Image */}
+        <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[45%] h-3/4 opacity-90 pointer-events-none hidden lg:block rounded-xl overflow-hidden border border-surface-variant shadow-md">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxruU6cM_vOHom_GuWNuPvmQ_NOtOMpptG5wyi0XXykG_OXlk75AITW9rW3aoB2Jn-QeXkwFuZbcZTCryYJ79mbE_DsKmgWOZ5goBDTlu-I9u4OmfQz0FQEMrxUDKSlqCrhmVy6VHE8E87Sr9Ewwgog3jKJx8o0jrdBRahKdt9K_nqCbVoaL89nOyupJmlOK8laI-bd4IKguA34qkR2WRvLTERBgevyYIqZegY7mf93ujBJkUKMlVKk_RVUzHRBNIUF6nn7ZCgT_W8"
+            alt="Clean architectural software development workspace"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent"></div>
         </div>
       </section>
 
@@ -120,19 +145,22 @@ export default function Products() {
                     {product.description}
                   </p>
                 </div>
-                <div className="flex items-center text-azure-blue font-body text-sm font-semibold gap-1 hover:gap-2 transition-all cursor-pointer select-none">
-                  <span>{product.actionText}</span>
+                {/* <div
+                  onClick={() => onPageChange("contact")}
+                  className="flex items-center text-azure-blue font-body text-sm font-semibold gap-1 hover:gap-2 transition-all cursor-pointer select-none"
+                >
+                <span>{product.actionText}</span> 
                   <span className="material-symbols-outlined text-[18px]">
                     arrow_forward
                   </span>
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section (Tactile Routing Updates Applied) */}
       <section className="px-margin-mobile md:px-margin-desktop py-24 max-w-container-max mx-auto text-center">
         <div className="bg-charcoal text-white py-16 md:py-24 px-6 md:px-12 rounded-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-azure-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
@@ -147,13 +175,20 @@ export default function Products() {
               your existing ecosystem or build custom extensions to suit your
               specific requirements.
             </p>
+
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-              <button className="bg-white text-charcoal px-8 py-3 rounded-lg font-body text-sm font-semibold hover:bg-surface-container-high transition-colors">
+              <button
+                onClick={() => onPageChange("contact")}
+                className="bg-white text-charcoal px-8 py-3 rounded-lg font-body text-sm font-semibold hover:bg-surface-container-high active:scale-98 transition-all cursor-pointer"
+              >
                 Request a Demo
               </button>
-              <button className="border border-white/30 text-white px-8 py-3 rounded-lg font-body text-sm font-semibold hover:bg-white/10 transition-colors">
+              {/* <button
+                onClick={() => onPageChange("contact")}
+                className="border border-white/30 text-white px-8 py-3 rounded-lg font-body text-sm font-semibold hover:bg-white/10 active:scale-98 transition-all cursor-pointer"
+              >
                 Speak to an Architect
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
