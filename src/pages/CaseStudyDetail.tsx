@@ -60,7 +60,7 @@ export default function CaseStudyDetail({
       setActiveImageIndex(
         (prevIndex) => (prevIndex + 1) % filteredScreenshots.length,
       );
-    }, 3000); // 3 seconds interval
+    }, 3000);
 
     return () => clearInterval(timer);
   }, [filteredScreenshots.length, galleryFilter]);
@@ -69,6 +69,58 @@ export default function CaseStudyDetail({
     setGalleryFilter(filter);
     setActiveImageIndex(0); // Reset index to prevent overflow
   };
+
+  const handlePrevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (filteredScreenshots.length <= 1) return;
+    setActiveImageIndex((prev) =>
+      prev === 0 ? filteredScreenshots.length - 1 : prev - 1,
+    );
+  };
+
+  const handleNextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (filteredScreenshots.length <= 1) return;
+    setActiveImageIndex((prev) => (prev + 1) % filteredScreenshots.length);
+  };
+
+  // Define unique key features for each project to replace team credits
+  const projectFeatures =
+    project.id === "kiddostyle"
+      ? [
+          {
+            title: "Omnichannel Sync Engine",
+            desc: "Automated warehouse database matching that synchronizes physical inventory counts with storefront stock listings in under 1.5 seconds.",
+            icon: "sync",
+          },
+          {
+            title: "Low-Friction Checkout Flow",
+            desc: "Highly optimized Stripe pipeline integrated with address validation API, reducing shopping cart drop-offs by 24%.",
+            icon: "shopping_cart_checkout",
+          },
+          {
+            title: "Secure Operations Control",
+            desc: "Administrative dashboard with custom role hierarchies protecting financial lists and customer privacy databases.",
+            icon: "shield",
+          },
+        ]
+      : [
+          {
+            title: "Dynamic Curriculum Architect",
+            desc: "Modular administrative editor allowing instructors to build syllabus tracks and host media files with instant rendering.",
+            icon: "menu_book",
+          },
+          {
+            title: "Real-Time Student Telemetry",
+            desc: "Graphical matrices rendering active course engagement logs and certificate verification statistics.",
+            icon: "analytics",
+          },
+          {
+            title: "Security & Legal Audits",
+            desc: "Built-in encryption algorithms protecting student metrics databases and meeting administrative compliance logs.",
+            icon: "verified_user",
+          },
+        ];
 
   return (
     <div className="bg-[#f7f9fb] min-h-screen text-charcoal py-16 md:py-24 animate-fade-in">
@@ -103,33 +155,7 @@ export default function CaseStudyDetail({
           </p>
         </div>
 
-        {/* Target Action Links */}
-        <div className="flex flex-wrap gap-4 pt-2">
-          <a
-            href={project.siteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-charcoal text-white font-body text-sm font-semibold rounded hover:bg-opacity-90 active:scale-95 transition-all inline-flex items-center gap-2"
-          >
-            <span className="material-symbols-outlined text-[18px]">
-              open_in_new
-            </span>
-            Live Storefront
-          </a>
-          <a
-            href={project.adminUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 border border-charcoal text-charcoal font-body text-sm font-semibold rounded hover:bg-charcoal hover:text-white active:scale-95 transition-all inline-flex items-center gap-2"
-          >
-            <span className="material-symbols-outlined text-[18px]">
-              dashboard
-            </span>
-            Administration Panel
-          </a>
-        </div>
-
-        {/* 🖼️ Premium Gallery Interactive Interface Section */}
+        {/* 🖼️ Premium Gallery Interactive Interface Section (Safari Browser Mockup) */}
         <div className="bg-white border border-surface-variant rounded-xl p-6 md:p-8 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-surface-variant pb-4">
             <h4 className="font-headline text-lg font-bold text-charcoal">
@@ -158,28 +184,84 @@ export default function CaseStudyDetail({
             </div>
           </div>
 
-          {/* Active HD Image Preview Window (Transition Fades Sped Up to 300ms) */}
-          <div className="relative aspect-video max-h-[520px] w-full rounded-lg overflow-hidden bg-[#fafbfc] border border-surface-variant flex items-center justify-center shadow-inner group">
-            {currentScreenshot ? (
-              <>
-                <img
-                  key={currentScreenshot.path}
-                  src={currentScreenshot.path}
-                  alt={currentScreenshot.label}
-                  className="w-full h-full object-contain max-h-[520px] transition-opacity duration-300 ease-in-out animate-fade-in"
-                />
-                {/* Active Caption Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 bg-charcoal/80 backdrop-blur-sm text-white px-4 py-2.5 rounded-lg text-xs font-semibold tracking-wide flex justify-between items-center z-10">
-                  <span>{currentScreenshot.label}</span>
-                  <span className="text-[10px] text-slate-300 font-mono uppercase bg-white/10 px-2 py-0.5 rounded">
-                    {currentScreenshot.type}
-                  </span>
-                </div>
-              </>
-            ) : (
-              <span className="text-sm text-slate-gray">
-                No screenshots matching filter.
-              </span>
+          {/* Premium Browser Mockup Wrapper */}
+          <div className="border border-surface-variant rounded-xl overflow-hidden shadow-md flex flex-col bg-white">
+            {/* macOS Browser Header Panel */}
+            <div className="bg-surface-gray border-b border-surface-variant px-4 py-3 flex items-center gap-2 select-none relative">
+              <span className="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+              <span className="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+              <span className="w-3 h-3 rounded-full bg-[#27c93f]"></span>
+
+              {/* Fake URL Bar */}
+              <div className="mx-auto bg-white border border-surface-variant/60 rounded-md text-[11px] text-slate-400 py-1 px-8 w-1/2 text-center truncate font-mono">
+                {project.id === "kiddostyle"
+                  ? "kiddostyle.gcvdanta.com"
+                  : "praxorium.gcvdanta.com"}
+              </div>
+            </div>
+
+            {/* Active HD Image Preview Window (Transition Fades Sped Up to 300ms) */}
+            <div className="relative aspect-video max-h-[520px] w-full bg-[#fafbfc] flex items-center justify-center shadow-inner group">
+              {currentScreenshot ? (
+                <>
+                  <img
+                    key={currentScreenshot.path}
+                    src={currentScreenshot.path}
+                    alt={currentScreenshot.label}
+                    className="w-full h-full object-contain max-h-[520px] transition-opacity duration-300 ease-in-out animate-fade-in"
+                  />
+
+                  {/* Manual Arrow Controls (Appear on Hover) */}
+                  {filteredScreenshots.length > 1 && (
+                    <>
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-charcoal/30 hover:bg-charcoal/80 text-white w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
+                      >
+                        <span className="material-symbols-outlined">
+                          chevron_left
+                        </span>
+                      </button>
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-charcoal/30 hover:bg-charcoal/80 text-white w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
+                      >
+                        <span className="material-symbols-outlined">
+                          chevron_right
+                        </span>
+                      </button>
+                    </>
+                  )}
+
+                  {/* Active Caption Overlay */}
+                  <div className="absolute bottom-4 left-4 right-4 bg-charcoal/80 backdrop-blur-sm text-white px-4 py-2.5 rounded-lg text-xs font-semibold tracking-wide flex justify-between items-center z-10">
+                    <span>{currentScreenshot.label}</span>
+                    <span className="text-[10px] text-slate-300 font-mono uppercase bg-white/10 px-2 py-0.5 rounded">
+                      {currentScreenshot.type}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <span className="text-sm text-slate-gray">
+                  No screenshots matching filter.
+                </span>
+              )}
+            </div>
+
+            {/* Slideshow Progress Bar Dashes at Bottom of Browser Mockup */}
+            {filteredScreenshots.length > 1 && (
+              <div className="bg-surface-gray border-t border-surface-variant py-3 px-6 flex justify-center gap-1.5 select-none">
+                {filteredScreenshots.map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeImageIndex === idx
+                        ? "w-8 bg-azure-blue"
+                        : "w-2 bg-slate-300"
+                    }`}
+                  />
+                ))}
+              </div>
             )}
           </div>
         </div>
@@ -201,74 +283,32 @@ export default function CaseStudyDetail({
           ))}
         </div>
 
-        {/* Project Credits & Creative Team */}
+        {/* Core Platform Capabilities (Replaces Project Credits) */}
         <div className="bg-white border border-surface-variant rounded-xl p-8 shadow-sm">
           <h3 className="font-headline text-xl font-bold text-charcoal mb-6 flex items-center gap-2">
             <span className="material-symbols-outlined text-azure-blue">
-              groups
+              architecture
             </span>
-            Project Contributor Credits
+            Core Platform Capabilities
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex items-start gap-4">
-              <div className="p-3 bg-surface-container-low rounded-lg shrink-0">
-                <span className="material-symbols-outlined text-azure-blue text-[28px]">
-                  terminal
-                </span>
-              </div>
-              <div className="font-body text-sm">
-                <span className="font-semibold text-charcoal block">
-                  Full Stack Development
-                </span>
-                <span className="text-slate-gray text-xs block mt-0.5">
-                  Divakaran S
-                </span>
-                <div className="flex gap-3 mt-3">
-                  <a
-                    href="https://github.com/diva-sl"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-azure-blue text-xs font-semibold hover:underline flex items-center gap-1"
-                  >
-                    GitHub{" "}
-                    <span className="material-symbols-outlined text-[12px]">
-                      open_in_new
-                    </span>
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/divakarans/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-azure-blue text-xs font-semibold hover:underline flex items-center gap-1"
-                  >
-                    LinkedIn{" "}
-                    <span className="material-symbols-outlined text-[12px]">
-                      open_in_new
-                    </span>
-                  </a>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {projectFeatures.map((feat, index) => (
+              <div key={index} className="flex items-start gap-4">
+                <div className="p-3 bg-[#e2f0fd] text-azure-blue rounded-lg shrink-0">
+                  <span className="material-symbols-outlined text-[24px]">
+                    {feat.icon}
+                  </span>
+                </div>
+                <div className="font-body text-sm space-y-1">
+                  <span className="font-semibold text-charcoal block">
+                    {feat.title}
+                  </span>
+                  <p className="text-xs text-slate-gray leading-relaxed">
+                    {feat.desc}
+                  </p>
                 </div>
               </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="p-3 bg-surface-container-low rounded-lg shrink-0">
-                <span className="material-symbols-outlined text-azure-blue text-[28px]">
-                  palette
-                </span>
-              </div>
-              <div className="font-body text-sm">
-                <span className="font-semibold text-charcoal block">
-                  UI/UX & Creative Direction
-                </span>
-                <span className="text-slate-gray text-xs block mt-0.5">
-                  Rajesh Bandila
-                </span>
-                <p className="text-[11px] text-slate-400 mt-2">
-                  Engineered with high-fidelity Figma mockups and generative AI
-                  visual technology assets.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
