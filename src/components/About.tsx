@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <section className="py-[120px] px-margin-mobile md:px-margin-desktop bg-white">
+    <section className="py-16 md:py-20 px-margin-mobile md:px-margin-desktop bg-white">
       <div className="max-w-container-max mx-auto">
         <div className="grid grid-cols-12 gap-6 items-center gap-y-12">
           {/* Architectural Image frame */}
@@ -12,6 +12,7 @@ export default function About() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent"></div>
           </div>
+
           {/* Editorial copy and stats block */}
           <div className="col-span-full md:col-span-7 flex flex-col justify-center md:pl-12">
             <span className="font-body text-xs font-bold text-azure-blue uppercase tracking-widest block mb-4">
@@ -27,6 +28,7 @@ export default function About() {
               combined power of design and technology. We don't just build
               features; we engineer competitive advantages.
             </p>
+
             {/* Numerical Statistics grid */}
             <div className="grid grid-cols-2 gap-8 border-t border-surface-container-low pt-8">
               <div>
@@ -52,6 +54,3 @@ export default function About() {
     </section>
   );
 }
-
-
-

@@ -7,7 +7,9 @@ type Page =
   | "services"
   | "contact"
   | "work"
-  | "case-study";
+  | "case-study"
+  | "privacy"
+  | "terms";
 
 interface HeaderProps {
   currentPage: Exclude<Page, "case-study">;
@@ -25,6 +27,9 @@ export default function Header({
   const [activeMenu, setActiveMenu] = useState<
     "services" | "products" | "about" | null
   >(null);
+  const [leaveTimeoutId, setLeaveTimeoutId] = useState<ReturnType<
+    typeof setTimeout
+  > | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,11 +39,27 @@ export default function Header({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // ⏱️ Debounced Hover Handlers (Solves the fast closing bug)
+  const handleMouseEnter = () => {
+    if (leaveTimeoutId) {
+      clearTimeout(leaveTimeoutId);
+      setLeaveTimeoutId(null);
+    }
+    setActiveMenu("services");
+  };
+
+  const handleMouseLeave = () => {
+    const id = setTimeout(() => {
+      setActiveMenu(null);
+    }, 150); // 150ms buffer time keeps menu open during cursor transitions
+    setLeaveTimeoutId(id);
+  };
+
   const handleNavClick = (page: Page, e: React.MouseEvent) => {
     e.preventDefault();
     onPageChange(page);
     setIsDrawerOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setActiveMenu(null);
   };
 
   const handleSubLinkClick = (sectionId: string, e: React.MouseEvent) => {
@@ -65,7 +86,7 @@ export default function Header({
         >
           {/* Logo */}
           <a
-            href="#"
+            href="/"
             onClick={(e) => handleNavClick("home", e)}
             className="font-headline text-2xl font-bold text-charcoal tracking-tighter shrink-0 select-none"
           >
@@ -77,8 +98,8 @@ export default function Header({
             {/* Services Link with Mega Menu */}
             <div
               className="h-full py-2"
-              onMouseEnter={() => setActiveMenu("services")}
-              onMouseLeave={() => setActiveMenu(null)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <button
                 onClick={(e) => handleNavClick("services", e)}
@@ -123,7 +144,7 @@ export default function Header({
                     </p>
                     <a
                       className="inline-flex items-center text-azure-blue text-sm font-semibold hover:underline gap-1"
-                      href="#"
+                      href="/services"
                       onClick={(e) => handleNavClick("services", e)}
                     >
                       View all capabilities{" "}
@@ -141,7 +162,7 @@ export default function Header({
                         <li>
                           <a
                             className="group/item flex flex-col"
-                            href="#"
+                            href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-strategy", e)
                             }
@@ -157,7 +178,7 @@ export default function Header({
                         <li>
                           <a
                             className="group/item flex flex-col"
-                            href="#"
+                            href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-strategy", e)
                             }
@@ -180,7 +201,7 @@ export default function Header({
                         <li>
                           <a
                             className="group/item flex flex-col"
-                            href="#"
+                            href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-experience", e)
                             }
@@ -196,7 +217,7 @@ export default function Header({
                         <li>
                           <a
                             className="group/item flex flex-col"
-                            href="#"
+                            href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-experience", e)
                             }
@@ -219,7 +240,7 @@ export default function Header({
                         <li>
                           <a
                             className="group/item flex flex-col"
-                            href="#"
+                            href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-engineering", e)
                             }
@@ -235,7 +256,7 @@ export default function Header({
                         <li>
                           <a
                             className="group/item flex flex-col"
-                            href="#"
+                            href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-engineering", e)
                             }
@@ -258,7 +279,7 @@ export default function Header({
             {/* Products Page Link */}
             <div className="h-full py-2">
               <a
-                href="#"
+                href="/products"
                 onClick={(e) => handleNavClick("products", e)}
                 className={`font-body text-sm font-semibold transition-colors duration-200 ${
                   currentPage === "products"
@@ -273,7 +294,7 @@ export default function Header({
             {/* Work Portfolio Page Link */}
             <div className="h-full py-2">
               <a
-                href="#"
+                href="/work"
                 onClick={(e) => handleNavClick("work", e)}
                 className={`font-body text-sm font-semibold transition-colors duration-200 ${
                   currentPage === "work"
@@ -288,7 +309,7 @@ export default function Header({
             {/* About Page Link */}
             <div className="h-full py-2">
               <a
-                href="#"
+                href="/about"
                 onClick={(e) => handleNavClick("about", e)}
                 className={`font-body text-sm font-semibold transition-colors duration-200 ${
                   currentPage === "about"
@@ -354,7 +375,7 @@ export default function Header({
             <ul className="pl-4 space-y-3 border-l border-surface-container-low">
               <li>
                 <a
-                  href="#"
+                  href="/home"
                   onClick={(e) => handleNavClick("home", e)}
                   className={`font-body text-sm font-semibold block ${currentPage === "home" ? "text-azure-blue" : "text-charcoal"}`}
                 >
@@ -363,7 +384,7 @@ export default function Header({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/services"
                   onClick={(e) => handleNavClick("services", e)}
                   className={`font-body text-sm font-semibold block ${currentPage === "services" ? "text-azure-blue" : "text-charcoal"}`}
                 >
@@ -372,7 +393,7 @@ export default function Header({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/products"
                   onClick={(e) => handleNavClick("products", e)}
                   className={`font-body text-sm font-semibold block ${currentPage === "products" ? "text-azure-blue" : "text-charcoal"}`}
                 >
@@ -381,7 +402,7 @@ export default function Header({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/work"
                   onClick={(e) => handleNavClick("work", e)}
                   className={`font-body text-sm font-semibold block ${currentPage === "work" ? "text-azure-blue" : "text-charcoal"}`}
                 >
@@ -390,7 +411,7 @@ export default function Header({
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/about"
                   onClick={(e) => handleNavClick("about", e)}
                   className={`font-body text-sm font-semibold block ${currentPage === "about" ? "text-azure-blue" : "text-charcoal"}`}
                 >

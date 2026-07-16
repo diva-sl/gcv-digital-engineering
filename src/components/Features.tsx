@@ -27,10 +27,10 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-[120px] px-margin-mobile md:px-margin-desktop bg-surface-gray">
+    <section className="py-16 md:py-20 px-margin-mobile md:px-margin-desktop bg-surface-gray">
       <div className="max-w-container-max mx-auto">
         {/* Section title */}
-        <div className="mb-20 text-center max-w-3xl mx-auto">
+        <div className="mb-14 text-center max-w-3xl mx-auto">
           <span className="font-body text-xs font-bold text-azure-blue uppercase tracking-widest block mb-4">
             The GCV Edge
           </span>
@@ -60,6 +60,3 @@ export default function Features() {
     </section>
   );
 }
-
-
-

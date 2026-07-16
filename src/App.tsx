@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -58,8 +58,43 @@ function App() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  // 🗺️ HTML5 History Routing Engine (Syncs URL paths like /products, /services)
+  useEffect(() => {
+    const syncRouteFromPath = () => {
+      const path = window.location.pathname.replace(/^\/+/, "") || "home";
+      const validPages: Page[] = [
+        "home",
+        "about",
+        "products",
+        "services",
+        "contact",
+        "work",
+        "privacy",
+        "terms",
+      ];
+
+      if (validPages.includes(path as Page)) {
+        setCurrentPage(path as Page);
+      } else {
+        setCurrentPage("home");
+      }
+    };
+
+    // Sync on initial load
+    syncRouteFromPath();
+
+    // Listen to browser Back/Forward navigation clicks
+    window.addEventListener("popstate", syncRouteFromPath);
+    return () => window.removeEventListener("popstate", syncRouteFromPath);
+  }, []);
+
   const handlePageChange = (page: Page) => {
     setCurrentPage(page);
+
+    // Update browser URL state without page reload
+    const targetPath = page === "home" ? "/" : `/${page}`;
+    window.history.pushState(null, "", targetPath);
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -83,7 +118,7 @@ function App() {
         onSelectSection={setActiveSection}
       />
       <main className="pt-20 overflow-x-hidden flex-1">
-        {currentPage === "home" && <Home />}
+        {currentPage === "home" && <Home onPageChange={handlePageChange} />}
         {currentPage === "about" && <AboutUs />}
         {currentPage === "products" && <Products />}
         {currentPage === "services" && (
