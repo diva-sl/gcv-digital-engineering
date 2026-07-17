@@ -16,40 +16,41 @@ interface AboutUsProps {
 export default function AboutUs({ onPageChange }: AboutUsProps) {
   return (
     <div className="bg-white">
-      {/* 🚀 Aligned Hero Section (Matches Home Hero Spacing Frame & Layout) */}
-      <section className="relative min-h-[600px] md:min-h-[700px] flex items-center px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
-        <div className="max-w-container-max mx-auto grid grid-cols-12 gap-6 w-full relative z-10">
-          <div className="col-span-full lg:col-span-8 py-16 md:py-24 space-y-6">
+      {/* 🚀 Premium Full-Width Row Hero Section */}
+      <section className="relative overflow-hidden bg-charcoal text-white py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-b border-white/10 flex items-center min-h-[450px] z-10">
+        {/* 🖼️ Full-width Background Image Row */}
+        <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
+          <img
+            src="/assets/About Us.png"
+            alt="GCV Corporate Identity"
+            className="w-full h-full object-cover opacity-85"
+          />
+          {/* Dark overlay gradient to blend text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-charcoal via-charcoal/40 to-charcoal/40 z-10" />
+        </div>
+
+        <div className="max-w-container-max mx-auto w-full relative z-20">
+          <div className="max-w-3xl space-y-6">
             {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-full select-none">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/10 rounded-full select-none">
               <span className="w-2 h-2 bg-azure-blue rounded-full animate-pulse"></span>
-              <span className="font-body text-xs font-semibold uppercase tracking-widest text-slate-gray">
+              <span className="font-body text-xs font-semibold uppercase tracking-widest text-white/90">
                 Our Identity
               </span>
             </div>
 
-            {/* Main Headline (Original Content Kept) */}
-            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-charcoal tracking-tighter">
+            {/* Main Headline */}
+            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-white tracking-tighter">
               Solving Complex Business Challenges Through Design & Technology
             </h1>
 
-            {/* Description (Original Content Kept) */}
-            <p className="font-body text-lg text-slate-gray max-w-2xl leading-relaxed">
+            {/* Description */}
+            <p className="font-body text-lg text-slate-200/90 leading-relaxed">
               We bridge the gap between strategic intent and engineering
               reality, delivering enterprise-scale digital products that move
               the needle.
             </p>
           </div>
-        </div>
-
-        {/* Twilight Glass Building Absolute Image */}
-        <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[45%] h-3/4 opacity-90 pointer-events-none hidden lg:block rounded-xl overflow-hidden border border-surface-variant shadow-md">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgdK99-v6F1XYsST5CEP-OuTxn-W9xjDnd0Gf6nwDqmTJp1PhLG6HUj0i1SHVpUZnncLH8UInWl4jiqkgFdFGDpSUtazH1LEjI-JvAYHL2Ta_D-rfoK3aCPp4QnMZQP-eHAPC-M2TVCUhu4rJsXuiQ01Q456H8m-PJQz1LS4zFg5Bvy2onFYDM1pezh_IdYGHOKPKFjWu5-8XOj3aJFZ2cStL-_hGyfSNbWiwifHMmxL406cH4j1ik4I1usTwbwXnRgCSPyuajC3Vl"
-            alt="GCV twilight glass office architectural workspace"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent"></div>
         </div>
       </section>
 

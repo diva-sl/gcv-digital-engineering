@@ -7,6 +7,7 @@ type Page =
   | "work"
   | "case-study"
   | "privacy"
+
   | "terms";
 
 interface HeroProps {
@@ -15,9 +16,29 @@ interface HeroProps {
 
 export default function Hero({ onPageChange }: HeroProps) {
   return (
-    <section className="relative min-h-[850px] flex items-center px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
-      <div className="max-w-container-max mx-auto grid grid-cols-12 gap-6 w-full relative z-10">
-        <div className="col-span-full md:col-span-10 lg:col-span-8 py-[120px]">
+    <section className="relative min-h-[850px] flex items-center px-margin-mobile md:px-margin-desktop overflow-hidden">
+      {/* 🎥 Background Video (Fully Visible & Un-dimmed) */}
+      <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source
+            src="/assets/vecteezy_technology-network-background_4827152.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+        {/* Soft overlay vignette to integrate the layout margins cleanly */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/30 via-transparent to-transparent z-10" />
+      </div>
+
+      <div className="max-w-container-max mx-auto grid grid-cols-12 gap-6 w-full relative z-20">
+        <div className="col-span-full md:col-span-10 lg:col-span-8 py-[120px] z-10">
+          
           {/* Status Badge */}
           <div className="mb-6 inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-full select-none">
             <span className="w-2 h-2 bg-azure-blue rounded-full animate-pulse"></span>
@@ -33,13 +54,14 @@ export default function Hero({ onPageChange }: HeroProps) {
             Business Problems
           </h1>
 
+          {/* Description */}
           <p className="font-body text-lg text-slate-gray max-w-2xl mb-12 leading-relaxed">
             At GCV, designers, researchers, strategists, and engineers
             collaborate to understand customer challenges and deliver innovative
             digital products, enterprise platforms, and AI-powered solutions.
           </p>
 
-          {/* Call-to-action buttons styled like the contact form */}
+          {/* Call-to-action buttons */}
           <div className="flex flex-wrap gap-4">
             <button
               onClick={() => onPageChange("contact")}
@@ -55,15 +77,6 @@ export default function Hero({ onPageChange }: HeroProps) {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Atmospheric Image Graphic */}
-      <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-1/2 h-4/5 opacity-80 pointer-events-none hidden lg:block">
-        <img
-          src="/assets/hero-visual.jpg"
-          alt="Architectural visual graphics"
-          className="w-full h-full object-contain rounded-xl"
-        />
       </div>
     </section>
   );

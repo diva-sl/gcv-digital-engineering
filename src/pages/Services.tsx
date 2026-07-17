@@ -132,40 +132,41 @@ export default function Services({
 
   return (
     <div className="bg-[#f7f9fb] min-h-screen text-charcoal">
-      {/* 🚀 Aligned Hero Section (Matches Home Hero Spacing Frame & Layout) */}
-      <section className="relative min-h-[600px] md:min-h-[700px] flex items-center px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
-        <div className="max-w-container-max mx-auto grid grid-cols-12 gap-6 w-full relative z-10">
-          <div className="col-span-full lg:col-span-8 py-16 md:py-24 space-y-6">
+      {/* 🚀 Premium Full-Width Row Hero Section */}
+      <section className="relative overflow-hidden bg-charcoal text-white py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-b border-white/10 flex items-center min-h-[450px] z-10">
+        {/* 🖼️ Full-width Background Image Row */}
+        <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
+          <img
+            src="/assets/Services.png"
+            alt="GCV Services Capabilities"
+            className="w-full h-full object-cover opacity-85"
+          />
+          {/* Dark overlay gradient to blend text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-charcoal via-charcoal/40 to-charcoal/40 z-10" />
+        </div>
+
+        <div className="max-w-container-max mx-auto w-full relative z-20">
+          <div className="max-w-3xl space-y-6">
             {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-full select-none">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/10 rounded-full select-none">
               <span className="w-2 h-2 bg-azure-blue rounded-full animate-pulse"></span>
-              <span className="font-body text-xs font-semibold uppercase tracking-widest text-slate-gray">
+              <span className="font-body text-xs font-semibold uppercase tracking-widest text-white/90">
                 Our Expertise
               </span>
             </div>
 
-            {/* Main Headline (Original Content Kept) */}
-            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-charcoal tracking-tighter">
+            {/* Main Headline */}
+            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-white tracking-tighter">
               Engineering the future of digital experiences.
             </h1>
 
-            {/* Description (Original Content Kept) */}
-            <p className="font-body text-lg text-slate-gray max-w-2xl leading-relaxed">
+            {/* Description */}
+            <p className="font-body text-lg text-slate-200/90 leading-relaxed">
               We combine high-level strategic consultancy with rigorous
               technical implementation to deliver enterprise-grade digital
               solutions that scale.
             </p>
           </div>
-        </div>
-
-        {/* Premium Architectural Studio Workspace Image */}
-        <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[45%] h-3/4 opacity-90 pointer-events-none hidden lg:block rounded-xl overflow-hidden border border-surface-variant shadow-md">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUIC9NuyzwqB-nUPR5zaxR3JZIUEhNHDn55KSfbVnqoYVpC3H2EjuPDgrDQsme708Sku14Hi4L6WygOTiX8gbINVv0MNlfRNYP1OlKOFMTkY5x_MZWPeROzUt8Mz3t8x-TG-QzjDRHYao8n2nEbPTa_1HxYtdn73Z6fMHzEFBzGLv-EkxR2Ez_bZk-q7JpBksxlZynrwT-qRIZM2TTI9WTslbMuBDLV6BP8sO5QurXafYKt6ueF6-0tclp9KhMDx4Xl9g7M871x0lT"
-            alt="GCV Studio Architectural Workspace"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent"></div>
         </div>
       </section>
 

@@ -8,7 +8,7 @@ export default function About() {
             <img
               className="w-full h-full object-cover"
               alt="GCV Premium Architectural Workspace"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUIC9NuyzwqB-nUPR5zaxR3JZIUEhNHDn55KSfbVnqoYVpC3H2EjuPDgrDQsme708Sku14Hi4L6WygOTiX8gbINVv0MNlfRNYP1OlKOFMTkY5x_MZWPeROzUt8Mz3t8x-TG-QzjDRHYao8n2nEbPTa_1HxYtdn73Z6fMHzEFBzGLv-EkxR2Ez_bZk-q7JpBksxlZynrwT-qRIZM2TTI9WTslbMuBDLV6BP8sO5QurXafYKt6ueF6-0tclp9KhMDx4Xl9g7M871x0lT"
+              src="/assets/Services.png"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent"></div>
           </div>

@@ -88,9 +88,13 @@ export default function Header({
           <a
             href="/"
             onClick={(e) => handleNavClick("home", e)}
-            className="font-headline text-2xl font-bold text-charcoal tracking-tighter shrink-0 select-none"
+            className="shrink-0 select-none flex items-center"
           >
-            GCV
+            <img
+              src="/logos/GCV Logo.svg"
+              alt="GCV Digital Engineering Logo"
+              className="h-8 w-auto md:h-9"
+            />
           </a>
 
           {/* Desktop Nav Items */}
@@ -392,8 +396,12 @@ export default function Header({
         }`}
       >
         <div className="flex justify-between items-center mb-8 border-b border-surface-container-high pb-4">
-          <span className="font-headline text-lg font-bold text-charcoal">
-            GCV
+          <span className="shrink-0 select-none flex items-center">
+            <img
+              src="/logos/GCV Logo.svg"
+              alt="GCV Digital Engineering Logo"
+              className="h-6 w-auto"
+            />
           </span>
           <button
             onClick={() => setIsDrawerOpen(false)}

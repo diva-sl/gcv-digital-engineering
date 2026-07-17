@@ -1,4 +1,5 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import axios from "axios";
 
 type Page =
   | "home"
@@ -16,9 +17,23 @@ interface FooterProps {
 }
 
 export default function Footer({ onPageChange }: FooterProps) {
-  const handleSubmit = (e: FormEvent) => {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    alert("Thank you for subscribing to GCV insights!");
+    setIsSubmitting(true);
+    try {
+      // @ts-ignore
+      const apiBase = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      await axios.post(`${apiBase}/subscribe`, { email });
+      alert("Thank you for subscribing to GCV insights!");
+      setEmail("");
+    } catch (error) {
+      alert("Failed to subscribe. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleNavClick = (page: Page, e: React.MouseEvent) => {
@@ -36,9 +51,13 @@ export default function Footer({ onPageChange }: FooterProps) {
             <a
               href="/"
               onClick={(e) => handleNavClick("home", e)}
-              className="font-headline text-2xl font-bold mb-6 block hover:text-[#e2f0fd] transition-colors"
+              className="mb-6 block hover:opacity-90 transition-opacity select-none"
             >
-              GCV
+              <img
+                src="/logos/GCV Logo.svg"
+                alt="GCV Digital Engineering Logo"
+                className="h-8 w-auto brightness-0 invert"
+              />
             </a>
             <p className="text-slate-gray font-body text-sm leading-relaxed mb-8 pr-4">
               Building the digital foundations for tomorrow's market leaders
@@ -192,14 +211,18 @@ export default function Footer({ onPageChange }: FooterProps) {
               <input
                 type="email"
                 placeholder="Your email"
-                className="form-input-minimal flex-1 bg-white/5 border-white/20 text-white placeholder-slate-gray focus:border-azure-blue rounded py-3 px-4 text-sm outline-none transition-all duration-200"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isSubmitting}
+                className="form-input-minimal flex-1 bg-white/5 border-white/20 text-white placeholder-slate-gray focus:border-azure-blue rounded py-3 px-4 text-sm outline-none transition-all duration-200 disabled:opacity-50"
                 required
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-white text-charcoal font-body text-sm font-semibold rounded hover:bg-white/90 active:scale-95 transition-all duration-200"
+                disabled={isSubmitting}
+                className="px-6 py-3 bg-white text-charcoal font-body text-sm font-semibold rounded hover:bg-white/90 active:scale-95 transition-all duration-200 disabled:opacity-75 min-w-[70px]"
               >
-                Join
+                {isSubmitting ? "..." : "Join"}
               </button>
             </form>
           </div>

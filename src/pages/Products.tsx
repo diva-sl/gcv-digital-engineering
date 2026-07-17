@@ -64,40 +64,41 @@ export default function Products({ onPageChange }: ProductsProps) {
 
   return (
     <div className="bg-[#f7f9fb] min-h-screen text-charcoal">
-      {/* 🚀 Aligned Hero Section (Matches Home Hero Spacing Frame & Layout) */}
-      <section className="relative min-h-[600px] md:min-h-[700px] flex items-center px-margin-mobile md:px-margin-desktop hero-gradient overflow-hidden">
-        <div className="max-w-container-max mx-auto grid grid-cols-12 gap-6 w-full relative z-10">
-          <div className="col-span-full lg:col-span-8 py-16 md:py-24 space-y-6">
+      {/* 🚀 Premium Full-Width Row Hero Section */}
+      <section className="relative overflow-hidden bg-charcoal text-white py-20 md:py-32 px-margin-mobile md:px-margin-desktop border-b border-white/10 flex items-center min-h-[450px] z-10">
+        {/* 🖼️ Full-width Background Image Row */}
+        <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
+          <img
+            src="/assets/Products.png"
+            alt="GCV Product Platforms"
+            className="w-full h-full object-cover opacity-85"
+          />
+          {/* Dark overlay gradient to blend text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-charcoal via-charcoal/40 to-charcoal/40 z-10" />
+        </div>
+
+        <div className="max-w-container-max mx-auto w-full relative z-20">
+          <div className="max-w-3xl space-y-6">
             {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-low rounded-full select-none">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/10 rounded-full select-none">
               <span className="w-2 h-2 bg-azure-blue rounded-full animate-pulse"></span>
-              <span className="font-body text-xs font-semibold uppercase tracking-widest text-slate-gray">
+              <span className="font-body text-xs font-semibold uppercase tracking-widest text-white/90">
                 Proprietary Assets
               </span>
             </div>
 
-            {/* Main Headline (Original Content Kept) */}
-            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-charcoal tracking-tighter">
+            {/* Main Headline */}
+            <h1 className="font-headline text-[36px] md:text-6xl font-bold leading-tight text-white tracking-tighter">
               Engineering Tomorrow's Platforms.
             </h1>
 
-            {/* Description (Original Content Kept) */}
-            <p className="font-body text-lg text-slate-gray max-w-lg leading-relaxed">
+            {/* Description */}
+            <p className="font-body text-lg text-slate-200/90 leading-relaxed">
               GCV's suite of specialized software solutions is designed to
               handle enterprise complexity with editorial-grade precision. From
               clinical workflows to secure global payments.
             </p>
           </div>
-        </div>
-
-        {/* Clean software development workspace Absolute Image */}
-        <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[45%] h-3/4 opacity-90 pointer-events-none hidden lg:block rounded-xl overflow-hidden border border-surface-variant shadow-md">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxruU6cM_vOHom_GuWNuPvmQ_NOtOMpptG5wyi0XXykG_OXlk75AITW9rW3aoB2Jn-QeXkwFuZbcZTCryYJ79mbE_DsKmgWOZ5goBDTlu-I9u4OmfQz0FQEMrxUDKSlqCrhmVy6VHE8E87Sr9Ewwgog3jKJx8o0jrdBRahKdt9K_nqCbVoaL89nOyupJmlOK8laI-bd4IKguA34qkR2WRvLTERBgevyYIqZegY7mf93ujBJkUKMlVKk_RVUzHRBNIUF6nn7ZCgT_W8"
-            alt="Clean architectural software development workspace"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/20 to-transparent"></div>
         </div>
       </section>
 
