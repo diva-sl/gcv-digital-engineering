@@ -18,8 +18,8 @@ interface BackendResponse {
 }
 
 // 🌐 Load your backend base URL from React env configurations (defaults to local Go server port 5000)
-const API_BASE_URL =
-  (import.meta as any).env.VITE_API_URL || "http://localhost:5000/api";
+// @ts-ignore
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 // 🚀 Send the form details securely via Axios post
 const submitContactForm = async (
