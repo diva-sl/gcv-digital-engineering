@@ -16,7 +16,7 @@ interface HeroProps {
 
 export default function Hero({ onPageChange }: HeroProps) {
   return (
-    <section className="relative min-h-[850px] flex items-center px-margin-mobile md:px-margin-desktop overflow-hidden">
+    <section className="relative min-h-[850px] flex items-center px-margin-mobile md:px-margin-desktop overflow-hidden mb-16 md:mb-24 bg-white">
       {/* 🎥 Background Video (Fully Visible & Un-dimmed) */}
       <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none">
         <video
@@ -24,7 +24,7 @@ export default function Hero({ onPageChange }: HeroProps) {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-75"
         >
           <source
             src="/assets/vecteezy_technology-network-background_4827152.mp4"

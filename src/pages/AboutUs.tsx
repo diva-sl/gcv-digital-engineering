@@ -23,7 +23,7 @@ export default function AboutUs({ onPageChange }: AboutUsProps) {
           <img
             src="/assets/About Us.png"
             alt="GCV Corporate Identity"
-            className="w-full h-full object-cover opacity-85"
+            className="w-full h-full object-cover opacity-50"
           />
           {/* Dark overlay gradient to blend text contrast */}
           <div className="absolute inset-0 bg-gradient-to-tr from-charcoal via-charcoal/40 to-charcoal/40 z-10" />

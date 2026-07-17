@@ -173,7 +173,7 @@ export default function Services({
       {/* Category 1: Strategy & Research */}
       <section
         id="services-strategy"
-        className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-[120px] scroll-mt-28"
+        className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-24 md:mt-36 mb-[120px] scroll-mt-28"
       >
         <div className="flex items-baseline justify-between border-b border-surface-variant pb-4 mb-8">
           <h2 className="font-headline text-2xl md:text-[32px] font-bold text-charcoal tracking-tight">
