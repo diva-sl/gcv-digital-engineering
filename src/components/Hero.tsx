@@ -24,7 +24,7 @@ export default function Hero({ onPageChange }: HeroProps) {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-75"
+          className="w-full h-full object-cover opacity-40"
         >
           <source
             src="/assets/vecteezy_technology-network-background_4827152.mp4"

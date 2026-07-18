@@ -24,8 +24,8 @@ export default function Footer({ onPageChange }: FooterProps) {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      // @ts-ignore
-      const apiBase = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const apiBase =
+        (import.meta as any).env.VITE_API_URL || "http://localhost:5000/api";
       await axios.post(`${apiBase}/subscribe`, { email });
       alert("Thank you for subscribing to GCV insights!");
       setEmail("");
@@ -69,9 +69,10 @@ export default function Footer({ onPageChange }: FooterProps) {
               {/* LinkedIn */}
               <a
                 className="text-slate-gray hover:text-white transition-colors"
-                href="https://www.linkedin.com/in/divakarans/"
-                target="_blank"
-                rel="noopener noreferrer"
+                // href="https://www.linkedin.com/in/divakarans/"
+                href="#"
+                // target="_blank"
+                // rel="noopener noreferrer"
                 title="LinkedIn"
               >
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -93,9 +94,9 @@ export default function Footer({ onPageChange }: FooterProps) {
               {/* GitHub */}
               <a
                 className="text-slate-gray hover:text-white transition-colors"
-                href="https://github.com/diva-sl"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
+                // target="_blank"
+                // rel="noopener noreferrer"
                 title="GitHub"
               >
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
