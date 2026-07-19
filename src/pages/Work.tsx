@@ -38,90 +38,159 @@ interface WorkProps {
 // 🌐 Custom SVG Tech Icons helper matching package.json (with customizable class size)
 function getTechIcon(tag: string, className = "w-4 h-4") {
   const normalized = tag.toLowerCase();
-  
+
   if (normalized.includes("react")) {
     return (
-      <svg className={className} viewBox="-11.5 -10.23174 23 20.46348" fill="none">
-        <circle cx="0" cy="0" r="2.05" fill="#61dafb"/>
+      <svg
+        className={className}
+        viewBox="-11.5 -10.23174 23 20.46348"
+        fill="none"
+      >
+        <circle cx="0" cy="0" r="2.05" fill="#61dafb" />
         <g stroke="#61dafb" strokeWidth="1">
-          <ellipse rx="11" ry="4.2"/>
-          <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
-          <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+          <ellipse rx="11" ry="4.2" />
+          <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+          <ellipse rx="11" ry="4.2" transform="rotate(120)" />
         </g>
       </svg>
     );
   }
   if (normalized.includes("next")) {
     return (
-      <svg className={`${className} rounded-full bg-black border border-white/20`} viewBox="0 0 180 180" fill="none">
-        <circle cx="90" cy="90" r="90" fill="black"/>
-        <path d="M149.508 157.52L69.142 54H54v72h14.4V69.957l67.873 87.563c4.103-3.79 7.848-8.036 11.168-12.632zM126 54h14.4v72H126V54z" fill="white"/>
+      <svg
+        className={`${className} rounded-full bg-black border border-white/20`}
+        viewBox="0 0 180 180"
+        fill="none"
+      >
+        <circle cx="90" cy="90" r="90" fill="black" />
+        <path
+          d="M149.508 157.52L69.142 54H54v72h14.4V69.957l67.873 87.563c4.103-3.79 7.848-8.036 11.168-12.632zM126 54h14.4v72H126V54z"
+          fill="white"
+        />
       </svg>
     );
   }
   if (normalized.includes("typescript")) {
     return (
-      <svg className={`${className} rounded-sm`} viewBox="0 0 100 100" fill="#3178c6">
-        <rect width="100" height="100" rx="10"/>
-        <text x="50" y="70" fill="white" fontSize="60" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">TS</text>
+      <svg
+        className={`${className} rounded-sm`}
+        viewBox="0 0 100 100"
+        fill="#3178c6"
+      >
+        <rect width="100" height="100" rx="10" />
+        <text
+          x="50"
+          y="70"
+          fill="white"
+          fontSize="60"
+          fontWeight="bold"
+          fontFamily="sans-serif"
+          textAnchor="middle"
+        >
+          TS
+        </text>
       </svg>
     );
   }
   if (normalized.includes("tailwind")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="#38bdf8">
-        <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.002 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19 12.002 19c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/>
+        <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.002 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19 12.002 19c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
       </svg>
     );
   }
   if (normalized.includes("vite")) {
     return (
       <svg className={className} viewBox="0 0 32 32">
-        <path d="M16 2.6L2.6 26.6h26.8z" fill="url(#viteGrad)"/>
-        <path d="M19.4 6L11 20h6l-3 8 11-13h-7z" fill="#ffdf00"/>
+        <path d="M16 2.6L2.6 26.6h26.8z" fill="url(#viteGrad)" />
+        <path d="M19.4 6L11 20h6l-3 8 11-13h-7z" fill="#ffdf00" />
         <defs>
           <linearGradient id="viteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#41d1ff"/>
-            <stop offset="100%" stopColor="#bd34fe"/>
+            <stop offset="0%" stopColor="#41d1ff" />
+            <stop offset="100%" stopColor="#bd34fe" />
           </linearGradient>
         </defs>
       </svg>
     );
   }
-  if (normalized.includes("golang") || normalized.includes("go / golang") || normalized.includes("go mod")) {
+  if (
+    normalized.includes("golang") ||
+    normalized.includes("go / golang") ||
+    normalized.includes("go mod")
+  ) {
     return (
-      <svg className={`${className} rounded-md`} viewBox="0 0 100 100" fill="#00ADD8">
-        <rect width="100" height="100" rx="15"/>
-        <text x="50" y="70" fill="white" fontSize="58" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">Go</text>
+      <svg
+        className={`${className} rounded-md`}
+        viewBox="0 0 100 100"
+        fill="#00ADD8"
+      >
+        <rect width="100" height="100" rx="15" />
+        <text
+          x="50"
+          y="70"
+          fill="white"
+          fontSize="58"
+          fontWeight="bold"
+          fontFamily="sans-serif"
+          textAnchor="middle"
+        >
+          Go
+        </text>
       </svg>
     );
   }
   if (normalized.includes("framer motion")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="none">
-        <path d="M0 0h12v12H0V0zm12 12h12v12H12V12zm0-12l12 12H12V0zM0 12l12 12V12H0z" fill="#F012BE"/>
+        <path
+          d="M0 0h12v12H0V0zm12 12h12v12H12V12zm0-12l12 12H12V0zM0 12l12 12V12H0z"
+          fill="#F012BE"
+        />
       </svg>
     );
   }
   if (normalized.includes("zustand")) {
     return (
-      <svg className={className} viewBox="0 0 24 24" fill="none" stroke="#e2b13c" strokeWidth="2.5">
-        <circle cx="12" cy="12" r="8"/>
-        <path d="M12 8v8M8 12h8" strokeLinecap="round"/>
+      <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#e2b13c"
+        strokeWidth="2.5"
+      >
+        <circle cx="12" cy="12" r="8" />
+        <path d="M12 8v8M8 12h8" strokeLinecap="round" />
       </svg>
     );
   }
   if (normalized.includes("query") || normalized.includes("react query")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="#FF4154">
-        <circle cx="12" cy="12" r="9" fill="none" stroke="#FF4154" strokeWidth="2"/>
-        <circle cx="12" cy="12" r="4"/>
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          fill="none"
+          stroke="#FF4154"
+          strokeWidth="2"
+        />
+        <circle cx="12" cy="12" r="4" />
       </svg>
     );
   }
   return (
-    <svg className={`${className} text-azure-blue`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+    <svg
+      className={`${className} text-azure-blue`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+      />
     </svg>
   );
 }
@@ -233,7 +302,7 @@ export default function Work({ onSelectProject }: WorkProps) {
         "Framer Motion",
         "React Query",
       ],
-      image: "/images/praxorium.gcvdanta.com_.webp",
+      image: "/images/praxorium.gcvdanta.com.png",
       challenge:
         "The educational SaaS required a scalable portal to administer curriculum modules, deliver low-latency video lectures, track legal compliance standards, and render student evaluation matrices dynamically in graphic formats.",
       solution:
@@ -254,7 +323,7 @@ export default function Work({ onSelectProject }: WorkProps) {
       screenshots: [
         {
           label: "Storefront - Academy Portal",
-          path: "/images/praxorium.gcvdanta.com_.webp",
+          path: "/images/praxorium.gcvdanta.com.png",
           type: "storefront",
         },
         {
@@ -345,7 +414,9 @@ export default function Work({ onSelectProject }: WorkProps) {
             Interactive Client Showcases
           </h1>
           <p className="font-body text-lg text-slate-gray leading-relaxed">
-            Explore GCV's production-ready project applications. We design, construct, and deploy customized digital products and high-performance SaaS solutions.
+            Explore GCV's production-ready project applications. We design,
+            construct, and deploy customized digital products and
+            high-performance SaaS solutions.
           </p>
         </div>
 
@@ -379,14 +450,40 @@ export default function Work({ onSelectProject }: WorkProps) {
             const floatingTags =
               project.id === "kiddostyle"
                 ? [
-                    { label: "Next.js", icon: getTechIcon("next", "w-6 h-6"), style: "top-6 left-6 animate-float-tag-1" },
-                    { label: "React 19", icon: getTechIcon("react", "w-6 h-6"), style: "bottom-6 right-6 animate-float-tag-2" },
-                    { label: "Go / Golang", icon: getTechIcon("golang", "w-6 h-6"), style: "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3" },
+                    {
+                      label: "Next.js",
+                      icon: getTechIcon("next", "w-6 h-6"),
+                      style: "top-6 left-6 animate-float-tag-1",
+                    },
+                    {
+                      label: "React 19",
+                      icon: getTechIcon("react", "w-6 h-6"),
+                      style: "bottom-6 right-6 animate-float-tag-2",
+                    },
+                    {
+                      label: "Go / Golang",
+                      icon: getTechIcon("golang", "w-6 h-6"),
+                      style:
+                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
+                    },
                   ]
                 : [
-                    { label: "React 19", icon: getTechIcon("react", "w-6 h-6"), style: "top-6 left-6 animate-float-tag-1" },
-                    { label: "Go / Golang", icon: getTechIcon("golang", "w-6 h-6"), style: "bottom-6 right-6 animate-float-tag-2" },
-                    { label: "Framer Motion", icon: getTechIcon("framer motion", "w-6 h-6"), style: "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3" },
+                    {
+                      label: "React 19",
+                      icon: getTechIcon("react", "w-6 h-6"),
+                      style: "top-6 left-6 animate-float-tag-1",
+                    },
+                    {
+                      label: "Go / Golang",
+                      icon: getTechIcon("golang", "w-6 h-6"),
+                      style: "bottom-6 right-6 animate-float-tag-2",
+                    },
+                    {
+                      label: "Framer Motion",
+                      icon: getTechIcon("framer motion", "w-6 h-6"),
+                      style:
+                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
+                    },
                   ];
 
             return (
@@ -395,13 +492,12 @@ export default function Work({ onSelectProject }: WorkProps) {
                 className="bg-white border border-surface-variant rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:border-azure-blue/40 p-6 md:p-8"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  
                   {/* Left Column: High-Quality Screenshot Card & floating tags */}
                   <div className="lg:col-span-6 relative rounded-2xl overflow-hidden aspect-video border border-slate-200/50 bg-[#fafbfc] group/img shadow-md animate-fade-in flex flex-col">
                     <div className="relative overflow-hidden aspect-video bg-slate-50 flex-1">
                       {/* Shadow overlay */}
                       <div className="absolute inset-0 bg-charcoal/10 group-hover/img:bg-transparent transition-colors z-10"></div>
-                      
+
                       {/* Main Image (Optimized for High Quality / Crisp Edges) */}
                       <img
                         src={project.image}
@@ -479,7 +575,6 @@ export default function Work({ onSelectProject }: WorkProps) {
                       </button>
                     </div>
                   </div>
-
                 </div>
               </div>
             );
