@@ -163,6 +163,195 @@ export default function AboutUs({ onPageChange }: AboutUsProps) {
         </div>
       </section>
 
+      {/* 👥 Leadership & Team Section */}
+      <section className="bg-surface-gray py-20 md:py-28 border-t border-b border-surface-variant">
+        <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <span className="font-body text-xs font-bold text-azure-blue uppercase tracking-widest mb-4 block">
+              Core Leadership & Development
+            </span>
+            <h2 className="font-headline text-[32px] md:text-[44px] font-bold text-charcoal tracking-tight">
+              Meet the Professionals Behind GCV
+            </h2>
+            <p className="font-body text-base text-slate-gray mt-4 leading-relaxed">
+              We bring together design foresight and software engineering expertise to build products that establish user trust and scale enterprise growth.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Rajesh Bandila */}
+            <div className="group relative bg-white border border-slate-200/60 hover:border-azure-blue/50 rounded-3xl p-8 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:-translate-y-1.5">
+              <div>
+                <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-200/60 shadow-inner group-hover:scale-[1.03] transition-all duration-500">
+                  <div className="absolute inset-0 flex items-center justify-center text-slate-500 font-headline text-4xl font-semibold select-none">
+                    RB
+                  </div>
+                  <img
+                    src="/images/1700569281035.jpg"
+                    alt="Rajesh Bandila"
+                    className="w-full h-full object-cover relative z-10"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = "none";
+                    }}
+                  />
+                </div>
+                <div className="text-center mb-6">
+                  <span className="font-body text-xs font-bold text-azure-blue uppercase tracking-wider block mb-2">
+                    Founder & CEO
+                  </span>
+                  <h3 className="font-headline text-2xl font-bold text-charcoal tracking-tight">
+                    Rajesh Bandila
+                  </h3>
+                </div>
+                <p className="font-body text-sm text-slate-gray leading-relaxed mb-6 text-center">
+                  Rajesh drives GCV's organizational vision and user experience strategy, translating complex client business goals into intuitive product architectures.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100">
+                <a
+                  href="https://www.linkedin.com/in/rajeshbandila/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 border border-slate-200 hover:border-azure-blue hover:text-azure-blue rounded-xl text-slate-600 font-body text-sm font-semibold transition-all duration-300 bg-slate-50/50 hover:bg-white"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                  Connect on LinkedIn
+                </a>
+              </div>
+            </div>
+
+            {/* Divakaran S */}
+            <div className="group relative bg-white border border-slate-200/60 hover:border-azure-blue/50 rounded-3xl p-8 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:-translate-y-1.5">
+              <div>
+                <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-200/60 shadow-inner group-hover:scale-[1.03] transition-all duration-500">
+                  <div className="absolute inset-0 flex items-center justify-center text-slate-500 font-headline text-4xl font-semibold select-none">
+                    DS
+                  </div>
+                  <img
+                    src="/images/Diva.png"
+                    alt="Divakaran S"
+                    className="w-full h-full object-cover relative z-10"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = "none";
+                    }}
+                  />
+                </div>
+                <div className="text-center mb-6">
+                  <span className="font-body text-xs font-bold text-azure-blue uppercase tracking-wider block mb-2">
+                    Lead Full-Stack Developer & Coordinator
+                  </span>
+                  <h3 className="font-headline text-2xl font-bold text-charcoal tracking-tight">
+                    Divakaran S
+                  </h3>
+                </div>
+                <p className="font-body text-sm text-slate-gray leading-relaxed mb-6 text-center">
+                  Divakaran architects GCV's engineering roadmap, building high-concurrency cloud systems and modular frontend frameworks.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100">
+                <a
+                  href="https://www.linkedin.com/in/divakarans/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 border border-slate-200 hover:border-azure-blue hover:text-azure-blue rounded-xl text-slate-600 font-body text-sm font-semibold transition-all duration-300 bg-slate-50/50 hover:bg-white"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                  Connect on LinkedIn
+                </a>
+              </div>
+            </div>
+
+            {/* Pavan Kumar N */}
+            <div className="group relative bg-white border border-slate-200/60 hover:border-azure-blue/50 rounded-3xl p-8 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:-translate-y-1.5">
+              <div>
+                <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-200/60 shadow-inner group-hover:scale-[1.03] transition-all duration-500">
+                  <div className="absolute inset-0 flex items-center justify-center text-slate-500 font-headline text-4xl font-semibold select-none">
+                    PK
+                  </div>
+                  <img
+                    src="/images/pavan_kumar.jpg"
+                    alt="Pavan Kumar N"
+                    className="w-full h-full object-cover relative z-10"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = "none";
+                    }}
+                  />
+                </div>
+                <div className="text-center mb-6">
+                  <span className="font-body text-xs font-bold text-azure-blue uppercase tracking-wider block mb-2">
+                    Business Analyst & Database Associate
+                  </span>
+                  <h3 className="font-headline text-2xl font-bold text-charcoal tracking-tight">
+                    Pavan Kumar N
+                  </h3>
+                </div>
+                <p className="font-body text-sm text-slate-gray leading-relaxed mb-6 text-center">
+                  Pavan manages business operations and data analytics, supporting GCV's market insights and Oracle database coordination.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100">
+                <a
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 border border-slate-200 hover:border-azure-blue hover:text-azure-blue rounded-xl text-slate-600 font-body text-sm font-semibold transition-all duration-300 bg-slate-50/50 hover:bg-white"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                  Connect on LinkedIn
+                </a>
+              </div>
+            </div>
+
+            {/* Meenakumari */}
+            <div className="group relative bg-white border border-slate-200/60 hover:border-azure-blue/50 rounded-3xl p-8 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:-translate-y-1.5">
+              <div>
+                <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-200/60 shadow-inner group-hover:scale-[1.03] transition-all duration-500">
+                  <div className="absolute inset-0 flex items-center justify-center text-slate-500 font-headline text-4xl font-semibold select-none">
+                    MK
+                  </div>
+                  <img
+                    src="/images/meenakumari.jpg"
+                    alt="Meenakumari"
+                    className="w-full h-full object-cover relative z-10"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = "none";
+                    }}
+                  />
+                </div>
+                <div className="text-center mb-6">
+                  <span className="font-body text-xs font-bold text-azure-blue uppercase tracking-wider block mb-2">
+                    Marketing Analyst & Business Strategist
+                  </span>
+                  <h3 className="font-headline text-2xl font-bold text-charcoal tracking-tight">
+                    Meenakumari
+                  </h3>
+                </div>
+                <p className="font-body text-sm text-slate-gray leading-relaxed mb-6 text-center">
+                  Meenakumari drives brand positioning and campaign analytics, aligning our digital products with targeted business growth metrics.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-slate-100">
+                <a
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  className="inline-flex items-center justify-center gap-2 w-full py-3 border border-slate-200 hover:border-azure-blue hover:text-azure-blue rounded-xl text-slate-600 font-body text-sm font-semibold transition-all duration-300 bg-slate-50/50 hover:bg-white"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                  Connect on LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Culture Bento Grid (Visual Image Added inside the block) */}
       <section className="bg-charcoal text-white py-16 md:py-20 overflow-hidden relative">
         <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative z-10">

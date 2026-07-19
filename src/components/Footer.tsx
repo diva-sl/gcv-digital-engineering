@@ -69,10 +69,9 @@ export default function Footer({ onPageChange }: FooterProps) {
               {/* LinkedIn */}
               <a
                 className="text-slate-gray hover:text-white transition-colors"
-                // href="https://www.linkedin.com/in/divakarans/"
-                href="#"
-                // target="_blank"
-                // rel="noopener noreferrer"
+                href="https://www.linkedin.com/in/gcv-llp/"
+                target="_blank"
+                rel="noopener noreferrer"
                 title="LinkedIn"
               >
                 <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
