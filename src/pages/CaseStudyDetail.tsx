@@ -403,11 +403,11 @@ export default function CaseStudyDetail({
                 <div className="aspect-video overflow-hidden bg-slate-50">
                   <img
                     src={project.id === "kiddostyle" 
-                      ? "/images/kiddostyle.gcvdanta.com_collections_girls (2).webp" 
+                      ? "/images/kiddostyle_exact_home_2d.jpg" 
                       : "/images/praxorium.gcvdanta.com_ (2).webp"
                     }
                     alt="Desktop View"
-                    className="w-full h-full object-cover group-hover/desktop:scale-[1.01] transition-transform duration-700"
+                    className="w-full h-full object-cover object-top group-hover/desktop:scale-[1.01] transition-transform duration-700"
                   />
                 </div>
               </div>
@@ -423,11 +423,11 @@ export default function CaseStudyDetail({
                 <div className="w-full h-full overflow-hidden bg-slate-50">
                   <img
                     src={project.id === "kiddostyle" 
-                      ? "/images/kiddostyle.gcvdanta.com_collections_girls (3).webp" 
+                      ? "/images/kiddostyle_exact_product_2d.jpg" 
                       : "/images/praxorium.gcvdanta.com_ (3).webp"
                     }
                     alt="Tablet View"
-                    className="w-full h-full object-cover group-hover/tablet:scale-[1.02] transition-transform duration-700"
+                    className="w-full h-full object-cover object-top group-hover/tablet:scale-[1.02] transition-transform duration-700"
                   />
                 </div>
               </div>
@@ -443,7 +443,7 @@ export default function CaseStudyDetail({
                 <div className="w-full h-full overflow-hidden bg-slate-50">
                   <img
                     src={project.id === "kiddostyle" 
-                      ? "/images/admin.kiddostyle.gcvdanta.com_ (4).webp" 
+                      ? "/images/kiddostyle_exact_cart_2d.jpg" 
                       : "/images/admin.praxorium.gcvdanta.com_.webp"
                     }
                     alt="Mobile View"

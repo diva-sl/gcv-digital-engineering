@@ -215,7 +215,7 @@ export default function Work({ onSelectProject }: WorkProps) {
         "Zustand",
         "React Query",
       ],
-      image: "/images/kiddostyle.gcvdanta.com_checkout_review.webp",
+      image: "/images/kiddostyle_exact_home_2d.jpg",
       challenge:
         "The eCommerce storefront required capability to host high-resolution image galleries with instant load times, coupled with a back-end administration panel to synchronize inventory across multiple warehouses in real-time.",
       solution:
@@ -235,53 +235,33 @@ export default function Work({ onSelectProject }: WorkProps) {
       adminUrl: "https://admin.kiddostyle.gcvdanta.com/",
       screenshots: [
         {
-          label: "Storefront - Checkout Review",
-          path: "/images/kiddostyle.gcvdanta.com_checkout_review.webp",
+          label: "Storefront - Home Landing Page",
+          path: "/images/kiddostyle_exact_home_2d.jpg",
           type: "storefront",
         },
         {
-          label: "Storefront - Checkout Success",
-          path: "/images/kiddostyle.gcvdanta.com_checkout_success.webp",
+          label: "Storefront - Product Detail Page",
+          path: "/images/kiddostyle_exact_product_2d.jpg",
           type: "storefront",
         },
         {
-          label: "Storefront - Purchase Invoice",
-          path: "/images/kiddostyle.gcvdanta.com_checkout_success (1).webp",
+          label: "Storefront - Cart & Checkout Review",
+          path: "/images/kiddostyle_exact_cart_2d.jpg",
           type: "storefront",
         },
         {
-          label: "Storefront - Girls Collections (1)",
-          path: "/images/kiddostyle.gcvdanta.com_collections_girls (1).webp",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Girls Collections (2)",
-          path: "/images/kiddostyle.gcvdanta.com_collections_girls (2).webp",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Girls Collections (3)",
-          path: "/images/kiddostyle.gcvdanta.com_collections_girls (3).webp",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Girls Collections (4)",
-          path: "/images/kiddostyle.gcvdanta.com_collections_girls (4).webp",
-          type: "storefront",
+          label: "Admin Panel - Dashboard Overview",
+          path: "/images/kiddostyle_exact_admin_dashboard_2d.jpg",
+          type: "admin",
         },
         {
           label: "Admin Panel - Order Management",
-          path: "/images/admin.kiddostyle.gcvdanta.com_ (1).webp",
+          path: "/images/kiddostyle_exact_admin_orders_2d.jpg",
           type: "admin",
         },
         {
-          label: "Admin Panel - Inventory Database",
-          path: "/images/admin.kiddostyle.gcvdanta.com_ (3).webp",
-          type: "admin",
-        },
-        {
-          label: "Admin Panel - Telemetry Config",
-          path: "/images/admin.kiddostyle.gcvdanta.com_ (4).webp",
+          label: "Admin Panel - Product Catalog Management",
+          path: "/images/kiddostyle_exact_admin_products_2d.jpg",
           type: "admin",
         },
       ],

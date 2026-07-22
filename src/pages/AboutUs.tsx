@@ -162,8 +162,8 @@ export default function AboutUs({ onPageChange }: AboutUsProps) {
           </div>
         </div>
       </section>
-
-      {/* 👥 Leadership & Team Section */}
+      {/* 
+      {/* 👥 Leadership & Team Section 
       <section className="bg-surface-gray py-20 md:py-28 border-t border-b border-surface-variant">
         <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-20">
@@ -179,7 +179,7 @@ export default function AboutUs({ onPageChange }: AboutUsProps) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Rajesh Bandila */}
+            {/* Rajesh Bandila 
             <div className="group relative bg-white border border-slate-200/60 hover:border-azure-blue/50 rounded-3xl p-8 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:-translate-y-1.5">
               <div>
                 <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-200/60 shadow-inner group-hover:scale-[1.03] transition-all duration-500">
@@ -222,7 +222,7 @@ export default function AboutUs({ onPageChange }: AboutUsProps) {
               </div>
             </div>
 
-            {/* Divakaran S */}
+            {/* Divakaran S 
             <div className="group relative bg-white border border-slate-200/60 hover:border-azure-blue/50 rounded-3xl p-8 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:-translate-y-1.5">
               <div>
                 <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-200/60 shadow-inner group-hover:scale-[1.03] transition-all duration-500">
@@ -265,7 +265,7 @@ export default function AboutUs({ onPageChange }: AboutUsProps) {
               </div>
             </div>
 
-            {/* Pavan Kumar N */}
+            {/* Pavan Kumar N
             <div className="group relative bg-white border border-slate-200/60 hover:border-azure-blue/50 rounded-3xl p-8 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:-translate-y-1.5">
               <div>
                 <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-200/60 shadow-inner group-hover:scale-[1.03] transition-all duration-500">
@@ -307,7 +307,7 @@ export default function AboutUs({ onPageChange }: AboutUsProps) {
               </div>
             </div>
 
-            {/* Meenakumari */}
+            {/* Meenakumari
             <div className="group relative bg-white border border-slate-200/60 hover:border-azure-blue/50 rounded-3xl p-8 shadow-sm flex flex-col justify-between hover:shadow-2xl hover:shadow-slate-100/80 transition-all duration-500 hover:-translate-y-1.5">
               <div>
                 <div className="relative w-36 h-36 mx-auto mb-6 rounded-2xl overflow-hidden bg-slate-50 flex items-center justify-center border border-slate-200/60 shadow-inner group-hover:scale-[1.03] transition-all duration-500">
@@ -350,7 +350,7 @@ export default function AboutUs({ onPageChange }: AboutUsProps) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Culture Bento Grid (Visual Image Added inside the block) */}
       <section className="bg-charcoal text-white py-16 md:py-20 overflow-hidden relative">
