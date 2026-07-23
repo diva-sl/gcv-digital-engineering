@@ -25,6 +25,9 @@ interface Project {
   metrics: Metric[];
   siteUrl: string;
   adminUrl: string;
+  desktopMockup?: string;
+  tabletMockup?: string;
+  mobileMockup?: string;
   screenshots: Screenshot[];
 }
 
@@ -295,67 +298,100 @@ export default function CaseStudyDetail({
             </div>
           </div>
 
-          {/* High-Quality Screenshot Card Wrapper */}
-          <div className="border border-slate-200 rounded-2xl overflow-hidden shadow-md flex flex-col bg-white">
-
-            {/* Active HD Image Preview Window (Transition Fades Sped Up to 300ms) */}
-            <div className="relative aspect-video max-h-[520px] w-full bg-[#fafbfc] flex items-center justify-center shadow-inner group">
-              {currentScreenshot ? (
-                <>
-                  <img
-                    key={currentScreenshot.path}
-                    src={currentScreenshot.path}
-                    alt={currentScreenshot.label}
-                    className="w-full h-full object-contain max-h-[520px] transition-opacity duration-300 ease-in-out animate-fade-in"
-                  />
-
-                  {/* Manual Arrow Controls (Appear on Hover) */}
-                  {filteredScreenshots.length > 1 && (
-                    <>
-                      <button
-                        onClick={handlePrevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-charcoal/30 hover:bg-charcoal/80 text-white w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
-                      >
-                        <span className="material-symbols-outlined">
-                          chevron_left
-                        </span>
-                      </button>
-                      <button
-                        onClick={handleNextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-charcoal/30 hover:bg-charcoal/80 text-white w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-10"
-                      >
-                        <span className="material-symbols-outlined">
-                          chevron_right
-                        </span>
-                      </button>
-                    </>
-                  )}
-
-                  {/* Active Caption Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-charcoal/80 backdrop-blur-sm text-white px-4 py-2.5 rounded-lg text-xs font-semibold tracking-wide flex justify-between items-center z-10">
-                    <span>{currentScreenshot.label}</span>
-                    <span className="text-[10px] text-slate-300 font-mono uppercase bg-white/10 px-2 py-0.5 rounded">
-                      {currentScreenshot.type}
-                    </span>
-                  </div>
-                </>
-              ) : (
-                <span className="text-sm text-slate-gray">
-                  No screenshots matching filter.
-                </span>
-              )}
+          {/* 🖼️ Overlapping Mockup Cards Slideshow Box */}
+          <div className="bg-gradient-to-tr from-[#eef4fc] to-[#e4eefb] border border-slate-200/60 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-lg min-h-[460px] md:min-h-[580px] flex items-center justify-center group select-none">
+            
+            {/* Top-Left Dot Grid */}
+            <div className="absolute top-6 left-6 grid grid-cols-4 gap-1.5 opacity-25">
+              {Array.from({ length: 16 }).map((_, i) => (
+                <span key={i} className="w-1.5 h-1.5 rounded-full bg-[#1e293b]" />
+              ))}
             </div>
 
-            {/* Slideshow Progress Bar Dashes at Bottom of Browser Mockup */}
+            {/* Bottom-Right Dot Grid */}
+            <div className="absolute bottom-6 right-6 grid grid-cols-4 gap-1.5 opacity-25">
+              {Array.from({ length: 16 }).map((_, i) => (
+                <span key={i} className="w-1.5 h-1.5 rounded-full bg-[#1e293b]" />
+              ))}
+            </div>
+
+            {/* Overlapping Presentation Structure */}
+            {currentScreenshot ? (
+              <div className="relative w-full max-w-4xl aspect-[4/3] md:aspect-video flex items-center justify-center">
+                {filteredScreenshots.length > 1 ? (
+                  <>
+                    {/* Background Related Screen (Shifted right, rotated back) */}
+                    <div className="absolute right-[5%] top-[10%] w-[58%] aspect-[4/3] md:aspect-video bg-white rounded-2xl shadow-xl border border-slate-200/50 overflow-hidden transform rotate-3 scale-98 transition-all duration-700 hover:rotate-2">
+                      <img
+                        src={filteredScreenshots[(activeImageIndex + 1) % filteredScreenshots.length].path}
+                        alt="Related Screen View"
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+
+                    {/* Foreground Active Screen (Shifted left, rotated forward, overlap z-index) */}
+                    <div className="relative right-[10%] bottom-[5%] w-[58%] aspect-[4/3] md:aspect-video bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden transform -rotate-3 transition-all duration-700 hover:rotate-0 z-10">
+                      <img
+                        key={currentScreenshot.path}
+                        src={currentScreenshot.path}
+                        alt={currentScreenshot.label}
+                        className="w-full h-full object-cover object-top"
+                      />
+                      {/* Active Caption Overlay */}
+                      <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-sm text-white px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide flex justify-between items-center z-20 shadow-lg">
+                        <span className="truncate">{currentScreenshot.label}</span>
+                        <span className="text-[10px] text-slate-300 font-mono uppercase bg-white/10 px-2 py-0.5 rounded shrink-0 ml-2">
+                          {currentScreenshot.type}
+                        </span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  /* Single Screenshot Centered Layout */
+                  <div className="w-[70%] aspect-[4/3] md:aspect-video bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden">
+                    <img
+                      src={currentScreenshot.path}
+                      alt={currentScreenshot.label}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                )}
+
+                {/* Left/Right Floating Navigation Arrows */}
+                {filteredScreenshots.length > 1 && (
+                  <>
+                    <button
+                      onClick={handlePrevImage}
+                      className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-20 cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button
+                      onClick={handleNextImage}
+                      className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-20 cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined">chevron_right</span>
+                    </button>
+                  </>
+                )}
+              </div>
+            ) : (
+              <span className="text-sm text-slate-500 z-10">
+                No screenshots matching filter.
+              </span>
+            )}
+
+            {/* Centered Circle Indicators at the Bottom */}
             {filteredScreenshots.length > 1 && (
-              <div className="bg-surface-gray border-t border-surface-variant py-3 px-6 flex justify-center gap-1.5 select-none">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20 select-none">
                 {filteredScreenshots.map((_, idx) => (
-                  <span
+                  <button
                     key={idx}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                    onClick={() => setActiveImageIndex(idx)}
+                    className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                       activeImageIndex === idx
-                        ? "w-8 bg-azure-blue"
-                        : "w-2 bg-slate-300"
+                        ? "w-6 bg-blue-600 opacity-100"
+                        : "w-2.5 bg-slate-400 opacity-50 hover:opacity-80"
                     }`}
                   />
                 ))}
@@ -402,9 +438,11 @@ export default function CaseStudyDetail({
               <div className="border border-slate-200 rounded-2xl overflow-hidden shadow-lg bg-white flex flex-col group/desktop">
                 <div className="aspect-video overflow-hidden bg-slate-50">
                   <img
-                    src={project.id === "kiddostyle" 
-                      ? "/images/kiddostyle_exact_home_2d.jpg" 
-                      : "/images/praxorium.gcvdanta.com_ (2).webp"
+                    src={project.desktopMockup || (project.id === "kiddostyle" 
+                      ? "/images/kiddostyle_responsive_desktop.jpg" 
+                      : (project.id === "praxorium" || project.id === "edu-portal")
+                      ? "/images/praxorium_responsive_desktop.jpg"
+                      : "/images/praxorium.gcvdanta.com_ (2).webp")
                     }
                     alt="Desktop View"
                     className="w-full h-full object-cover object-top group-hover/desktop:scale-[1.01] transition-transform duration-700"
@@ -422,9 +460,11 @@ export default function CaseStudyDetail({
                 {/* Screen Content */}
                 <div className="w-full h-full overflow-hidden bg-slate-50">
                   <img
-                    src={project.id === "kiddostyle" 
-                      ? "/images/kiddostyle_exact_product_2d.jpg" 
-                      : "/images/praxorium.gcvdanta.com_ (3).webp"
+                    src={project.tabletMockup || (project.id === "kiddostyle" 
+                      ? "/images/kiddostyle_responsive_tablet.jpg" 
+                      : (project.id === "praxorium" || project.id === "edu-portal")
+                      ? "/images/praxorium_responsive_tablet.jpg"
+                      : "/images/praxorium.gcvdanta.com_ (3).webp")
                     }
                     alt="Tablet View"
                     className="w-full h-full object-cover object-top group-hover/tablet:scale-[1.02] transition-transform duration-700"
@@ -442,9 +482,11 @@ export default function CaseStudyDetail({
                 {/* Screen Content */}
                 <div className="w-full h-full overflow-hidden bg-slate-50">
                   <img
-                    src={project.id === "kiddostyle" 
-                      ? "/images/kiddostyle_exact_cart_2d.jpg" 
-                      : "/images/admin.praxorium.gcvdanta.com_.webp"
+                    src={project.mobileMockup || (project.id === "kiddostyle" 
+                      ? "/images/kiddostyle_responsive_mobile.jpg" 
+                      : (project.id === "praxorium" || project.id === "edu-portal")
+                      ? "/images/praxorium_responsive_mobile.jpg"
+                      : "/images/admin.praxorium.gcvdanta.com_.webp")
                     }
                     alt="Mobile View"
                     className="w-full h-full object-cover group-hover/mobile:scale-[1.02] transition-transform duration-700"

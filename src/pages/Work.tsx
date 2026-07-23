@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import api from "../api";
 
 type ProjectCategory = "all" | "platform" | "design";
 
@@ -197,168 +199,38 @@ function getTechIcon(tag: string, className = "w-4 h-4") {
 
 export default function Work({ onSelectProject }: WorkProps) {
   const [filter, setFilter] = useState<ProjectCategory>("all");
+  const { data: projects, isLoading, error } = useQuery<Project[]>({
+    queryKey: ['projects'],
+    queryFn: async () => {
+      const res = await api.get('/projects');
+      // Map MongoDB projectId to the frontend's expected id key
+      return res.data.map((p: any) => ({
+        ...p,
+        id: p.projectId
+      }));
+    }
+  });
 
-  const projects: Project[] = [
-    {
-      id: "kiddostyle",
-      title: "Kids Wear eCommerce & Warehouse Automation Panel",
-      client: "Kids Fashion eCommerce",
-      category: "platform",
-      description:
-        "Engineered a premium children's clothing e-commerce storefront alongside a secure warehouse administration dashboard, enabling low-latency inventory management and high-volume concurrent checkout operations.",
-      outcome: "+38% sales conversion increase",
-      tags: [
-        "Next.js",
-        "React 19",
-        "Go / Golang",
-        "Tailwind CSS v4",
-        "Zustand",
-        "React Query",
-      ],
-      image: "/images/kiddostyle_exact_home_2d.jpg",
-      challenge:
-        "The eCommerce storefront required capability to host high-resolution image galleries with instant load times, coupled with a back-end administration panel to synchronize inventory across multiple warehouses in real-time.",
-      solution:
-        "GCV designed a state-of-the-art Single-Page Application (SPA) utilizing Vite for lightning-fast asset compilation. We built a synchronized inventory system mapping API updates in under 1.5 seconds and integrated secure, frictionless payment structures.",
-      architecture: [
-        "Vite-driven React frontend optimized for mobile viewport performance.",
-        "Secure Stripe API pipelines for seamless credit card authorizations.",
-        "Custom administrative dashboard providing inventory controls, order tracking, and sales telemetry.",
-        "Automated cache-clearing mechanisms for instant product catalog updates.",
-      ],
-      metrics: [
-        { label: "Lighthouse Performance Score", value: "98/100" },
-        { label: "Inventory Sync Latency", value: "< 1.5s" },
-        { label: "Checkout Completion Rate", value: "94%" },
-      ],
-      siteUrl: "https://kiddostyle.gcvdanta.com/",
-      adminUrl: "https://admin.kiddostyle.gcvdanta.com/",
-      screenshots: [
-        {
-          label: "Storefront - Home Landing Page",
-          path: "/images/kiddostyle_exact_home_2d.jpg",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Product Detail Page",
-          path: "/images/kiddostyle_exact_product_2d.jpg",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Cart & Checkout Review",
-          path: "/images/kiddostyle_exact_cart_2d.jpg",
-          type: "storefront",
-        },
-        {
-          label: "Admin Panel - Dashboard Overview",
-          path: "/images/kiddostyle_exact_admin_dashboard_2d.jpg",
-          type: "admin",
-        },
-        {
-          label: "Admin Panel - Order Management",
-          path: "/images/kiddostyle_exact_admin_orders_2d.jpg",
-          type: "admin",
-        },
-        {
-          label: "Admin Panel - Product Catalog Management",
-          path: "/images/kiddostyle_exact_admin_products_2d.jpg",
-          type: "admin",
-        },
-      ],
-    },
-    {
-      id: "praxorium",
-      title: "SaaS Learning Management Portal & Analytics Panel",
-      client: "LMS & Educational SaaS",
-      category: "platform",
-      description:
-        "Architected an enterprise learning management portal featuring real-time evaluation metrics, automated compliance reporting, and student performance dashboard telemetry.",
-      outcome: "99.9% course completion rate",
-      tags: [
-        "React 19",
-        "Go / Golang",
-        "Vite v8",
-        "Tailwind CSS v4",
-        "Framer Motion",
-        "React Query",
-      ],
-      image: "/images/praxorium.gcvdanta.com.png",
-      challenge:
-        "The educational SaaS required a scalable portal to administer curriculum modules, deliver low-latency video lectures, track legal compliance standards, and render student evaluation matrices dynamically in graphic formats.",
-      solution:
-        "We developed a robust educational dashboard using React and Tailwind CSS. The interface utilizes high-performance charting libraries to plot student grade distributions and automated modules to generate printable certification logs.",
-      architecture: [
-        "React SPA utilizing state-driven dashboard analytics and real-time filters.",
-        "GraphQL API queries for low-bandwidth data transfers.",
-        "Chart.js integrations rendering interactive student telemetry models.",
-        "HIPAA-inspired data encryption standards securing student records.",
-      ],
-      metrics: [
-        { label: "Active Student Enrollment", value: "12,000+" },
-        { label: "Video playback latency", value: "< 200ms" },
-        { label: "Compliance Report Generation", value: "Instant" },
-      ],
-      siteUrl: "https://praxorium.gcvdanta.com/",
-      adminUrl: "https://admin.praxorium.gcvdanta.com/",
-      screenshots: [
-        {
-          label: "Storefront - Academy Portal",
-          path: "/images/praxorium.gcvdanta.com.png",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Course Catalog",
-          path: "/images/praxorium.gcvdanta.com_ (1).webp",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Interactive Lectures",
-          path: "/images/praxorium.gcvdanta.com_ (2).webp",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Syllabus Plan",
-          path: "/images/praxorium.gcvdanta.com_ (3).webp",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Profile Settings",
-          path: "/images/praxorium.gcvdanta.com_ (4).webp",
-          type: "storefront",
-        },
-        {
-          label: "Storefront - Certifications",
-          path: "/images/praxorium.gcvdanta.com_ (5).webp",
-          type: "storefront",
-        },
-        {
-          label: "Admin Panel - Student Analytics",
-          path: "/images/admin.praxorium.gcvdanta.com_.webp",
-          type: "admin",
-        },
-        {
-          label: "Admin Panel - Course Editor",
-          path: "/images/admin.praxorium.gcvdanta.com_ (1).webp",
-          type: "admin",
-        },
-        {
-          label: "Admin Panel - Course Editor Details",
-          path: "/images/admin.praxorium.gcvdanta.com_ (1) (1).webp",
-          type: "admin",
-        },
-        {
-          label: "Admin Panel - Grade Telemetry",
-          path: "/images/admin.praxorium.gcvdanta.com_ (2).webp",
-          type: "admin",
-        },
-        {
-          label: "Admin Panel - Legal Compliance Logs",
-          path: "/images/admin.praxorium.gcvdanta.com_ (3).webp",
-          type: "admin",
-        },
-      ],
-    },
-  ];
+  if (isLoading) {
+    return (
+      <div className="bg-[#f7f9fb] min-h-screen flex items-center justify-center text-slate-gray">
+        <div className="text-center py-20 uppercase tracking-widest font-semibold text-xs flex flex-col items-center gap-3">
+          <span className="material-symbols-outlined animate-spin text-azure-blue text-3xl">sync</span>
+          <span>Loading Showcases...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !projects) {
+    return (
+      <div className="bg-[#f7f9fb] min-h-screen flex items-center justify-center text-impact-red">
+        <div className="text-center py-20 uppercase tracking-widest font-semibold text-xs">
+          Error connecting to GCV Database API.
+        </div>
+      </div>
+    );
+  }
 
   const filteredProjects =
     filter === "all" ? projects : projects.filter((p) => p.category === filter);
