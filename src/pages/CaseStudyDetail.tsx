@@ -112,6 +112,54 @@ function getTechIcon(tag: string, className = "w-5 h-5") {
       </svg>
     );
   }
+  if (normalized.includes("node")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="#339933">
+        <path d="M12 1.95L3.25 7v10L12 22.05l8.75-5.05V7L12 1.95zM12 20.1L4.85 16 V8L12 3.9l7.15 4.1v8L12 20.1z"/>
+        <path d="M12.1 6.5a2.5 2.5 0 0 0-2.5 2.5v6a2.5 2.5 0 0 0 5 0v-2.5h-2.5V15a1 1 0 0 1-2 0V9a1 1 0 0 1 2 0v1h2.5V9a2.5 2.5 0 0 0-2.5-2.5z"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("express")) {
+    return (
+      <svg className={`${className} bg-slate-900 rounded-md p-0.5`} viewBox="0 0 100 100" fill="none">
+        <text x="50" y="65" fill="#ffffff" fontSize="42" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">Ex</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("aws") || normalized.includes("amazon")) {
+    return (
+      <svg className={`${className} rounded-md`} viewBox="0 0 100 100" fill="#232F3E">
+        <rect width="100" height="100" rx="15"/>
+        <text x="50" y="55" fill="#FF9900" fontSize="32" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">AWS</text>
+        <path d="M20 70 Q50 85 80 70" stroke="#FF9900" strokeWidth="8" fill="none" strokeLinecap="round"/>
+        <path d="M80 70 L72 62 M80 70 L72 78" stroke="#FF9900" strokeWidth="8" fill="none" strokeLinecap="round"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("mongodb") || normalized.includes("mongo")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="#47A248">
+        <path d="M12 1.5C11.5 1.5 6 7.5 6 12s5.5 10.5 6 10.5 6-6 6-10.5-5.5-10.5-6-10.5zm.5 16.5c-.3.3-.7.3-1 0-1-1-2.5-3-2.5-5s1.2-4.5 2.5-5.5c.3-.2.7-.2 1 0 1.3 1 2.5 3.5 2.5 5.5s-1.5 4-2.5 5z"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("s3")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="#E05243">
+        <rect x="3" y="3" width="18" height="18" rx="3" fill="#E05243"/>
+        <text x="12" y="15" fill="white" fontSize="11" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">S3</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("rtk") || normalized.includes("redux")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <path d="M15.6 4.8L8.4 9 12 12.6l3.6-3.6-7.2-4.2zm-7.2 14.4l7.2-4.2-3.6-3.6-3.6 3.6 7.2 4.2z" fill="#764ABC" />
+        <path d="M3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.4-8.4 8.4-8.4-3.8-8.4-8.4z" stroke="#764ABC" strokeWidth="1.5" />
+      </svg>
+    );
+  }
   if (normalized.includes("query") || normalized.includes("react query")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="#FF4154">
@@ -442,6 +490,8 @@ export default function CaseStudyDetail({
                       ? "/images/kiddostyle_responsive_desktop.jpg" 
                       : (project.id === "praxorium" || project.id === "edu-portal")
                       ? "/images/praxorium_responsive_desktop.jpg"
+                      : project.id === "ag-associates"
+                      ? "/images/ag_responsive_desktop.jpg"
                       : "/images/praxorium.gcvdanta.com_ (2).webp")
                     }
                     alt="Desktop View"
@@ -464,6 +514,8 @@ export default function CaseStudyDetail({
                       ? "/images/kiddostyle_responsive_tablet.jpg" 
                       : (project.id === "praxorium" || project.id === "edu-portal")
                       ? "/images/praxorium_responsive_tablet.jpg"
+                      : project.id === "ag-associates"
+                      ? "/images/ag_responsive_tablet.jpg"
                       : "/images/praxorium.gcvdanta.com_ (3).webp")
                     }
                     alt="Tablet View"
@@ -486,6 +538,8 @@ export default function CaseStudyDetail({
                       ? "/images/kiddostyle_responsive_mobile.jpg" 
                       : (project.id === "praxorium" || project.id === "edu-portal")
                       ? "/images/praxorium_responsive_mobile.jpg"
+                      : project.id === "ag-associates"
+                      ? "/images/ag_responsive_mobile.jpg"
                       : "/images/admin.praxorium.gcvdanta.com_.webp")
                     }
                     alt="Mobile View"

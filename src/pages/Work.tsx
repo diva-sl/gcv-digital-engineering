@@ -165,6 +165,54 @@ function getTechIcon(tag: string, className = "w-4 h-4") {
       </svg>
     );
   }
+  if (normalized.includes("node")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="#339933">
+        <path d="M12 1.95L3.25 7v10L12 22.05l8.75-5.05V7L12 1.95zM12 20.1L4.85 16V8L12 3.9l7.15 4.1v8L12 20.1z"/>
+        <path d="M12.1 6.5a2.5 2.5 0 0 0-2.5 2.5v6a2.5 2.5 0 0 0 5 0v-2.5h-2.5V15a1 1 0 0 1-2 0V9a1 1 0 0 1 2 0v1h2.5V9a2.5 2.5 0 0 0-2.5-2.5z"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("express")) {
+    return (
+      <svg className={`${className} bg-slate-900 rounded-md p-0.5`} viewBox="0 0 100 100" fill="none">
+        <text x="50" y="65" fill="#ffffff" fontSize="42" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">Ex</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("aws") || normalized.includes("amazon")) {
+    return (
+      <svg className={`${className} rounded-md`} viewBox="0 0 100 100" fill="#232F3E">
+        <rect width="100" height="100" rx="15"/>
+        <text x="50" y="55" fill="#FF9900" fontSize="32" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">AWS</text>
+        <path d="M20 70 Q50 85 80 70" stroke="#FF9900" strokeWidth="8" fill="none" strokeLinecap="round"/>
+        <path d="M80 70 L72 62 M80 70 L72 78" stroke="#FF9900" strokeWidth="8" fill="none" strokeLinecap="round"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("mongodb") || normalized.includes("mongo")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="#47A248">
+        <path d="M12 1.5C11.5 1.5 6 7.5 6 12s5.5 10.5 6 10.5 6-6 6-10.5-5.5-10.5-6-10.5zm.5 16.5c-.3.3-.7.3-1 0-1-1-2.5-3-2.5-5s1.2-4.5 2.5-5.5c.3-.2.7-.2 1 0 1.3 1 2.5 3.5 2.5 5.5s-1.5 4-2.5 5z"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("s3")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="#E05243">
+        <rect x="3" y="3" width="18" height="18" rx="3" fill="#E05243"/>
+        <text x="12" y="15" fill="white" fontSize="11" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">S3</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("rtk") || normalized.includes("redux")) {
+    return (
+      <svg className={className} viewBox="0 0 24 24" fill="none">
+        <path d="M15.6 4.8L8.4 9 12 12.6l3.6-3.6-7.2-4.2zm-7.2 14.4l7.2-4.2-3.6-3.6-3.6 3.6 7.2 4.2z" fill="#764ABC" />
+        <path d="M3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.4-8.4 8.4-8.4-3.8-8.4-8.4z" stroke="#764ABC" strokeWidth="1.5" />
+      </svg>
+    );
+  }
   if (normalized.includes("query") || normalized.includes("react query")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="#FF4154">
@@ -232,28 +280,44 @@ export default function Work({ onSelectProject }: WorkProps) {
     );
   }
 
+  const sortedProjects = [...projects].sort((a, b) => {
+    const order = ["kiddostyle", "ag-associates"];
+    const idxA = order.indexOf(a.id);
+    const idxB = order.indexOf(b.id);
+    
+    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+    if (idxA !== -1) return -1;
+    if (idxB !== -1) return 1;
+    return 0;
+  });
+
   const filteredProjects =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter);
+    filter === "all" ? sortedProjects : sortedProjects.filter((p) => p.category === filter);
 
   return (
     <div className="bg-[#f7f9fb] min-h-screen text-charcoal py-16 md:py-24 animate-fade-in">
       {/* 🚀 CSS Floater styles injected directly into the view */}
       <style>{`
         @keyframes float-tag-1 {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-8px) scale(1.02); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          25% { transform: translate(45px, 25px) scale(1.04); }
+          50% { transform: translate(90px, -15px) scale(1); }
+          75% { transform: translate(35px, -35px) scale(0.96); }
         }
         @keyframes float-tag-2 {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(6px) scale(0.98); }
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          25% { transform: translate(-55px, -35px) scale(0.96); }
+          50% { transform: translate(-110px, 15px) scale(1.04); }
+          75% { transform: translate(-45px, 45px) scale(1); }
         }
         @keyframes float-tag-3 {
-          0%, 100% { transform: translateX(0px) translateY(0px); }
-          50% { transform: translateX(6px) translateY(-5px); }
+          0%, 100% { transform: translate(0px, 0px); }
+          33% { transform: translate(-70px, -45px); }
+          66% { transform: translate(-35px, 35px); }
         }
-        .animate-float-tag-1 { animation: float-tag-1 4.5s ease-in-out infinite; }
-        .animate-float-tag-2 { animation: float-tag-2 5s ease-in-out infinite; }
-        .animate-float-tag-3 { animation: float-tag-3 4s ease-in-out infinite; }
+        .animate-float-tag-1 { animation: float-tag-1 16s ease-in-out infinite; }
+        .animate-float-tag-2 { animation: float-tag-2 18s ease-in-out infinite; }
+        .animate-float-tag-3 { animation: float-tag-3 14s ease-in-out infinite; }
       `}</style>
 
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
@@ -315,6 +379,25 @@ export default function Work({ onSelectProject }: WorkProps) {
                     {
                       label: "Go / Golang",
                       icon: getTechIcon("golang", "w-6 h-6"),
+                      style:
+                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
+                    },
+                  ]
+                : project.id === "ag-associates"
+                ? [
+                    {
+                      label: "React 19",
+                      icon: getTechIcon("react", "w-6 h-6"),
+                      style: "top-6 left-6 animate-float-tag-1",
+                    },
+                    {
+                      label: "Express.js",
+                      icon: getTechIcon("express", "w-6 h-6"),
+                      style: "bottom-6 right-6 animate-float-tag-2",
+                    },
+                    {
+                      label: "Redux / RTK Query",
+                      icon: getTechIcon("redux", "w-6 h-6"),
                       style:
                         "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
                     },
