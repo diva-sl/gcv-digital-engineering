@@ -14,51 +14,111 @@ interface ProductsProps {
 }
 
 export default function Products({ onPageChange }: ProductsProps) {
+  // Best Products GCV Delivers (based on technical knowledge)
   const productShowcase = [
     {
-      title: "CMS",
-      category: "Engineering & UX",
-      icon: "dashboard",
+      title: "Enterprise E-Commerce Engine",
+      category: "E-Commerce",
+      icon: "shopping_bag",
       description:
-        "Flexible content management platform for enterprise. Architected for multi-tenant deployments and seamless omnichannel delivery across global touchpoints.",
-      actionText: "View technical specs",
+        "High-performance headless store pipelines and multi-vendor checkout platforms built with Next.js, React, and MongoDB, optimized for zero latency and maximum checkout conversion.",
       colSpan: "md:col-span-8",
     },
     {
-      title: "Hospital Management System",
-      category: null,
-      icon: "medical_services",
+      title: "Interactive CMS & Portals",
+      category: "Content Management",
+      icon: "dashboard",
       description:
-        "Digitizing clinical workflows and patient care with HIPAA-compliant data structures and real-time diagnostic synchronization.",
-      actionText: "Learn more",
+        "Adaptive content management hubs featuring multi-tenant database partitioning, real-time publishing workflows, and dynamic SEO tools.",
       colSpan: "md:col-span-4",
     },
     {
-      title: "Learning Management System",
-      category: null,
+      title: "Smart HRM & Workspace Console",
+      category: "Enterprise ERP",
+      icon: "groups",
+      description:
+        "Centralized admin portals tracking workspace directories, employee onboarding logs, payroll calculations, and secure document storage.",
+      colSpan: "md:col-span-4",
+    },
+    {
+      title: "LMS & Courseware Hub",
+      category: "EdTech",
       icon: "school",
       description:
-        "A robust platform for enterprise training, featuring adaptive learning paths and advanced performance analytics for workforce development.",
-      actionText: "Explore platform",
+        "Engaging virtual learning platforms for corporate training, course curriculum directories, performance analytics, and automated certification workflows.",
       colSpan: "md:col-span-4",
     },
     {
-      title: "Payment Gateway",
-      category: null,
+      title: "Secure Fintech & Auditing Portal",
+      category: "Finance & Taxation",
       icon: "account_balance_wallet",
       description:
-        "Secure transaction management with PCI-DSS Level 1 compliance, supporting multi-currency settlements and automated reconciliation.",
-      actionText: "Security protocol",
+        "Compliance-focused financial dashboards supporting income tax estimators, automated auditing checks, and encrypted transaction ledger logs.",
       colSpan: "md:col-span-4",
     },
+  ];
+
+  // 12 Key Industries We Serve
+  const industriesList = [
     {
-      title: "Pen HMI",
-      category: null,
-      icon: "precision_manufacturing",
-      description:
-        "Advanced Human-Machine Interface for connected smart devices, optimized for low-latency feedback and intuitive tactile control systems.",
-      actionText: "HMI Architecture",
-      colSpan: "md:col-span-4",
+      name: "Ecommerce & Multivendor",
+      desc: "Build a smart eCommerce platform to grow reach and brand value.",
+      icon: "storefront",
+    },
+    {
+      name: "EdTech & E-Learning",
+      desc: "Create learning platforms that engage and boost your brand.",
+      icon: "local_library",
+    },
+    {
+      name: "Medical & Healthcare",
+      desc: "Custom healthcare applications to improve care and visibility.",
+      icon: "health_and_safety",
+    },
+    {
+      name: "Real Estate & Construction",
+      desc: "Real estate web and apps built to attract, convert, and engage.",
+      icon: "domain",
+    },
+    {
+      name: "Travel & Hospitality",
+      desc: "Travel applications made to simplify booking for a safe journey.",
+      icon: "flight",
+    },
+    {
+      name: "Utilities & On Demand",
+      desc: "On-demand websites & apps for fast, reliable, and smart service.",
+      icon: "electrical_services",
+    },
+    {
+      name: "Media & Entertainment",
+      desc: "Applications for streaming, media sharing, and user delight.",
+      icon: "movie",
+    },
+    {
+      name: "Transportation & Logistics",
+      desc: "Logistics applications built to track, manage, and deliver fast.",
+      icon: "local_shipping",
+    },
+    {
+      name: "Finance & Insurance",
+      desc: "Secure fintech platforms that simplify money and coverage.",
+      icon: "payments",
+    },
+    {
+      name: "Manufacturing",
+      desc: "Applications that streamline manufacturing and boost output.",
+      icon: "factory",
+    },
+    {
+      name: "Oil and Gas",
+      desc: "Custom software to streamline operations and boost energy efficiency.",
+      icon: "oil_barrel",
+    },
+    {
+      name: "Taxation & Auditing",
+      desc: "Secure income tax filing dashboards and transaction audit tools.",
+      icon: "receipt_long",
     },
   ];
 
@@ -83,7 +143,7 @@ export default function Products({ onPageChange }: ProductsProps) {
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 border border-white/10 rounded-full select-none">
               <span className="w-2 h-2 bg-azure-blue rounded-full animate-pulse"></span>
               <span className="font-body text-xs font-semibold uppercase tracking-widest text-white/90">
-                Proprietary Assets
+                Products & Sectors
               </span>
             </div>
 
@@ -94,24 +154,22 @@ export default function Products({ onPageChange }: ProductsProps) {
 
             {/* Description */}
             <p className="font-body text-lg text-slate-200/90 leading-relaxed">
-              GCV's suite of specialized software solutions is designed to
-              handle enterprise complexity with editorial-grade precision. From
-              clinical workflows to secure global payments.
+              We leverage our extensive technical capability to deliver secure, 
+              scalable, and enterprise-grade software products that solve real business complexity.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Product Bento Grid */}
+      {/* Section 1: Product Platforms We Deliver */}
       <section className="px-margin-mobile md:px-margin-desktop py-24 bg-[#f8fafc] border-t border-surface-variant">
         <div className="max-w-container-max mx-auto">
           <div className="mb-16">
             <h2 className="font-headline text-[32px] md:text-[40px] font-bold text-charcoal tracking-tight">
-              Solution Showcase
+              Best Products We Deliver
             </h2>
             <p className="font-body text-base text-slate-gray mt-3">
-              Specialized platforms built for scalability, reliability, and
-              enterprise-grade performance.
+              Specialized proprietary assets and customized software platforms built for enterprise-grade performance.
             </p>
           </div>
 
@@ -146,22 +204,48 @@ export default function Products({ onPageChange }: ProductsProps) {
                     {product.description}
                   </p>
                 </div>
-                {/* <div
-                  onClick={() => onPageChange("contact")}
-                  className="flex items-center text-azure-blue font-body text-sm font-semibold gap-1 hover:gap-2 transition-all cursor-pointer select-none"
-                >
-                <span>{product.actionText}</span> 
-                  <span className="material-symbols-outlined text-[18px]">
-                    arrow_forward
-                  </span>
-                </div> */}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section (Tactile Routing Updates Applied) */}
+      {/* Section 2: Industries We Serve */}
+      <section className="px-margin-mobile md:px-margin-desktop py-24 bg-white border-t border-surface-variant">
+        <div className="max-w-container-max mx-auto">
+          <div className="mb-16">
+            <h2 className="font-headline text-[32px] md:text-[40px] font-bold text-charcoal tracking-tight">
+              Industries We Serve
+            </h2>
+            <p className="font-body text-base text-slate-gray mt-3">
+              Delivering smart digital solutions across diverse global sectors.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {industriesList.map((industry, idx) => (
+              <div
+                key={idx}
+                className="bg-[#f8fafc] border border-surface-variant p-6 rounded-lg hover:border-azure-blue hover:-translate-y-0.5 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="material-symbols-outlined text-azure-blue mb-4 text-[32px]">
+                    {industry.icon}
+                  </span>
+                  <h3 className="font-headline text-lg font-bold text-charcoal mb-2">
+                    {industry.name}
+                  </h3>
+                  <p className="font-body text-xs text-slate-gray leading-relaxed">
+                    {industry.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
       <section className="px-margin-mobile md:px-margin-desktop py-24 max-w-container-max mx-auto text-center">
         <div className="bg-charcoal text-white py-16 md:py-24 px-6 md:px-12 rounded-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-azure-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
@@ -184,12 +268,6 @@ export default function Products({ onPageChange }: ProductsProps) {
               >
                 Request a Demo
               </button>
-              {/* <button
-                onClick={() => onPageChange("contact")}
-                className="border border-white/30 text-white px-8 py-3 rounded-lg font-body text-sm font-semibold hover:bg-white/10 active:scale-98 transition-all cursor-pointer"
-              >
-                Speak to an Architect
-              </button> */}
             </div>
           </div>
         </div>

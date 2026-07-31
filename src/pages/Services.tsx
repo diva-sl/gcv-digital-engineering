@@ -32,28 +32,28 @@ export default function Services({
 
   const strategyServices = [
     {
-      title: "User Research",
-      icon: "search_insights",
+      title: "Product Strategy",
+      icon: "track_changes",
       description:
-        "Deep-dive ethnographic studies and behavioral analysis to understand your core audience's unmet needs.",
+        "Aligning business goals with user needs to define clear product roadmaps, feature scoping, and market positioning.",
     },
     {
-      title: "Design Research",
-      icon: "biotech",
+      title: "Software Architecture & Design",
+      icon: "schema",
       description:
-        "Evaluating visual trends and usability patterns to ensure your product remains competitive and intuitive.",
+        "Designing scalable, secure, and distributed microservice architectures using Go/Gin, Node.js, and high-performance databases.",
     },
     {
-      title: "Service Design",
-      icon: "account_tree",
+      title: "Digital Growth Consulting",
+      icon: "insights",
       description:
-        "Orchestrating end-to-end consumer journeys across digital and physical touchpoints for seamless delivery.",
+        "Data-driven conversion optimization, performance tuning, and scaling audits to accelerate user acquisition and retention.",
     },
     {
       title: "Product Discovery",
       icon: "explore",
       description:
-        "Validating concepts through rapid prototyping and stakeholder alignment before major investment.",
+        "Validating product concepts through user research, rapid prototyping, and technical feasibility studies before development.",
     },
   ];
 
@@ -62,71 +62,110 @@ export default function Services({
       title: "Design Systems",
       icon: "category",
       description:
-        "Building scalable libraries of components and tokens that ensure brand consistency across platforms.",
+        "Building scalable libraries of React components and tokens that ensure brand consistency and developer efficiency.",
     },
     {
       title: "Interaction Design",
       icon: "gesture",
       description:
-        "Defining the micro-interactions and transitions that make digital products feel alive and responsive.",
+        "Defining the micro-interactions, gestures, and transitions that make digital products feel alive and intuitive.",
     },
     {
       title: "Accessibility",
       icon: "settings_accessibility",
       description:
-        "Ensuring WCAG compliance so that digital products are usable by everyone, regardless of ability.",
+        "Ensuring WCAG compliance so that digital platforms are usable by everyone, maintaining strict legal and ethical standards.",
     },
   ];
 
   const engineeringServices = [
     {
-      title: "Software Engineering",
-      tag: "Core",
-      icon: "developer_mode_tv",
+      title: "Software Product Development",
+      tag: "Full-Stack",
+      icon: "code",
       description:
-        "High-performance back-end and front-end development using modern frameworks and languages.",
-    },
-    {
-      title: "Platform Engineering",
-      tag: "Infrastructure",
-      icon: "hub",
-      description:
-        "Creating internal developer platforms that streamline the software development lifecycle.",
+        "End-to-end full-stack systems engineering leveraging Go/Gin, Node.js/Express, MongoDB, and React architectures.",
     },
     {
       title: "Cloud Engineering",
-      tag: "Scaling",
+      tag: "AWS / Scale",
       icon: "cloud",
       description:
-        "Architecting robust cloud environments on AWS, Azure, and GCP for maximum uptime and security.",
+        "Architecting robust cloud environments on AWS with secure S3 storage pipelines, serverless logic, and multi-region setups.",
     },
     {
-      title: "DevOps",
-      tag: "Velocity",
+      title: "DevOps & Velocity",
+      tag: "Automation",
       icon: "settings_suggest",
       description:
-        "Implementing CI/CD pipelines and automation to accelerate delivery without compromising quality.",
+        "Implementing CI/CD pipelines, Docker containerization, and automated deployments for maximum uptime and fast release cycles.",
+    },
+    {
+      title: "Quality Assurance",
+      tag: "Reliability",
+      icon: "fact_check",
+      description:
+        "Automated testing, integration validation, and rigorous QA check pipelines to guarantee zero-defect releases.",
     },
   ];
 
   const productDevServices = [
     {
-      title: "Web/Mobile Apps",
-      icon: "devices",
+      title: "Ecommerce Website Development",
+      icon: "shopping_bag",
       description:
-        "Native and cross-platform applications built for performance, security, and world-class UX.",
+        "High-conversion, fast storefronts built with modern stacks like React, Next.js, and Tailwind CSS.",
     },
     {
-      title: "SaaS Products",
-      icon: "cloud_done",
+      title: "Headless Ecommerce",
+      icon: "dns",
       description:
-        "Designing and developing multi-tenant software architectures that support rapid business growth.",
+        "Decoupled frontend architecture integrated with modern commerce platforms and custom API backends for speed and scalability.",
     },
     {
-      title: "AI Applications",
-      icon: "psychology",
+      title: "Ecommerce Mobile App Development",
+      icon: "stay_current_portrait",
       description:
-        "Integrating generative AI and machine learning models to create intelligent, automated user experiences.",
+        "Fluid cross-platform mobile commerce apps designed for high viewport performance and offline database support.",
+    },
+    {
+      title: "Platform Plugin Development",
+      icon: "extension",
+      description:
+        "Developing custom extension plugins, payment gateways, and checkout API bridges for various commerce ecosystems.",
+    },
+    {
+      title: "MVP Development",
+      icon: "speed",
+      description:
+        "Engineering rapid minimum viable products to help startups validate features and raise funding with minimal time-to-market.",
+    },
+  ];
+
+  const enterpriseServices = [
+    {
+      title: "HRM Solution",
+      icon: "groups",
+      description:
+        "Simplify your HR operations, attendance tracking, payroll logs, and team directories with our complete HRM platform.",
+    },
+    {
+      title: "CRM & CMS Solution",
+      icon: "contact_page",
+      description:
+        "Manage customer relationship databases and update website marketing content with our flexible CMS/CRM systems.",
+    },
+    {
+      title: "ERP Solution",
+      icon: "business",
+      description:
+        "Scalable ERP systems and transactional databases tailored to the specific business workflows of your enterprise.",
+    },
+    {
+      title: "LMS Solution",
+      icon: "school",
+      description:
+        "Engaging Learning Management Systems for student curriculums, governance boards, and corporate team training.",
     },
   ];
 
@@ -170,14 +209,14 @@ export default function Services({
         </div>
       </section>
 
-      {/* Category 1: Strategy & Research */}
+      {/* Category 1: Strategy & Consulting */}
       <section
         id="services-strategy"
         className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-24 md:mt-36 mb-[120px] scroll-mt-28"
       >
         <div className="flex items-baseline justify-between border-b border-surface-variant pb-4 mb-8">
           <h2 className="font-headline text-2xl md:text-[32px] font-bold text-charcoal tracking-tight">
-            Strategy & Research
+            Strategy & Consulting
           </h2>
           <span className="font-body text-sm font-semibold text-slate-gray">
             01
@@ -232,14 +271,14 @@ export default function Services({
             >
               <div className="relative z-10">
                 <span className="material-symbols-outlined text-azure-blue mb-6 text-[32px]">
-                  grading
+                  palette
                 </span>
                 <h3 className="font-headline text-xl font-bold mb-3 text-charcoal">
-                  UI/UX Design
+                  UI/UX Development
                 </h3>
                 <p className="font-body text-base text-slate-gray leading-relaxed max-w-md">
-                  Crafting world-class interfaces that balance aesthetic beauty
-                  with functional precision for complex enterprise workflows.
+                  Crafting interactive, high-fidelity responsive interfaces that balance 
+                  aesthetic beauty with functional layout precision across complex workflows.
                 </p>
               </div>
             </div>
@@ -268,7 +307,7 @@ export default function Services({
         </div>
       </section>
 
-      {/* Category 3: Engineering */}
+      {/* Category 3: Custom Product Engineering */}
       <section
         id="services-engineering"
         className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-[120px] scroll-mt-28"
@@ -279,15 +318,12 @@ export default function Services({
               03
             </span>
             <h2 className="font-headline text-2xl md:text-[32px] font-bold text-charcoal leading-tight tracking-tight">
-              Rigorous Engineering
+              Custom Product Engineering
             </h2>
             <p className="font-body text-base text-slate-gray leading-relaxed">
-              We don't just build software; we engineer resilient platforms
-              capable of handling high-stakes enterprise demands.
+              We don't just write code; we design and scale resilient custom applications
+              capable of handling high-stakes operational and transaction demands.
             </p>
-            {/* <button className="border border-azure-blue text-azure-blue font-body text-sm font-semibold px-6 py-3 rounded-lg hover:bg-azure-blue hover:text-white transition-all cursor-pointer">
-              View Technology Stack
-            </button> */}
           </div>
 
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -320,7 +356,7 @@ export default function Services({
         </div>
       </section>
 
-      {/* Category 4: Product Development */}
+      {/* Category 4: E-Commerce & Digital Commerce */}
       <section
         id="services-product-dev"
         className="bg-charcoal py-[120px] text-white scroll-mt-28"
@@ -332,16 +368,16 @@ export default function Services({
                 04
               </span>
               <h2 className="font-headline text-[32px] md:text-[40px] font-bold tracking-tight">
-                Product Development
+                E-Commerce & Digital Commerce
               </h2>
               <p className="font-body text-base text-slate-gray leading-relaxed mt-4">
-                End-to-end realization of digital products, from initial concept
-                to market launch and continuous improvement.
+                High-performance e-commerce development and multi-tenant transactional platform architectures 
+                built for speed, security, and world-class checkout conversion.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {productDevServices.map((service, idx) => (
               <div
                 key={idx}
@@ -357,21 +393,49 @@ export default function Services({
                 <h3 className="font-headline text-xl font-bold mb-3">
                   {service.title}
                 </h3>
-                <p className="font-body text-sm text-slate-gray leading-relaxed mb-6">
+                <p className="font-body text-sm text-slate-gray leading-relaxed">
                   {service.description}
                 </p>
-                {/* <a
-                  className="inline-flex items-center gap-2 text-azure-blue font-body text-sm font-semibold hover:underline"
-                  href="#"
-                >
-                  Explore work{" "}
-                  <span className="material-symbols-outlined text-[16px]">
-                    arrow_forward
-                  </span>
-                </a> */}
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Category 5: Enterprise Business Solutions */}
+      <section
+        id="services-enterprise"
+        className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto py-[120px] scroll-mt-28"
+      >
+        <div className="flex items-baseline justify-between border-b border-surface-variant pb-4 mb-8">
+          <h2 className="font-headline text-2xl md:text-[32px] font-bold text-charcoal tracking-tight">
+            Enterprise Business Solutions
+          </h2>
+          <span className="font-body text-sm font-semibold text-slate-gray">
+            05
+          </span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {enterpriseServices.map((service, idx) => (
+            <div
+              key={idx}
+              className={`bg-white p-8 border rounded-lg transition-all duration-500 hover:border-azure-blue hover:shadow-lg hover:-translate-y-0.5 ${
+                highlightedGroup === "services-enterprise"
+                  ? "border-azure-blue shadow-md ring-2 ring-azure-blue/20 scale-[1.02]"
+                  : "border-surface-variant"
+              }`}
+            >
+              <span className="material-symbols-outlined text-azure-blue mb-6 text-[32px]">
+                {service.icon}
+              </span>
+              <h3 className="font-headline text-lg font-semibold mb-3 text-charcoal">
+                {service.title}
+              </h3>
+              <p className="font-body text-sm text-slate-gray leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
     </div>

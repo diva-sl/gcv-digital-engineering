@@ -10,7 +10,8 @@ type Page =
   | "work"
   | "case-study"
   | "privacy"
-  | "terms";
+  | "terms"
+  | "launch-store";
 
 interface FooterProps {
   onPageChange: (page: Page) => void;
@@ -234,6 +235,13 @@ export default function Footer({ onPageChange }: FooterProps) {
             © 2026 GCV Digital Engineering. All rights reserved.
           </p>
           <div className="flex gap-6">
+            <a
+              className="text-slate-gray hover:text-white font-body text-xs"
+              href="/launch-store"
+              onClick={(e) => handleNavClick("launch-store", e)}
+            >
+              Launch Store
+            </a>
             <a
               className="text-slate-gray hover:text-white font-body text-xs"
               href="/privacy"

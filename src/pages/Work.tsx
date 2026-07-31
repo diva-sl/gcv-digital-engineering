@@ -228,6 +228,30 @@ function getTechIcon(tag: string, className = "w-4 h-4") {
       </svg>
     );
   }
+  if (normalized.includes("router")) {
+    return (
+      <svg className={`${className} bg-slate-900 rounded-md p-1`} viewBox="0 0 100 100" fill="none">
+        <path d="M15 25 L85 25 M15 50 L85 50 M15 75 L85 75" stroke="#f44250" strokeWidth="8" strokeLinecap="round"/>
+        <circle cx="25" cy="50" r="10" fill="#f44250"/>
+        <circle cx="75" cy="25" r="10" fill="#f44250"/>
+        <circle cx="75" cy="75" r="10" fill="#f44250"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("axios")) {
+    return (
+      <svg className={`${className} bg-[#5a29e3] rounded-md p-0.5`} viewBox="0 0 100 100" fill="none">
+        <text x="50" y="65" fill="#ffffff" fontSize="45" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">Ax</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("swiper")) {
+    return (
+      <svg className={`${className} bg-[#63aaf9] rounded-md p-0.5`} viewBox="0 0 100 100" fill="none">
+        <path d="M30 20 L70 50 L30 80" stroke="#ffffff" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+  }
   return (
     <svg
       className={`${className} text-azure-blue`}
@@ -281,7 +305,7 @@ export default function Work({ onSelectProject }: WorkProps) {
   }
 
   const sortedProjects = [...projects].sort((a, b) => {
-    const order = ["kiddostyle", "ag-associates"];
+    const order = ["kiddostyle", "ag-associates", "mysticspace"];
     const idxA = order.indexOf(a.id);
     const idxB = order.indexOf(b.id);
     
@@ -398,6 +422,25 @@ export default function Work({ onSelectProject }: WorkProps) {
                     {
                       label: "Redux / RTK Query",
                       icon: getTechIcon("redux", "w-6 h-6"),
+                      style:
+                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
+                    },
+                  ]
+                : project.id === "mysticspace"
+                ? [
+                    {
+                      label: "React 19",
+                      icon: getTechIcon("react", "w-6 h-6"),
+                      style: "top-6 left-6 animate-float-tag-1",
+                    },
+                    {
+                      label: "Express.js",
+                      icon: getTechIcon("express", "w-6 h-6"),
+                      style: "bottom-6 right-6 animate-float-tag-2",
+                    },
+                    {
+                      label: "AWS S3",
+                      icon: getTechIcon("s3", "w-6 h-6"),
                       style:
                         "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
                     },

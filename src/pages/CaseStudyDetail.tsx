@@ -168,6 +168,30 @@ function getTechIcon(tag: string, className = "w-5 h-5") {
       </svg>
     );
   }
+  if (normalized.includes("router")) {
+    return (
+      <svg className={`${className} bg-slate-900 rounded-md p-1`} viewBox="0 0 100 100" fill="none">
+        <path d="M15 25 L85 25 M15 50 L85 50 M15 75 L85 75" stroke="#f44250" strokeWidth="8" strokeLinecap="round"/>
+        <circle cx="25" cy="50" r="10" fill="#f44250"/>
+        <circle cx="75" cy="25" r="10" fill="#f44250"/>
+        <circle cx="75" cy="75" r="10" fill="#f44250"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("axios")) {
+    return (
+      <svg className={`${className} bg-[#5a29e3] rounded-md p-0.5`} viewBox="0 0 100 100" fill="none">
+        <text x="50" y="65" fill="#ffffff" fontSize="45" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">Ax</text>
+      </svg>
+    );
+  }
+  if (normalized.includes("swiper")) {
+    return (
+      <svg className={`${className} bg-[#63aaf9] rounded-md p-0.5`} viewBox="0 0 100 100" fill="none">
+        <path d="M30 20 L70 50 L30 80" stroke="#ffffff" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+  }
   return (
     <svg className={`${className} text-azure-blue`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
       <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -246,6 +270,42 @@ export default function CaseStudyDetail({
             icon: "shield",
           },
         ]
+      : project.id === "ag-associates"
+      ? [
+          {
+            title: "Tax Planning Engine",
+            desc: "Automated corporate tax savings calculators and automated startup advice pipelines.",
+            icon: "calculate",
+          },
+          {
+            title: "Secure S3 Document Vault",
+            desc: "Encrypted Amazon S3 storage bucket integration providing fast pre-signed document downloads and transaction ledgers.",
+            icon: "folder_shared",
+          },
+          {
+            title: "Flexible Subscription Matrix",
+            desc: "Tiered membership plans and transactional logs displaying customer profile registration histories.",
+            icon: "credit_card",
+          },
+        ]
+      : project.id === "mysticspace"
+      ? [
+          {
+            title: "Live Donation Progress Gauges",
+            desc: "Thermometer progress bars tracking incoming donations dynamically against campaign targets.",
+            icon: "trending_up",
+          },
+          {
+            title: "Secure Payment Pipelines",
+            desc: "Encrypted tokenized checkouts providing frictionless donor transactions.",
+            icon: "security",
+          },
+          {
+            title: "Transparent Audit Dashboards",
+            desc: "Comprehensive admin overview displaying donor logs, campaign status registers, and receipt tracking.",
+            icon: "receipt_long",
+          },
+        ]
       : [
           {
             title: "Dynamic Curriculum Architect",
@@ -274,6 +334,24 @@ export default function CaseStudyDetail({
           { name: "Zustand", desc: "Enables ultra-fast global client-side caching of cart details and warehouse options." },
           { name: "React Query", desc: "Automates API data fetching, loading flags, and background stale-while-revalidate processes." },
           { name: "Tailwind CSS v4", desc: "Applies high-speed utility class compilation and native CSS variable lookups." }
+        ]
+      : project.id === "ag-associates"
+      ? [
+          { name: "React 19", desc: "Constructs dense client dashboard views with concurrent rendering to maintain high framerates." },
+          { name: "Node.js", desc: "Powers secure document upload pipelines and backend calculation routers." },
+          { name: "Express", desc: "Provides high-performance microservice REST routing and middleware API endpoints." },
+          { name: "MongoDB", desc: "Saves transaction records, billing telemetry, and audit trail files with high consistency." },
+          { name: "AWS S3", desc: "Manages encrypted storage buckets and generates secure, pre-signed download links." },
+          { name: "Redux", desc: "Handles local client-side states, telemetry metrics, and user preferences." }
+        ]
+      : project.id === "mysticspace"
+      ? [
+          { name: "React 19", desc: "Powers dynamic campaign storefront listings and responsive donation status gauges." },
+          { name: "Express", desc: "Drives payment tokenization APIs, email updates, and receipt generation routes." },
+          { name: "MongoDB", desc: "Stores donor records, active campaign details, and secure payment logs." },
+          { name: "AWS S3", desc: "Hosts static image mockups and automates tax-deductible invoice storage." },
+          { name: "Tailwind CSS", desc: "Implements high-fidelity, responsive layouts utilizing rich orange styles." },
+          { name: "Redux", desc: "Synchronizes active donation carts, filters, and user session indicators." }
         ]
       : [
           { name: "React 19", desc: "Constructs dense client dashboard views with concurrent rendering to maintain high framerates." },
@@ -347,7 +425,7 @@ export default function CaseStudyDetail({
           </div>
 
           {/* 🖼️ Overlapping Mockup Cards Slideshow Box */}
-          <div className="bg-gradient-to-tr from-[#eef4fc] to-[#e4eefb] border border-slate-200/60 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-lg min-h-[460px] md:min-h-[580px] flex items-center justify-center group select-none">
+          <div className="bg-gradient-to-tr from-[#eef4fc] to-[#e4eefb] border border-slate-200/60 rounded-3xl p-4 md:p-8 relative overflow-hidden shadow-lg min-h-[400px] md:min-h-[600px] lg:min-h-[680px] flex items-center justify-center group select-none">
             
             {/* Top-Left Dot Grid */}
             <div className="absolute top-6 left-6 grid grid-cols-4 gap-1.5 opacity-25">
@@ -365,11 +443,11 @@ export default function CaseStudyDetail({
 
             {/* Overlapping Presentation Structure */}
             {currentScreenshot ? (
-              <div className="relative w-full max-w-4xl aspect-[4/3] md:aspect-video flex items-center justify-center">
+              <div className="relative w-full max-w-5xl aspect-[4/3] md:aspect-[16/9] flex items-center justify-center">
                 {filteredScreenshots.length > 1 ? (
-                  <>
+                  <div className="relative w-full h-full flex items-center justify-center">
                     {/* Background Related Screen (Shifted right, rotated back) */}
-                    <div className="absolute right-[5%] top-[10%] w-[58%] aspect-[4/3] md:aspect-video bg-white rounded-2xl shadow-xl border border-slate-200/50 overflow-hidden transform rotate-3 scale-98 transition-all duration-700 hover:rotate-2">
+                    <div className="absolute right-[2%] top-[2%] w-[82%] md:w-[85%] aspect-[4/3] md:aspect-[16/9] bg-white rounded-2xl shadow-xl border border-slate-200/50 overflow-hidden transform rotate-2 scale-98 transition-all duration-700 opacity-50 blur-[0.5px]">
                       <img
                         src={filteredScreenshots[(activeImageIndex + 1) % filteredScreenshots.length].path}
                         alt="Related Screen View"
@@ -378,7 +456,7 @@ export default function CaseStudyDetail({
                     </div>
 
                     {/* Foreground Active Screen (Shifted left, rotated forward, overlap z-index) */}
-                    <div className="relative right-[10%] bottom-[5%] w-[58%] aspect-[4/3] md:aspect-video bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden transform -rotate-3 transition-all duration-700 hover:rotate-0 z-10">
+                    <div className="relative right-[2%] bottom-[2%] w-[82%] md:w-[85%] aspect-[4/3] md:aspect-[16/9] bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden transform -rotate-1 hover:rotate-0 hover:scale-[1.01] transition-all duration-700 z-10">
                       <img
                         key={currentScreenshot.path}
                         src={currentScreenshot.path}
@@ -393,10 +471,10 @@ export default function CaseStudyDetail({
                         </span>
                       </div>
                     </div>
-                  </>
+                  </div>
                 ) : (
                   /* Single Screenshot Centered Layout */
-                  <div className="w-[70%] aspect-[4/3] md:aspect-video bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden">
+                  <div className="w-[85%] md:w-[90%] aspect-[4/3] md:aspect-[16/9] bg-white rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden">
                     <img
                       src={currentScreenshot.path}
                       alt={currentScreenshot.label}
@@ -410,13 +488,13 @@ export default function CaseStudyDetail({
                   <>
                     <button
                       onClick={handlePrevImage}
-                      className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-20 cursor-pointer"
+                      className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-20 cursor-pointer"
                     >
                       <span className="material-symbols-outlined">chevron_left</span>
                     </button>
                     <button
                       onClick={handleNextImage}
-                      className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-20 cursor-pointer"
+                      className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-slate-800 w-10 h-10 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-opacity focus:outline-none z-20 cursor-pointer"
                     >
                       <span className="material-symbols-outlined">chevron_right</span>
                     </button>
@@ -492,6 +570,8 @@ export default function CaseStudyDetail({
                       ? "/images/praxorium_responsive_desktop.jpg"
                       : project.id === "ag-associates"
                       ? "/images/ag_responsive_desktop.jpg"
+                      : project.id === "mysticspace"
+                      ? "/images/mysticspace_uploaded_client_home_2d.jpg"
                       : "/images/praxorium.gcvdanta.com_ (2).webp")
                     }
                     alt="Desktop View"
@@ -516,6 +596,8 @@ export default function CaseStudyDetail({
                       ? "/images/praxorium_responsive_tablet.jpg"
                       : project.id === "ag-associates"
                       ? "/images/ag_responsive_tablet.jpg"
+                      : project.id === "mysticspace"
+                      ? "/images/mysticspace_uploaded_client_campaigns_2d.jpg"
                       : "/images/praxorium.gcvdanta.com_ (3).webp")
                     }
                     alt="Tablet View"
@@ -540,6 +622,8 @@ export default function CaseStudyDetail({
                       ? "/images/praxorium_responsive_mobile.jpg"
                       : project.id === "ag-associates"
                       ? "/images/ag_responsive_mobile.jpg"
+                      : project.id === "mysticspace"
+                      ? "/images/mysticspace_uploaded_client_detail_2d.jpg"
                       : "/images/admin.praxorium.gcvdanta.com_.webp")
                     }
                     alt="Mobile View"

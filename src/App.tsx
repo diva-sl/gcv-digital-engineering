@@ -10,6 +10,7 @@ import Work from "./pages/Work";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import LaunchStore from "./pages/LaunchStore";
 
 interface Metric {
   label: string;
@@ -49,9 +50,10 @@ type Page =
   | "work"
   | "case-study"
   | "privacy"
-  | "terms";
+  | "terms"
+  | "launch-store";
 
-type NavPage = Exclude<Page, "case-study">;
+type NavPage = Exclude<Page, "case-study" | "launch-store">;
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>("home");
@@ -71,6 +73,7 @@ function App() {
         "work",
         "privacy",
         "terms",
+        "launch-store",
       ];
 
       if (validPages.includes(path as Page)) {
@@ -106,7 +109,7 @@ function App() {
   const currentNavPage: NavPage =
     currentPage === "case-study"
       ? "work"
-      : currentPage === "privacy" || currentPage === "terms"
+      : currentPage === "privacy" || currentPage === "terms" || currentPage === "launch-store"
         ? "home"
         : currentPage;
 
@@ -144,6 +147,9 @@ function App() {
         )}
         {currentPage === "terms" && (
           <TermsOfService onBack={() => handlePageChange("home")} />
+        )}
+        {currentPage === "launch-store" && (
+          <LaunchStore />
         )}
       </main>
       <Footer onPageChange={handlePageChange} />

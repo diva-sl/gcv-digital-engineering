@@ -158,102 +158,51 @@ export default function Header({
                     </a> */}
                   </div>
 
-                  <div className="col-span-9 grid grid-cols-3 gap-y-6 gap-x-6">
-                    {/* Discovery Column */}
+                  <div className="col-span-9 grid grid-cols-4 gap-y-6 gap-x-4">
+                    {/* Strategy & Design Column */}
                     <div>
                       <p className="font-body text-[10px] text-slate-gray font-bold uppercase tracking-widest mb-3 select-none">
-                        Discovery
+                        Strategy & Design
                       </p>
-                      <ul className="space-y-2">
+                      <ul className="space-y-1">
                         <li>
                           <a
-                            className="group/item flex items-center gap-3.5 p-3 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
+                            className="group/item flex items-center gap-2.5 p-2 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
                             href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-strategy", e)
                             }
                           >
-                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[22px]">
-                              person_search
+                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[20px]">
+                              track_changes
                             </span>
                             <div className="flex flex-col">
-                              <span className="font-body text-sm font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
-                                User Research
+                              <span className="font-body text-xs font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
+                                Product Strategy
                               </span>
-                              <span className="text-[11px] text-slate-gray leading-none mt-1">
-                                Understanding user behaviors
+                              <span className="text-[10px] text-slate-gray leading-none mt-1">
+                                Goal alignment & roadmaps
                               </span>
                             </div>
                           </a>
                         </li>
                         <li>
                           <a
-                            className="group/item flex items-center gap-3.5 p-3 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
-                            href="/services"
-                            onClick={(e) =>
-                              handleSubLinkClick("services-strategy", e)
-                            }
-                          >
-                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[22px]">
-                              insights
-                            </span>
-                            <div className="flex flex-col">
-                              <span className="font-body text-sm font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
-                                Design Research
-                              </span>
-                              <span className="text-[11px] text-slate-gray leading-none mt-1">
-                                Market & trend analytics
-                              </span>
-                            </div>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-
-                    {/* Design Column */}
-                    <div>
-                      <p className="font-body text-[10px] text-slate-gray font-bold uppercase tracking-widest mb-3 select-none">
-                        Design
-                      </p>
-                      <ul className="space-y-2">
-                        <li>
-                          <a
-                            className="group/item flex items-center gap-3.5 p-3 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
+                            className="group/item flex items-center gap-2.5 p-2 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
                             href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-experience", e)
                             }
                           >
-                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[22px]">
-                              conversion_path
-                            </span>
-                            <div className="flex flex-col">
-                              <span className="font-body text-sm font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
-                                Service Design
-                              </span>
-                              <span className="text-[11px] text-slate-gray leading-none mt-1">
-                                Orchestrating system flows
-                              </span>
-                            </div>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            className="group/item flex items-center gap-3.5 p-3 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
-                            href="/services"
-                            onClick={(e) =>
-                              handleSubLinkClick("services-experience", e)
-                            }
-                          >
-                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[22px]">
+                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[20px]">
                               palette
                             </span>
                             <div className="flex flex-col">
-                              <span className="font-body text-sm font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
-                                UI/UX Design
+                              <span className="font-body text-xs font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
+                                UI/UX Development
                               </span>
-                              <span className="text-[11px] text-slate-gray leading-none mt-1">
-                                Figma-crafted user interfaces
+                              <span className="text-[10px] text-slate-gray leading-none mt-1">
+                                Interactive interfaces
                               </span>
                             </div>
                           </a>
@@ -261,50 +210,152 @@ export default function Header({
                       </ul>
                     </div>
 
-                    {/* Engineering Column */}
+                    {/* Custom Engineering Column */}
                     <div>
                       <p className="font-body text-[10px] text-slate-gray font-bold uppercase tracking-widest mb-3 select-none">
                         Engineering
                       </p>
-                      <ul className="space-y-2">
+                      <ul className="space-y-1">
                         <li>
                           <a
-                            className="group/item flex items-center gap-3.5 p-3 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
+                            className="group/item flex items-center gap-2.5 p-2 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
                             href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-engineering", e)
                             }
                           >
-                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[22px]">
+                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[20px]">
                               code
                             </span>
                             <div className="flex flex-col">
-                              <span className="font-body text-sm font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
+                              <span className="font-body text-xs font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
                                 Software Dev
                               </span>
-                              <span className="text-[11px] text-slate-gray leading-none mt-1">
-                                Scalable React architectures
+                              <span className="text-[10px] text-slate-gray leading-none mt-1">
+                                Full-stack application systems
                               </span>
                             </div>
                           </a>
                         </li>
                         <li>
                           <a
-                            className="group/item flex items-center gap-3.5 p-3 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
+                            className="group/item flex items-center gap-2.5 p-2 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
                             href="/services"
                             onClick={(e) =>
                               handleSubLinkClick("services-engineering", e)
                             }
                           >
-                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[22px]">
+                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[20px]">
                               cloud
                             </span>
                             <div className="flex flex-col">
-                              <span className="font-body text-sm font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
-                                Cloud Systems
+                              <span className="font-body text-xs font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
+                                Cloud & DevOps
                               </span>
-                              <span className="text-[11px] text-slate-gray leading-none mt-1">
-                                AWS & serverless setups
+                              <span className="text-[10px] text-slate-gray leading-none mt-1">
+                                AWS scale & CI/CD pipeline
+                              </span>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* E-Commerce Column */}
+                    <div>
+                      <p className="font-body text-[10px] text-slate-gray font-bold uppercase tracking-widest mb-3 select-none">
+                        E-Commerce
+                      </p>
+                      <ul className="space-y-1">
+                        <li>
+                          <a
+                            className="group/item flex items-center gap-2.5 p-2 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
+                            href="/services"
+                            onClick={(e) =>
+                              handleSubLinkClick("services-product-dev", e)
+                            }
+                          >
+                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[20px]">
+                              shopping_bag
+                            </span>
+                            <div className="flex flex-col">
+                              <span className="font-body text-xs font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
+                                Storefront Dev
+                              </span>
+                              <span className="text-[10px] text-slate-gray leading-none mt-1">
+                                Next.js & Headless setups
+                              </span>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className="group/item flex items-center gap-2.5 p-2 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
+                            href="/services"
+                            onClick={(e) =>
+                              handleSubLinkClick("services-product-dev", e)
+                            }
+                          >
+                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[20px]">
+                              stay_current_portrait
+                            </span>
+                            <div className="flex flex-col">
+                              <span className="font-body text-xs font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
+                                Mobile Commerce
+                              </span>
+                              <span className="text-[10px] text-slate-gray leading-none mt-1">
+                                Cross-platform retail apps
+                              </span>
+                            </div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    {/* Enterprise Column */}
+                    <div>
+                      <p className="font-body text-[10px] text-slate-gray font-bold uppercase tracking-widest mb-3 select-none">
+                        Enterprise
+                      </p>
+                      <ul className="space-y-1">
+                        <li>
+                          <a
+                            className="group/item flex items-center gap-2.5 p-2 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
+                            href="/services"
+                            onClick={(e) =>
+                              handleSubLinkClick("services-enterprise", e)
+                            }
+                          >
+                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[20px]">
+                              groups
+                            </span>
+                            <div className="flex flex-col">
+                              <span className="font-body text-xs font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
+                                HRM & CRM
+                              </span>
+                              <span className="text-[10px] text-slate-gray leading-none mt-1">
+                                Corporate workflow management
+                              </span>
+                            </div>
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className="group/item flex items-center gap-2.5 p-2 rounded-lg hover:bg-azure-blue/5 border border-transparent hover:border-azure-blue/10 transition-all duration-200"
+                            href="/services"
+                            onClick={(e) =>
+                              handleSubLinkClick("services-enterprise", e)
+                            }
+                          >
+                            <span className="material-symbols-outlined text-slate-400 group-hover/item:text-azure-blue transition-colors text-[20px]">
+                              business
+                            </span>
+                            <div className="flex flex-col">
+                              <span className="font-body text-xs font-semibold text-charcoal group-hover/item:text-azure-blue transition-colors">
+                                ERP & LMS
+                              </span>
+                              <span className="text-[10px] text-slate-gray leading-none mt-1">
+                                Schooling & scaling platforms
                               </span>
                             </div>
                           </a>
