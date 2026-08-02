@@ -252,6 +252,59 @@ function getTechIcon(tag: string, className = "w-4 h-4") {
       </svg>
     );
   }
+  if (normalized.includes("unity")) {
+    return (
+      <svg className={`${className} bg-black rounded-md p-0.5 shrink-0`} viewBox="0 0 100 100" fill="none">
+        <path d="M50 15 L85 35 L85 75 L50 95 L15 75 L15 35 Z" stroke="#ffffff" strokeWidth="8" fill="none"/>
+        <path d="M50 15 L50 95 M15 35 L85 75 M85 35 L15 75" stroke="#ffffff" strokeWidth="6"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("a-frame") || normalized.includes("aframe")) {
+    return (
+      <svg className={`${className} rounded-md shrink-0`} viewBox="0 0 100 100" fill="#EF2D5E">
+        <rect width="100" height="100" rx="15"/>
+        <path d="M50 20 L25 80 L38 80 L50 50 L62 80 L75 80 Z" fill="#ffffff"/>
+        <path d="M35 60 L65 60" stroke="#EF2D5E" strokeWidth="6"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("figma")) {
+    return (
+      <svg className={`${className} shrink-0`} viewBox="0 0 24 24" fill="none">
+        <path d="M8 24C10.2 24 12 22.2 12 20V16H8C5.8 16 4 17.8 4 20C4 22.2 5.8 24 8 24Z" fill="#0ACF83"/>
+        <path d="M4 12C4 9.8 5.8 8 8 8H12V16H8C5.8 16 4 14.2 4 12Z" fill="#A259FF"/>
+        <path d="M4 4C4 1.8 5.8 0 8 0H12V8H8C5.8 8 4 6.2 4 4Z" fill="#F24E1E"/>
+        <path d="M12 0H16C18.2 0 20 1.8 20 4C20 6.2 18.2 8 16 8H12V0Z" fill="#FF7262"/>
+        <path d="M20 12C20 14.2 18.2 16 16 16C13.8 16 12 14.2 12 12C12 9.8 13.8 8 16 8C18.2 8 20 9.8 20 12Z" fill="#1ABCFE"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("autodesk") || normalized.includes("autocad") || normalized.includes("3ds max")) {
+    return (
+      <svg className={`${className} bg-[#0696D7] rounded-md p-0.5 shrink-0`} viewBox="0 0 100 100" fill="none">
+        <rect width="100" height="100" rx="15" fill="#0696D7"/>
+        <path d="M20 80 L50 20 L70 50 L40 50 L50 70 L80 70" stroke="#ffffff" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("blender")) {
+    return (
+      <svg className={`${className} shrink-0`} viewBox="0 0 24 24" fill="none">
+        <path d="M12 2C13.1 2 14 2.9 14 4V7.2L19.4 4.1C20.3 3.6 21.5 3.9 22 4.8C22.5 5.7 22.2 6.9 21.3 7.4L15.3 10.9C18.1 12.1 20 14.8 20 18C20 21.3 16.4 24 12 24C7.6 24 4 21.3 4 18C4 15.1 5.5 12.6 8 11.2V4C8 2.9 8.9 2 10 2H12Z" fill="#EA7600"/>
+        <circle cx="12" cy="17" r="4" fill="#265787"/>
+        <circle cx="12" cy="17" r="2" fill="#ffffff"/>
+      </svg>
+    );
+  }
+  if (normalized.includes("ai") || normalized.includes("ai tools") || normalized.includes("generative ai")) {
+    return (
+      <svg className={`${className} bg-gradient-to-tr from-purple-600 to-indigo-500 rounded-md p-0.5 shrink-0`} viewBox="0 0 24 24" fill="#ffffff">
+        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+        <path d="M6 3L7 6L10 7L7 8L6 11L5 8L2 7L5 6L6 3Z" opacity="0.7"/>
+      </svg>
+    );
+  }
   return (
     <svg
       className={`${className} text-azure-blue`}
