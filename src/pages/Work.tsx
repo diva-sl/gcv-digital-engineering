@@ -305,7 +305,7 @@ export default function Work({ onSelectProject }: WorkProps) {
   }
 
   const sortedProjects = [...projects].sort((a, b) => {
-    const order = ["kiddostyle", "ag-associates", "mysticspace"];
+    const order = ["kiddostyle", "aurabus", "ag-associates", "mysticspace"];
     const idxA = order.indexOf(a.id);
     const idxB = order.indexOf(b.id);
     
@@ -441,6 +441,25 @@ export default function Work({ onSelectProject }: WorkProps) {
                     {
                       label: "AWS S3",
                       icon: getTechIcon("s3", "w-6 h-6"),
+                      style:
+                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
+                    },
+                  ]
+                : project.id === "aurabus"
+                ? [
+                    {
+                      label: "React 19",
+                      icon: getTechIcon("react", "w-6 h-6"),
+                      style: "top-6 left-6 animate-float-tag-1",
+                    },
+                    {
+                      label: "Go / Golang",
+                      icon: getTechIcon("golang", "w-6 h-6"),
+                      style: "bottom-6 right-6 animate-float-tag-2",
+                    },
+                    {
+                      label: "Zustand",
+                      icon: getTechIcon("zustand", "w-6 h-6"),
                       style:
                         "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
                     },

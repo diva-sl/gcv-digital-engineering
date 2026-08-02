@@ -71,6 +71,7 @@ function App() {
         "services",
         "contact",
         "work",
+        "case-study",
         "privacy",
         "terms",
         "launch-store",
@@ -103,7 +104,9 @@ function App() {
 
   const handleSelectProject = (project: Project) => {
     setSelectedProject(project);
-    handlePageChange("case-study");
+    setCurrentPage("case-study");
+    window.history.pushState(null, "", `/case-study?id=${project.id}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const currentNavPage: NavPage =

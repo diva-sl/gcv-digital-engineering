@@ -111,9 +111,9 @@ export default function Products({ onPageChange }: ProductsProps) {
       icon: "factory",
     },
     {
-      name: "Oil and Gas",
-      desc: "Custom software to streamline operations and boost energy efficiency.",
-      icon: "oil_barrel",
+      name: "Renewable Energy",
+      desc: "Custom software to monitor green energy output, solar grids, and efficiency.",
+      icon: "solar_power",
     },
     {
       name: "Taxation & Auditing",

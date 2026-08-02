@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import api from "../api";
 
 interface Metric {
   label: string;
@@ -89,11 +90,21 @@ function getTechIcon(tag: string, className = "w-5 h-5") {
       </svg>
     );
   }
-  if (normalized.includes("golang") || normalized.includes("go / golang") || normalized.includes("go mod")) {
-    const widthClass = className.replace("w-5", "w-6");
+  if (normalized.includes("golang") || normalized.includes("go / golang") || normalized.includes("go mod") || normalized.includes("go")) {
     return (
-      <svg className={widthClass} viewBox="0 0 1200 484" fill="#00ADD8">
-        <path d="M127.8 242c0-37.1 9-67 27-89.8s42.4-34.2 73.2-34.2c26 0 46.8 6.4 62.4 19.2s26 29.8 31.2 51h-51c-4.4-11.8-11-20.9-19.8-27.3s-19-9.6-30.6-9.6c-17 0-30 6-39 18s-13.5 28.5-13.5 49.5c0 21.3 4.5 38.4 13.5 51.3s22.2 19.3 39.6 19.3c13.8 0 24.6-4.1 32.4-12.3s12.3-20.1 13.5-35.7h-47.4v-39h97.2v118.8h-48v-25.2c-7.8 9.6-17.7 17.1-29.7 22.5s-25.2 8.1-39.6 8.1c-31.4 0-56.3-11.4-74.7-34.2s-27.5-54.8-27.5-95.9zm276 75.6c-17.6 0-32-6.1-43.2-18.3s-16.8-28.5-16.8-48.9 5.6-36.8 16.8-49 25.6-18.3 43.2-18.3 32 6.1 43.2 18.3 16.8 28.6 16.8 49-5.6 36.7-16.8 48.9-25.6 18.3-43.2 18.3zm0-174.6c-31.2 0-56.4 11.4-75.6 34.2S300 231.8 300 272.9s9.4 75.3 28.2 97.8c18.8 22.5 44 33.8 75.6 33.8s56.6-11.3 75-33.8c18.4-22.5 27.6-55.1 27.6-97.8s-9.2-75.9-27.6-98.7c-18.4-22.8-43.4-34.2-75-34.2z"/>
+      <svg className={`${className} rounded-md shrink-0`} viewBox="0 0 100 100" fill="#00ADD8">
+        <rect width="100" height="100" rx="15" />
+        <text
+          x="50"
+          y="68"
+          fill="white"
+          fontSize="54"
+          fontWeight="bold"
+          fontFamily="sans-serif"
+          textAnchor="middle"
+        >
+          GO
+        </text>
       </svg>
     );
   }
@@ -200,23 +211,57 @@ function getTechIcon(tag: string, className = "w-5 h-5") {
 }
 
 export default function CaseStudyDetail({
-  project,
+  project: initialProject,
   onBack,
 }: CaseStudyDetailProps) {
-  if (!project) return null;
-
-  // Gallery state hooks
+  const [project, setProject] = useState<Project | null>(initialProject);
+  const [isLoading, setIsLoading] = useState(!initialProject);
   const [galleryFilter, setGalleryFilter] = useState<
     "all" | "storefront" | "admin"
   >("all");
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const filteredScreenshots = project.screenshots.filter(
+  useEffect(() => {
+    if (initialProject) {
+      setProject(initialProject);
+      setIsLoading(false);
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const searchId = params.get("id");
+
+    if (searchId) {
+      setIsLoading(true);
+      api
+        .get(`/projects/${searchId}`)
+        .then((res) => {
+          if (res.data) {
+            setProject({
+              ...res.data,
+              id: res.data.projectId || searchId,
+            });
+          }
+        })
+        .catch((err) => {
+          console.error("Failed to load case study on refresh:", err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      setIsLoading(false);
+    }
+  }, [initialProject]);
+
+  const screenshots = project?.screenshots || [];
+
+  const filteredScreenshots = screenshots.filter(
     (screen) => galleryFilter === "all" || screen.type === galleryFilter,
   );
 
   const currentScreenshot =
-    filteredScreenshots[activeImageIndex] || project.screenshots[0];
+    filteredScreenshots[activeImageIndex] || screenshots[0];
 
   // 🔄 Automatic Slideshow Trigger (Cycles every 3 seconds)
   useEffect(() => {
@@ -230,6 +275,34 @@ export default function CaseStudyDetail({
 
     return () => clearInterval(timer);
   }, [filteredScreenshots.length, galleryFilter]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#f7f9fb] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-azure-blue border-t-transparent rounded-full animate-spin"></div>
+          <span className="text-sm font-semibold text-slate-600">Loading Case Study...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!project) {
+    return (
+      <div className="min-h-screen bg-[#f7f9fb] flex flex-col items-center justify-center p-6 text-center space-y-4">
+        <h2 className="text-2xl font-bold text-charcoal">Case Study Not Found</h2>
+        <p className="text-sm text-slate-gray max-w-md">
+          The requested case study could not be loaded. Please check the URL or select another case study.
+        </p>
+        <button
+          onClick={onBack}
+          className="px-6 py-2.5 bg-azure-blue text-white rounded-lg font-semibold hover:bg-[#0055c8] transition-colors"
+        >
+          Back to Work Showcase
+        </button>
+      </div>
+    );
+  }
 
   const handleFilterChange = (filter: "all" | "storefront" | "admin") => {
     setGalleryFilter(filter);
@@ -306,6 +379,24 @@ export default function CaseStudyDetail({
             icon: "receipt_long",
           },
         ]
+      : project.id === "aurabus"
+      ? [
+          {
+            title: "Interactive 2D Seat Canvas",
+            desc: "Highly responsive vector-based seat mapping configurator that lets operators design custom Sleeper/Seater coach layouts (2+1, 2+2) with live price mapping.",
+            icon: "event_seat",
+          },
+          {
+            title: "Real-Time Booking Dispatch",
+            desc: "Comprehensive dashboard tracking active buses, today's schedule departures, seats sold, and direct PM2 metrics with automated ticket printing.",
+            icon: "departure_board",
+          },
+          {
+            title: "Customer Access Directory",
+            desc: "Centralized table featuring role permissions, customer login status, and transit booking histories to resolve booking conflicts in real-time.",
+            icon: "contact_page",
+          },
+        ]
       : [
           {
             title: "Dynamic Curriculum Architect",
@@ -352,6 +443,15 @@ export default function CaseStudyDetail({
           { name: "AWS S3", desc: "Hosts static image mockups and automates tax-deductible invoice storage." },
           { name: "Tailwind CSS", desc: "Implements high-fidelity, responsive layouts utilizing rich orange styles." },
           { name: "Redux", desc: "Synchronizes active donation carts, filters, and user session indicators." }
+        ]
+      : project.id === "aurabus"
+      ? [
+          { name: "React 19", desc: "Constructs interactive seat maps and schedule timelines with low-latency client-side rendering." },
+          { name: "Go / Golang", desc: "Handles transit schedules routing, transaction checks, and multi-tenant locking operations." },
+          { name: "Tailwind CSS", desc: "Drafts responsive, high-performance UI structures for desktop operators and mobile users." },
+          { name: "Zustand", desc: "Coordinates active seat selection states, fare totals, and customer session contexts." },
+          { name: "React Query", desc: "Optimizes backend sync processes for passenger lists, active routes, and dispatch status boards." },
+          { name: "Vite v8", desc: "Powers instant hot module replacement (HMR) local compiles and optimized production builds." }
         ]
       : [
           { name: "React 19", desc: "Constructs dense client dashboard views with concurrent rendering to maintain high framerates." },
@@ -566,6 +666,8 @@ export default function CaseStudyDetail({
                   <img
                     src={project.desktopMockup || (project.id === "kiddostyle" 
                       ? "/images/kiddostyle_responsive_desktop.jpg" 
+                      : project.id === "aurabus"
+                      ? "/images/aurabus_responsive_desktop.jpg"
                       : (project.id === "praxorium" || project.id === "edu-portal")
                       ? "/images/praxorium_responsive_desktop.jpg"
                       : project.id === "ag-associates"
@@ -592,6 +694,8 @@ export default function CaseStudyDetail({
                   <img
                     src={project.tabletMockup || (project.id === "kiddostyle" 
                       ? "/images/kiddostyle_responsive_tablet.jpg" 
+                      : project.id === "aurabus"
+                      ? "/images/aurabus_responsive_tablet.jpg"
                       : (project.id === "praxorium" || project.id === "edu-portal")
                       ? "/images/praxorium_responsive_tablet.jpg"
                       : project.id === "ag-associates"
@@ -618,6 +722,8 @@ export default function CaseStudyDetail({
                   <img
                     src={project.mobileMockup || (project.id === "kiddostyle" 
                       ? "/images/kiddostyle_responsive_mobile.jpg" 
+                      : project.id === "aurabus"
+                      ? "/images/aurabus_responsive_mobile.jpg"
                       : (project.id === "praxorium" || project.id === "edu-portal")
                       ? "/images/praxorium_responsive_mobile.jpg"
                       : project.id === "ag-associates"
