@@ -108,6 +108,13 @@ function getTechIcon(tag: string, className = "w-5 h-5") {
       </svg>
     );
   }
+  if (normalized.includes("three") || normalized.includes("webgl") || normalized.includes("vr") || normalized.includes("webxr")) {
+    return (
+      <svg className={`${className} bg-slate-900 rounded-md p-0.5 shrink-0`} viewBox="0 0 100 100" fill="none">
+        <text x="50" y="65" fill="#00ffff" fontSize="42" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">3D</text>
+      </svg>
+    );
+  }
   if (normalized.includes("framer motion")) {
     return (
       <svg className={className} viewBox="0 0 24 24" fill="none">
@@ -562,6 +569,7 @@ export default function CaseStudyDetail({
                         src={currentScreenshot.path}
                         alt={currentScreenshot.label}
                         className="w-full h-full object-cover object-top"
+                        style={{ imageRendering: "-webkit-optimize-contrast" }}
                       />
                       {/* Active Caption Overlay */}
                       <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-sm text-white px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide flex justify-between items-center z-20 shadow-lg">

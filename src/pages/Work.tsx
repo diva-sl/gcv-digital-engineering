@@ -305,7 +305,7 @@ export default function Work({ onSelectProject }: WorkProps) {
   }
 
   const sortedProjects = [...projects].sort((a, b) => {
-    const order = ["kiddostyle", "aurabus", "ag-associates", "mysticspace"];
+    const order = ["aurabus", "kiddostyle", "realestate-vr", "ag-associates", "mysticspace", "praxorium"];
     const idxA = order.indexOf(a.id);
     const idxB = order.indexOf(b.id);
     
