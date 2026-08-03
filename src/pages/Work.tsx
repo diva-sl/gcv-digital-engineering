@@ -358,7 +358,7 @@ export default function Work({ onSelectProject }: WorkProps) {
   }
 
   const sortedProjects = [...projects].sort((a, b) => {
-    const order = ["aurabus", "kiddostyle", "realestate-vr", "ag-associates", "mysticspace", "praxorium"];
+    const order = ["kiddostyle", "realestate-vr", "ag-associates", "aurabus", "mysticspace", "praxorium"];
     const idxA = order.indexOf(a.id);
     const idxB = order.indexOf(b.id);
     
@@ -440,101 +440,62 @@ export default function Work({ onSelectProject }: WorkProps) {
         <div className="space-y-16">
           {filteredProjects.map((project, idx) => {
             // Setup floating tags for each project with actual SVGs from package.json (sized medium)
-            const floatingTags =
-              project.id === "kiddostyle"
-                ? [
-                    {
-                      label: "Next.js",
-                      icon: getTechIcon("next", "w-6 h-6"),
-                      style: "top-6 left-6 animate-float-tag-1",
-                    },
-                    {
-                      label: "React 19",
-                      icon: getTechIcon("react", "w-6 h-6"),
-                      style: "bottom-6 right-6 animate-float-tag-2",
-                    },
-                    {
-                      label: "Go / Golang",
-                      icon: getTechIcon("golang", "w-6 h-6"),
-                      style:
-                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
-                    },
-                  ]
-                : project.id === "ag-associates"
-                ? [
-                    {
-                      label: "React 19",
-                      icon: getTechIcon("react", "w-6 h-6"),
-                      style: "top-6 left-6 animate-float-tag-1",
-                    },
-                    {
-                      label: "Express.js",
-                      icon: getTechIcon("express", "w-6 h-6"),
-                      style: "bottom-6 right-6 animate-float-tag-2",
-                    },
-                    {
-                      label: "Redux / RTK Query",
-                      icon: getTechIcon("redux", "w-6 h-6"),
-                      style:
-                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
-                    },
-                  ]
-                : project.id === "mysticspace"
-                ? [
-                    {
-                      label: "React 19",
-                      icon: getTechIcon("react", "w-6 h-6"),
-                      style: "top-6 left-6 animate-float-tag-1",
-                    },
-                    {
-                      label: "Express.js",
-                      icon: getTechIcon("express", "w-6 h-6"),
-                      style: "bottom-6 right-6 animate-float-tag-2",
-                    },
-                    {
-                      label: "AWS S3",
-                      icon: getTechIcon("s3", "w-6 h-6"),
-                      style:
-                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
-                    },
-                  ]
-                : project.id === "aurabus"
-                ? [
-                    {
-                      label: "React 19",
-                      icon: getTechIcon("react", "w-6 h-6"),
-                      style: "top-6 left-6 animate-float-tag-1",
-                    },
-                    {
-                      label: "Go / Golang",
-                      icon: getTechIcon("golang", "w-6 h-6"),
-                      style: "bottom-6 right-6 animate-float-tag-2",
-                    },
-                    {
-                      label: "Zustand",
-                      icon: getTechIcon("zustand", "w-6 h-6"),
-                      style:
-                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
-                    },
-                  ]
-                : [
-                    {
-                      label: "React 19",
-                      icon: getTechIcon("react", "w-6 h-6"),
-                      style: "top-6 left-6 animate-float-tag-1",
-                    },
-                    {
-                      label: "Go / Golang",
-                      icon: getTechIcon("golang", "w-6 h-6"),
-                      style: "bottom-6 right-6 animate-float-tag-2",
-                    },
-                    {
-                      label: "Framer Motion",
-                      icon: getTechIcon("framer motion", "w-6 h-6"),
-                      style:
-                        "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
-                    },
-                  ];
+            const animationStyles = [
+              "top-6 left-6 animate-float-tag-1",
+              "bottom-6 right-6 animate-float-tag-2",
+              "top-1/2 right-6 -translate-y-1/2 animate-float-tag-3",
+            ];
+
+            let rawTags: { label: string; key: string }[] = [];
+
+            if (project.id === "kiddostyle") {
+              rawTags = [
+                { label: "Next.js", key: "next" },
+                { label: "Tailwind CSS", key: "tailwind" },
+                { label: "Go / Golang", key: "golang" },
+              ];
+            } else if (project.id === "realestate-vr") {
+              rawTags = [
+                { label: "Figma", key: "figma" },
+                { label: "Blender", key: "blender" },
+                { label: "A-Frame", key: "a-frame" },
+              ];
+            } else if (project.id === "ag-associates") {
+              rawTags = [
+                { label: "Express.js", key: "express" },
+                { label: "Node.js", key: "node" },
+                { label: "React 19", key: "react" },
+              ];
+            } else if (project.id === "aurabus") {
+              rawTags = [
+                { label: "React 19", key: "react" },
+                { label: "Go / Golang", key: "golang" },
+                { label: "Vite", key: "vite" },
+              ];
+            } else if (project.id === "mysticspace") {
+              rawTags = [
+                { label: "React 19", key: "react" },
+                { label: "Express.js", key: "express" },
+                { label: "AWS S3", key: "s3" },
+              ];
+            } else if (project.id === "praxorium") {
+              rawTags = [
+                { label: "React 19", key: "react" },
+                { label: "Tailwind CSS v4", key: "tailwind" },
+                { label: "Node.js", key: "node" },
+              ];
+            } else {
+              rawTags = (project.tags || []).slice(0, 3).map((t) => ({
+                label: t,
+                key: t.toLowerCase(),
+              }));
+            }
+
+            const floatingTags = rawTags.map((tag, i) => ({
+              label: tag.label,
+              icon: getTechIcon(tag.key, "w-6 h-6"),
+              style: animationStyles[i % animationStyles.length],
+            }));
 
             return (
               <div
